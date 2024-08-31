@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MysticVine</string>
+    <string name="app_name">Mystic Vine</string>
     <string name="level">Lv.</string>
     <string name="custom_game_description">Come join and engage in a personalized game session created specifically for you and your friends.</string>
     <string name="custom_game_title">Custom Game</string>
