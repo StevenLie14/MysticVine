@@ -1,0 +1,118 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="125dp"
+        android:layout_height="290dp"
+        android:layout_marginEnd="-4dp"
+        android:layout_marginTop="-25dp"
+        android:layout_gravity="top|end"
+        android:src="@drawable/top_right_decoration" />
+
+    <ImageView
+        android:layout_width="180dp"
+        android:layout_height="300dp"
+        android:layout_marginBottom="-45dp"
+        android:layout_gravity="bottom|start"
+        android:src="@drawable/bottom_left_decoration" />
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="top|end"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/rounded_image"
+        android:scaleType="centerCrop"
+        android:src="@drawable/avatar" />
+
+    <ImageView
+        android:layout_width="180dp"
+        android:layout_height="150dp"
+        android:layout_marginBottom="-3dp"
+        android:layout_gravity="bottom|end"
+        android:src="@drawable/raining_trees" />
+
+    <ImageView
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_gravity="top|start"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/rounded_image"
+        android:scaleType="centerCrop"
+        android:src="@drawable/close_icon" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <View
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_gravity="center"
+                android:background="@drawable/big_light_orange_rounded" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:letterSpacing="0"
+                android:text="60"
+                android:textColor="@color/peach"
+                android:textSize="25dp" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="240dp"
+            android:layout_marginTop="60dp"
+            android:background="@color/dark_green">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Suatu hari, seekor kucing bernama Mr. Whiskers menemukan sebuah remote control misterius di bawah sofa. Setelah menekannya, melainkan salah satu dari suara-suara berikut. Kira-kira, suara mana yang paling mungkin keluar dari Mr. Whiskers saat dia pertama kali mencoba berbicara?"
+                android:layout_marginHorizontal="15dp"
+                android:gravity="center_horizontal"
+                android:layout_gravity="center" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:orientation="vertical">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:layout_marginVertical="40dp"
+                android:background="@drawable/background_edit_text"
+                android:gravity="top"
+                android:hint="Answer"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="15dp" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="13dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginHorizontal="30dp"
+                android:backgroundTint="@color/light_orange"
+                android:fontFamily="@font/source_sans_pro_bold"
+                android:text="Finalize" />
+        </LinearLayout>
+    </LinearLayout>
+
+</FrameLayout>

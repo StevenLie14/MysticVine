@@ -9,4 +9,8 @@
     <color name="light_orange">#DDA15E</color>
     <color name="light_green">#5CB85C</color>
     <color name="light_red">#F44336</color>
+    <color name="gold">#FFD700</color>
+    <color name="silver">#BCC6CC</color>
+    <color name="bronze">#CD7F32</color>
+
 </resources>

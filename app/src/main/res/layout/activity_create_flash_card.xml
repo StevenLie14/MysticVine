@@ -1,0 +1,104 @@
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="125dp"
+        android:layout_height="290dp"
+        android:layout_marginEnd="-4dp"
+        android:layout_marginTop="-25dp"
+        android:layout_gravity="top|end"
+        android:src="@drawable/top_right_decoration" />
+
+    <ImageView
+        android:layout_width="180dp"
+        android:layout_height="300dp"
+        android:layout_marginBottom="-45dp"
+        android:layout_gravity="bottom|start"
+        android:src="@drawable/bottom_left_decoration" />
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="top|end"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/rounded_image"
+        android:scaleType="centerCrop"
+        android:src="@drawable/avatar" />
+
+    <ImageView
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_gravity="top|start"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/rounded_image"
+        android:scaleType="centerCrop"
+        android:src="@drawable/close_icon" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="80dp"
+        android:orientation="vertical">
+        <TextView
+            android:layout_marginTop="20dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/dark_green"
+            android:text="Create a question and provide the correct answer for your flash card"/>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="390dp"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/dark_green_rounded">
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="71dp"
+                    android:layout_marginHorizontal="25dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginBottom="25dp"
+                    android:background="@drawable/peach_rounded"
+                    android:gravity="top"
+                    android:hint="Question"
+                    android:paddingHorizontal="15dp"
+                    android:paddingVertical="15dp" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="225dp"
+                    android:layout_marginHorizontal="25dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="@drawable/peach_rounded"
+                    android:gravity="top"
+                    android:hint="Answer"
+                    android:paddingHorizontal="15dp"
+                    android:paddingVertical="15dp" />
+            </LinearLayout>
+
+
+        </FrameLayout>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="13dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="35dp"
+            android:backgroundTint="@color/light_orange"
+            android:fontFamily="@font/source_sans_pro_bold"
+            android:text="Create Card" />
+    </LinearLayout>
+
+</FrameLayout>
