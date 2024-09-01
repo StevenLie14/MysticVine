@@ -14,7 +14,6 @@
     <!--        android:layout_gravity="top|end"-->
     <!--        android:src="@drawable/right_blob" />-->
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -30,7 +29,7 @@
             android:padding="6dp">
 
             <LinearLayout
-                android:layout_width="339dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginVertical="10dp"
@@ -46,12 +45,11 @@
                         android:layout_gravity="center"
                         android:background="@drawable/light_dark_green_circle"
                         android:gravity="center"
-                        android:text="24"
+                        android:id="@+id/level_text"
                         android:textSize="20sp"
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/level_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="start|top"
@@ -62,6 +60,7 @@
                 </FrameLayout>
 
                 <com.google.android.material.progressindicator.LinearProgressIndicator
+                    android:id="@+id/level_progress"
                     android:layout_width="match_parent"
                     android:layout_height="18dp"
                     android:layout_gravity="bottom"
@@ -72,6 +71,7 @@
                     app:trackColor="@color/light_dark_green"
                     app:trackCornerRadius="24dp"
                     app:trackThickness="8dp"
+                    android:max="50"
                     tools:progress="50" />
             </LinearLayout>
 
@@ -89,18 +89,20 @@
                     android:src="@drawable/coin" />
 
                 <TextView
+                    android:id="@+id/coin_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingHorizontal="4dp"
-                    android:text="2.410.6188" />
+                    android:text="@string/coin" />
             </LinearLayout>
 
             <TextView
+                android:id="@+id/welcome_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingHorizontal="8dp"
                 android:paddingVertical="4dp"
-                android:text="Welcome, Efran Nathanael" />
+                android:text="@string/welcome" />
         </LinearLayout>
 
         <ScrollView
@@ -137,187 +139,12 @@
                             android:layout_gravity="center"
                             android:text="LeaderBoard" />
 
-                        <!--                TOP 1-->
-                        <LinearLayout
+                        <androidx.recyclerview.widget.RecyclerView
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
+                            android:layout_height="match_parent"
+                            android:id="@+id/rv_leaderboard"
+                            />
 
-                            <FrameLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="start|top"
-                                    android:layout_marginEnd="32dp"
-                                    android:layout_marginBottom="24dp"
-                                    android:background="@drawable/dark_orange_circle"
-                                    android:gravity="center"
-                                    android:text="1."
-                                    android:textSize="12sp"
-                                    android:textStyle="bold"
-                                    android:translationZ="1dp" />
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="32dp"
-                                    android:layout_marginLeft="12dp"
-                                    android:layout_marginTop="12dp"
-                                    android:background="@drawable/peach_rounded"
-                                    android:gravity="center|start"
-                                    android:orientation="horizontal">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginLeft="10dp"
-                                        android:gravity="center"
-                                        android:letterSpacing="0.05"
-                                        android:text="Some one"
-                                        android:textAlignment="center"
-                                        android:textColor="@color/black"
-                                        android:textSize="12sp" />
-
-                                    <Space
-                                        android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight="1" />
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginRight="6dp"
-                                        android:gravity="center"
-                                        android:text="100"
-                                        android:textColor="@color/black"
-                                        android:textSize="12sp" />
-                                </LinearLayout>
-
-                            </FrameLayout>
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
-                            <FrameLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="start|top"
-                                    android:layout_marginRight="32dp"
-                                    android:layout_marginBottom="24dp"
-                                    android:background="@drawable/dark_orange_circle"
-                                    android:gravity="center"
-                                    android:text="1."
-                                    android:textSize="12sp"
-                                    android:textStyle="bold"
-                                    android:translationZ="1dp" />
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="32dp"
-                                    android:layout_marginLeft="12dp"
-                                    android:layout_marginTop="12dp"
-                                    android:background="@drawable/peach_rounded"
-                                    android:gravity="center|start"
-                                    android:orientation="horizontal">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginLeft="10dp"
-                                        android:gravity="center"
-                                        android:letterSpacing="0.05"
-                                        android:text="Some one"
-                                        android:textAlignment="center"
-                                        android:textColor="@color/black"
-                                        android:textSize="12sp" />
-
-                                    <Space
-                                        android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight="1" />
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginRight="6dp"
-                                        android:gravity="center"
-                                        android:text="100"
-                                        android:textColor="@color/black"
-                                        android:textSize="12sp" />
-                                </LinearLayout>
-
-                            </FrameLayout>
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
-                            <FrameLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="start|top"
-                                    android:layout_marginRight="32dp"
-                                    android:layout_marginBottom="24dp"
-                                    android:background="@drawable/dark_orange_circle"
-                                    android:gravity="center"
-                                    android:text="1."
-                                    android:textSize="12sp"
-                                    android:textStyle="bold"
-                                    android:translationZ="1dp" />
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="32dp"
-                                    android:layout_marginLeft="12dp"
-                                    android:layout_marginTop="12dp"
-                                    android:background="@drawable/peach_rounded"
-                                    android:gravity="center|start"
-                                    android:orientation="horizontal">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginLeft="10dp"
-                                        android:gravity="center"
-                                        android:letterSpacing="0.05"
-                                        android:text="Some one"
-
-                                        android:textAlignment="center"
-                                        android:textColor="@color/black"
-                                        android:textSize="12sp" />
-
-                                    <Space
-                                        android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight="1" />
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginRight="6dp"
-                                        android:gravity="center"
-                                        android:text="100"
-                                        android:textColor="@color/black"
-                                        android:textSize="12sp" />
-                                </LinearLayout>
-
-                            </FrameLayout>
-                        </LinearLayout>
 
                         <Button
                             android:layout_width="match_parent"
@@ -366,7 +193,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="end"
                             android:layout_margin="8dp"
-                            android:background="@drawable/dark_orange_circle"
+                            android:background="@drawable/light_orange_circle"
                             android:padding="8dp"
                             android:src="@drawable/play" />
 
@@ -394,10 +221,10 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginVertical="4dp"
                         android:text="Recommended Quizzes"
                         android:textColor="@color/white"
-                        android:layout_marginVertical="4dp"
-                        android:layout_marginHorizontal="16dp"
                         android:textSize="24sp" />
 
                     <LinearLayout
@@ -506,7 +333,60 @@
 
                         </androidx.cardview.widget.CardView>
                     </LinearLayout>
+                </LinearLayout>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginVertical="4dp"
+                        android:text="Explore On Quizzes"
+                        android:textColor="@color/light_dark_green"
+                        android:textSize="20sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_margin="8dp"
+                        android:background="@drawable/light_dark_green_rounded" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="32dp"
+                        android:background="@drawable/light_dark_green_rounded"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:src="@drawable/logo1" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Quiz 1" />
+
+                        <Space
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="end|center"
+                            android:layout_margin="8dp"
+                            android:background="@drawable/light_orange_circle"
+                            android:padding="8dp"
+                            android:src="@drawable/play" />
+
+                    </LinearLayout>
 
                 </LinearLayout>
             </LinearLayout>
@@ -532,21 +412,30 @@
         android:src="@drawable/left_blob"
         android:translationZ="-1dp" />
 
+    <ImageView
+        android:layout_width="111dp"
+        android:layout_height="107dp"
+        android:layout_gravity="bottom|start"
+        android:src="@drawable/bottom_blob"
+        android:translationZ="-1dp" />
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
+        android:id="@+id/sort_fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
         android:contentDescription="@string/app_name"
-        android:src="@drawable/ic_launcher_background" />
-    <ImageView
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginTop="5dp"
-        android:layout_gravity="top|end"
-        android:src="@drawable/avatar" />
+        android:src="@drawable/sort_fab" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/shop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/shop" />
 
 </FrameLayout>
