@@ -1,5 +1,6 @@
 package edu.bluejack24_1.mysticvine.adapters
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.lifecycle.LiveData
@@ -9,7 +10,7 @@ import edu.bluejack24_1.mysticvine.model.Users
 
 class LandingLeaderBoardAdapter : RecyclerView.Adapter<LandingLeaderBoardAdapter.ViewHolder>() {
 
-    private lateinit var userList: List<Users>
+    private var userList: List<Users> = emptyList()
     private lateinit var binding: LandingLeaderboardCardBinding
 
      fun updateUserList(update : List<Users>){
@@ -24,7 +25,7 @@ class LandingLeaderBoardAdapter : RecyclerView.Adapter<LandingLeaderBoardAdapter
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        binding = LandingLeaderboardCardBinding.inflate(LayoutInflater.from(parent.context))
+        binding = LandingLeaderboardCardBinding.inflate(LayoutInflater.from(parent.context),parent,false)
         return ViewHolder(binding)
     }
 
@@ -33,6 +34,7 @@ class LandingLeaderBoardAdapter : RecyclerView.Adapter<LandingLeaderBoardAdapter
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        Log.d("LandingLeaderBoardAdapter", "User list size: ${userList.size}")
         val user = userList[position]
         holder.bind(user)
     }

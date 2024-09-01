@@ -12,10 +12,13 @@ import edu.bluejack24_1.mysticvine.activities.LandingPage
 import edu.bluejack24_1.mysticvine.activities.LoginPage
 import edu.bluejack24_1.mysticvine.model.Users
 import edu.bluejack24_1.mysticvine.repositories.UserRepository
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class UserViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val userRepository = UserRepository(application)
+    private val userRepository : UserRepository = UserRepository(application);
 
 
     private val _loginResult = MutableLiveData<String>()
@@ -57,14 +60,19 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         _currentUser.value = userRepository.getCurrentUser()
     }
 
+    fun isLoggedIn() : Boolean {
+        return userRepository.getCurrentUser() != null
+    }
+
+
+
     private val _leaderboard = MutableLiveData<List<Users>>()
     val leaderboard: LiveData<List<Users>> = _leaderboard
 
-    fun getLeaderboard() {
-        userRepository.getLeaderBoard { users ->
-            _leaderboard.value = users
-        }
+    init {
+        userRepository.getLeaderBoard(_leaderboard)
     }
+
 
 
 }
