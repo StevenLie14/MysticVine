@@ -8,6 +8,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import edu.bluejack24_1.mysticvine.R
 import edu.bluejack24_1.mysticvine.adapters.LandingLeaderBoardAdapter
 import edu.bluejack24_1.mysticvine.databinding.ActivityLandingBinding
@@ -42,21 +43,11 @@ class LandingPage : AppCompatActivity() {
 
         val leaderBoardAdapter = LandingLeaderBoardAdapter()
         binding.rvLeaderboard.adapter = leaderBoardAdapter
-        binding.rvLeaderboard.layoutManager = GridLayoutManager(this, 1)
+        binding.rvLeaderboard.layoutManager = LinearLayoutManager(this)
         binding.rvLeaderboard.setHasFixedSize(true)
         userViewModel.leaderboard.observe(this) {
             leaderBoardAdapter.updateUserList(it)
         }
-
-        userViewModel.getLeaderboard()
-
-
-
-
-
-
-
-
 
 
     }

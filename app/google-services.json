@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "490260625423",
+    "project_id": "mystic-vine-316b2",
+    "storage_bucket": "mystic-vine-316b2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:490260625423:android:96a0581e2f9b48cdbacb7a",
+        "android_client_info": {
+          "package_name": "com.example.pretpa"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBsddmzSIE7W28JocAa-2t7gGjcFVdNqQ8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:490260625423:android:b4e720e9c33c7ab8bacb7a",
+        "android_client_info": {
+          "package_name": "edu.bluejack24_1.mysticvine"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBsddmzSIE7W28JocAa-2t7gGjcFVdNqQ8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

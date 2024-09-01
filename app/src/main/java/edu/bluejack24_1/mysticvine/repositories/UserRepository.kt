@@ -2,8 +2,12 @@ package edu.bluejack24_1.mysticvine.repositories
 
 import android.content.Context
 import android.util.Log
+import androidx.lifecycle.MutableLiveData
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import edu.bluejack24_1.mysticvine.model.Users
 import edu.bluejack24_1.mysticvine.utils.SharedPrefUtils
 
@@ -67,23 +71,22 @@ class UserRepository (context: Context) {
     }
 
 
-    fun getLeaderBoard(callback: (List<Users>) -> Unit) {
+    fun getLeaderBoard(userList : MutableLiveData<List<Users>>) {
         val userRef = db.getReference("users")
-        userRef.orderByChild("score").orderByChild("level").get().addOnSuccessListener { dataSnapshot ->
-            if (dataSnapshot.exists()) {
-                val leaderBoardData = ArrayList<Users>()
-                for (data in dataSnapshot.children) {
-                    val user = data.getValue(Users::class.java)
-                    user?.let { leaderBoardData.add(it) }
+        userRef.addValueEventListener(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                try {
+                    val userDB : List<Users> = snapshot.children.map { it.getValue(Users::class.java)!! }
+                    userList.postValue(userDB)
+                }catch (e: Exception){
+                    Log.e("UserRepository", "Error parsing user data")
                 }
-                callback(leaderBoardData)
-            } else {
-                Log.d("LeaderBoard", "No data found")
-                callback(emptyList())
             }
-        }.addOnFailureListener { exception ->
-            Log.d("LeaderBoard", exception.message ?: "Failed to get leader board data")
-            callback(emptyList())
-        }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.e("UserRepository", error.message)
+            }
+
+        })
     }
 }
