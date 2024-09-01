@@ -1,0 +1,450 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="320dp"
+                android:layout_gravity="top|start"
+                android:layout_marginLeft="-5dp"
+                android:layout_marginTop="280dp"
+                android:src="@drawable/left_blob"
+                android:translationZ="-1dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/dark_green"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="30dp"
+                        android:background="@drawable/rounded_image"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/avatar" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="10dp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Efran Nathanael"
+                            android:textSize="25dp" />
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_marginStart="5dp"
+                            android:background="@drawable/rounded_image"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/edit_icon" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="30dp"
+                        android:layout_marginVertical="10dp"
+                        android:orientation="horizontal">
+
+                        <FrameLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:background="@drawable/light_dark_green_circle"
+                                android:gravity="center"
+                                android:text="24"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/level_text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="start|top"
+                                android:layout_marginEnd="32dp"
+                                android:layout_marginBottom="42dp"
+                                android:text="@string/level"
+                                android:textSize="12sp" />
+                        </FrameLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="end"
+                                android:layout_marginEnd="20dp"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="3128" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="/" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="10000" />
+
+
+                            </LinearLayout>
+
+                            <com.google.android.material.progressindicator.LinearProgressIndicator
+                                android:layout_width="match_parent"
+                                android:layout_height="18dp"
+                                android:layout_gravity="bottom"
+                                android:layout_margin="10dp"
+                                android:elevation="4dp"
+                                android:progressBackgroundTintMode="add"
+                                app:indicatorColor="@color/dark_orange"
+                                app:trackColor="@color/light_dark_green"
+                                app:trackCornerRadius="24dp"
+                                app:trackThickness="8dp"
+                                tools:progress="50" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="30dp"
+                        android:gravity="center|start"
+                        android:orientation="horizontal"
+                        android:paddingVertical="4dp">
+
+                        <ImageView
+                            android:layout_width="34dp"
+                            android:layout_height="34dp"
+                            android:src="@drawable/coin" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingHorizontal="4dp"
+                            android:text="2.410.6188"
+                            android:textSize="17dp" />
+                    </LinearLayout>
+
+                    <GridLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:layout_marginHorizontal="30dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="15dp"
+                        android:rowCount="1">
+
+                        <FrameLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <ImageView
+                                android:layout_width="35dp"
+                                android:layout_height="35dp"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginHorizontal="10dp"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/coin_booster" />
+
+                            <TextView
+                                android:layout_width="22dp"
+                                android:layout_height="22dp"
+                                android:layout_gravity="bottom"
+                                android:background="@drawable/light_dark_green_circle"
+                                android:gravity="center"
+                                android:paddingHorizontal="4dp"
+                                android:text="2x"
+                                android:textSize="10dp" />
+
+                        </FrameLayout>
+
+                        <FrameLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <ImageView
+                                android:layout_width="35dp"
+                                android:layout_height="35dp"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginHorizontal="10dp"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/exp_booster" />
+
+                            <TextView
+                                android:layout_width="22dp"
+                                android:layout_height="22dp"
+                                android:layout_gravity="bottom"
+                                android:background="@drawable/light_dark_green_circle"
+                                android:gravity="center"
+                                android:paddingHorizontal="4dp"
+                                android:text="2x"
+                                android:textSize="10dp" />
+
+                        </FrameLayout>
+
+                        <FrameLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <ImageView
+                                android:layout_width="35dp"
+                                android:layout_height="35dp"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginHorizontal="10dp"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/shield_booster" />
+
+                            <TextView
+                                android:layout_width="22dp"
+                                android:layout_height="22dp"
+                                android:layout_gravity="bottom"
+                                android:background="@drawable/light_dark_green_circle"
+                                android:gravity="center"
+                                android:paddingHorizontal="4dp"
+                                android:text="2x"
+                                android:textSize="10dp" />
+
+                        </FrameLayout>
+                    </GridLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="25dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:text="My Flash Card"
+                        android:textColor="@color/dark_green"
+                        android:textSize="20dp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginVertical="5dp"
+                        android:background="@color/dark_green" />
+
+                    <HorizontalScrollView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <GridLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:rowCount="1">
+
+                            <FrameLayout
+                                android:layout_width="160dp"
+                                android:layout_height="220dp"
+                                android:layout_margin="8dp"
+                                android:background="@drawable/light_dark_green_rounded">
+
+                                <ImageView
+                                    android:layout_width="120dp"
+                                    android:layout_height="100dp"
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/plus_icon" />
+                            </FrameLayout>
+
+                            <FrameLayout
+                                android:layout_width="160dp"
+                                android:layout_height="220dp"
+                                android:layout_margin="8dp"
+                                android:background="@drawable/light_dark_green_rounded">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginHorizontal="10dp"
+                                    android:layout_marginTop="10dp"
+                                    android:text="The x2 Exp Booster doubles your earned XP for a limited time, helping you level up faster and unlock new abilities quickly. "
+                                    android:textSize="12dp" />
+
+                                <ImageView
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
+                                    android:layout_gravity="bottom|end"
+                                    android:layout_marginEnd="10dp"
+                                    android:layout_marginBottom="10dp"
+                                    android:background="@drawable/light_red_circle"
+                                    android:paddingHorizontal="5dp"
+                                    android:paddingVertical="5dp"
+                                    android:src="@drawable/trash_icon" />
+                            </FrameLayout>
+                        </GridLayout>
+                    </HorizontalScrollView>
+
+                    <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_gravity="center"
+                        android:clipChildren="false"
+                        android:clipToPadding="false">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="150dp"
+                            android:layout_marginRight="25dp"
+                            android:layout_marginBottom="20dp"
+                            android:background="@drawable/light_dark_green_rounded"
+                            android:paddingHorizontal="15dp"
+                            android:paddingVertical="15dp"
+                            android:text="The x2 Exp Booster doubles your earned XP for a limited time, helping you level up faster and unlock new abilities quickly."
+                            android:textSize="15sp" />
+
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="bottom|end"
+                            android:layout_marginEnd="5dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/light_orange_full_rounded"
+                            android:paddingVertical="12dp"
+                            android:src="@drawable/play" />
+                    </FrameLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:text="My Quizzez"
+                        android:textColor="@color/dark_green"
+                        android:textSize="20dp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginVertical="5dp"
+                        android:background="@color/dark_green" />
+                    <GridLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:columnCount="1"
+                        android:layout_marginBottom="30dp">
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_margin="8dp"
+                            android:background="@drawable/light_dark_green_rounded">
+                            <ImageView
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:layout_gravity="left|start"
+                                android:src="@drawable/raining_trees"
+                                android:paddingVertical="10dp"
+                                android:paddingHorizontal="10dp"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Quiz 1"
+                                android:layout_marginLeft="55dp"
+                                android:layout_gravity="center_vertical"/>
+                            <ImageView
+                                android:layout_width="35dp"
+                                android:layout_height="35dp"
+                                android:layout_gravity="center_vertical|end"
+                                android:layout_marginRight="10dp"
+                                android:background="@drawable/light_orange_full_rounded"
+                                android:paddingVertical="10dp"
+                                android:src="@drawable/play" />
+                        </FrameLayout>
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_margin="8dp"
+                            android:background="@drawable/light_dark_green_rounded">
+                            <ImageView
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:layout_gravity="left|start"
+                                android:src="@drawable/raining_trees"
+                                android:paddingVertical="10dp"
+                                android:paddingHorizontal="10dp"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Quiz 1"
+                                android:layout_marginLeft="55dp"
+                                android:layout_gravity="center_vertical"/>
+                            <ImageView
+                                android:layout_width="35dp"
+                                android:layout_height="35dp"
+                                android:layout_gravity="center_vertical|end"
+                                android:layout_marginRight="10dp"
+                                android:background="@drawable/light_orange_full_rounded"
+                                android:paddingVertical="10dp"
+                                android:src="@drawable/play" />
+                        </FrameLayout>
+                    </GridLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top|end"
+                android:layout_marginTop="150dp"
+                android:src="@drawable/huge_logo" />
+        </FrameLayout>
+
+    </ScrollView>
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/dark_orange_circle"
+        android:scaleType="centerCrop"
+        android:layout_gravity="bottom|end"
+        android:paddingHorizontal="15dp"
+        android:paddingVertical="10dp"
+        android:src="@drawable/navigation_icon" />
+</FrameLayout>

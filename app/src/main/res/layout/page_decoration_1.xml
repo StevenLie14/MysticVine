@@ -1,0 +1,41 @@
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="44dp"
+        android:layout_height="435dp"
+        android:layout_marginTop="120dp"
+        android:layout_gravity="top|start"
+        android:src="@drawable/left_middle_decoration" />
+
+    <ImageView
+        android:layout_width="125dp"
+        android:layout_height="290dp"
+        android:layout_marginEnd="-4dp"
+        android:layout_marginTop="-25dp"
+        android:layout_gravity="top|end"
+        android:src="@drawable/top_right_decoration" />
+
+    <ImageView
+        android:layout_width="180dp"
+        android:layout_height="300dp"
+        android:layout_marginBottom="-45dp"
+        android:layout_gravity="bottom|start"
+        android:src="@drawable/bottom_left_decoration" />
+    <ImageView
+        android:layout_width="180dp"
+        android:layout_height="150dp"
+        android:layout_marginBottom="-3dp"
+        android:layout_gravity="bottom|end"
+        android:src="@drawable/raining_trees" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="157dp"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="-1dp"
+        android:src="@drawable/login_decoration" />
+</FrameLayout>

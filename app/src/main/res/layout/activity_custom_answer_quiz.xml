@@ -1,0 +1,229 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="125dp"
+        android:layout_height="290dp"
+        android:layout_marginEnd="-4dp"
+        android:layout_marginTop="-25dp"
+        android:layout_gravity="top|end"
+        android:src="@drawable/top_right_decoration" />
+
+    <ImageView
+        android:layout_width="180dp"
+        android:layout_height="300dp"
+        android:layout_marginBottom="-45dp"
+        android:layout_gravity="bottom|start"
+        android:src="@drawable/bottom_left_decoration" />
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="top|end"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/rounded_image"
+        android:scaleType="centerCrop"
+        android:src="@drawable/avatar" />
+
+    <ImageView
+        android:layout_width="180dp"
+        android:layout_height="150dp"
+        android:layout_marginBottom="-3dp"
+        android:layout_gravity="bottom|end"
+        android:src="@drawable/raining_trees" />
+
+    <ImageView
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_gravity="top|start"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/rounded_image"
+        android:scaleType="centerCrop"
+        android:src="@drawable/close_icon" />
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:paddingBottom="70dp"
+        android:orientation="vertical">
+
+
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="240dp"
+            android:layout_marginTop="40dp"
+            android:background="@color/dark_green" >
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Suatu hari, seekor kucing bernama Mr. Whiskers menemukan sebuah remote control misterius di bawah sofa. Setelah menekannya, melainkan salah satu dari suara-suara berikut. Kira-kira, suara mana yang paling mungkin keluar dari Mr. Whiskers saat dia pertama kali mencoba berbicara?"
+                android:layout_marginHorizontal="15dp"
+                android:gravity="center_horizontal"
+                android:layout_gravity="center" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Asked By VU24-1"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/light_orange"
+                android:layout_marginHorizontal="10dp"
+                android:gravity="center_horizontal"
+                android:layout_gravity="top|end" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/dark_green_rounded"
+            android:layout_marginHorizontal="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginHorizontal="15dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="24dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="5dp"
+                    android:text="Answer" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginHorizontal="24dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@color/light_dark_green" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginVertical="10dp">
+
+                  <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:paddingHorizontal="10dp"
+                        android:paddingBottom="5dp">
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:background="@drawable/rounded_image"
+                            android:scaleType="centerCrop"
+                            android:layout_marginBottom="5dp"
+                            android:src="@drawable/avatar" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="SV24-1" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginHorizontal="10dp"
+                        android:text="asdfasdfasdfasdf"
+                        android:textColor="@color/peach"
+                        android:background="@drawable/pale_light_green_rounded"
+                        android:padding="10dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginVertical="10dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginHorizontal="10dp"
+                        android:text="asdfasdfasdfasdf"
+                        android:textColor="@color/peach"
+                        android:background="@drawable/pale_light_green_rounded"
+                        android:padding="10dp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:paddingHorizontal="10dp"
+                        android:paddingBottom="5dp">
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:background="@drawable/rounded_image"
+                            android:scaleType="centerCrop"
+                            android:layout_marginBottom="5dp"
+                            android:src="@drawable/avatar" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="SV24-1" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+        </FrameLayout>
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="35dp"
+            android:layout_gravity="end">
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/light_orange_full_rounded"
+            android:drawablePadding="8dp"
+            android:fontFamily="@font/source_sans_pro_bold"
+            android:gravity="center"
+            />
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/next_icon" />
+
+        </FrameLayout>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="13dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="35dp"
+            android:backgroundTint="@color/light_orange"
+            android:fontFamily="@font/source_sans_pro_bold"
+            android:text="Back To Party" />
+    </LinearLayout>
+
+</ScrollView>
+
+</FrameLayout>
