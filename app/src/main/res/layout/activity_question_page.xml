@@ -1,0 +1,243 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="125dp"
+        android:layout_height="290dp"
+        android:layout_marginEnd="-4dp"
+        android:layout_marginTop="-25dp"
+        android:layout_gravity="top|end"
+        android:src="@drawable/top_right_decoration" />
+
+    <ImageView
+        android:layout_width="180dp"
+        android:layout_height="300dp"
+        android:layout_marginBottom="-45dp"
+        android:layout_gravity="bottom|start"
+        android:src="@drawable/bottom_left_decoration" />
+
+    <ImageView
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_gravity="top|start"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/rounded_image"
+        android:scaleType="centerCrop"
+        android:src="@drawable/close_icon" />
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="top|end"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/rounded_image"
+        android:scaleType="centerCrop"
+        android:src="@drawable/avatar" />
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginBottom="-3dp"
+        android:layout_gravity="bottom|end"
+        android:src="@drawable/forest_city" />
+
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginVertical="15dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:paddingBottom="70dp"
+        android:orientation="vertical">
+        <TextView
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Question 2/10 - Soal Medan"
+            android:textColor="@color/dark_green"
+            android:fontFamily="@font/source_sans_pro_bold"
+            android:textSize="15dp"/>
+
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:layout_width="match_parent"
+            android:layout_height="18dp"
+            android:layout_gravity="bottom"
+            android:elevation="4dp"
+            android:layout_marginVertical="10dp"
+            android:layout_marginHorizontal="35dp"
+            android:progressBackgroundTintMode="add"
+            app:indicatorColor="@color/dark_orange"
+            app:trackColor="@color/light_dark_green"
+            app:trackCornerRadius="24dp"
+            app:trackThickness="8dp"
+            tools:progress="50" />
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Suatu hari, seekor kucing bernama Mr. Whiskers menemukan sebuah remote control misterius di bawah sofa. Setelah menekannya, tiba-tiba ia bisa berbicara bahasa manusia! Namun, setiap kali dia bicara, suara yang keluar bukan suara kucing, melainkan salah satu dari suara-suara berikut. Kira-kira, suara mana yang paling mungkin keluar dari Mr. Whiskers saat dia pertama kali mencoba berbicara?"
+            android:paddingVertical="35dp"
+            android:paddingHorizontal="20dp"
+            android:background="@color/dark_green"/>
+
+            <TextView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="top|end"
+                android:layout_marginEnd="4dp"
+                android:padding="10dp"
+                android:gravity="center"
+                android:textSize="18dp"
+                android:text="60"
+                android:fontFamily="@font/source_sans_pro_bold"
+                android:textColor="@color/dark_green"
+                android:background="@drawable/light_orange_circle"
+                />
+        </FrameLayout>
+
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="25dp"
+            android:columnCount="1">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@drawable/dark_green_rounded">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="A"
+                    android:gravity="center"
+                    android:fontFamily="@font/source_sans_pro_bold"
+                    android:textSize="18dp"
+                    android:textColor="@color/dark_green"
+                    android:layout_marginHorizontal="20dp"
+                    android:background="@drawable/white_circle"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Suara robot yang berderak-derak seperti film sci-fi tahun 80-an."
+                    android:textSize="13dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@drawable/dark_green_rounded">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="B"
+                    android:gravity="center"
+                    android:fontFamily="@font/source_sans_pro_bold"
+                    android:textSize="18dp"
+                    android:textColor="@color/dark_green"
+                    android:layout_marginHorizontal="20dp"
+                    android:background="@drawable/white_circle"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Suara robot yang berderak-derak seperti film sci-fi tahun 80-an."
+                    android:textSize="13dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@drawable/light_green_rounded">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="C"
+                    android:gravity="center"
+                    android:fontFamily="@font/source_sans_pro_bold"
+                    android:textSize="18dp"
+                    android:textColor="@color/dark_green"
+                    android:layout_marginHorizontal="20dp"
+                    android:background="@drawable/white_circle"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Suara robot yang berderak-derak seperti film sci-fi tahun 80-an."
+                    android:textSize="13dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@drawable/light_red_rounded">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="D"
+                    android:gravity="center"
+                    android:fontFamily="@font/source_sans_pro_bold"
+                    android:textSize="18dp"
+                    android:textColor="@color/dark_green"
+                    android:layout_marginHorizontal="20dp"
+                    android:background="@drawable/white_circle"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Suara robot yang berderak-derak seperti film sci-fi tahun 80-an."
+                    android:textSize="13dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@drawable/dark_green_rounded">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="E"
+                    android:gravity="center"
+                    android:fontFamily="@font/source_sans_pro_bold"
+                    android:textSize="18dp"
+                    android:textColor="@color/dark_green"
+                    android:layout_marginHorizontal="20dp"
+                    android:background="@drawable/white_circle"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Suara robot yang berderak-derak seperti film sci-fi tahun 80-an."
+                    android:textSize="13dp"/>
+            </LinearLayout>
+
+        </GridLayout>
+
+
+    </LinearLayout>
+    </ScrollView>
+
+</FrameLayout>
