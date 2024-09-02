@@ -34,7 +34,6 @@ class LandingLeaderBoardAdapter : RecyclerView.Adapter<LandingLeaderBoardAdapter
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        Log.d("LandingLeaderBoardAdapter", "User list size: ${userList.size}")
         val user = userList[position]
         holder.bind(user)
     }

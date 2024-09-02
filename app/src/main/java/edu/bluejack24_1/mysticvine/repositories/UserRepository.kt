@@ -92,8 +92,8 @@ class UserRepository (context: Context) {
             })
         }
     }
-    fun getLeaderBoard(userList : MutableLiveData<List<Users>>) {
-        val userRef = db.getReference("users")
+    fun getLandingLeaderBoard(userList : MutableLiveData<List<Users>>) {
+        val userRef = db.getReference("users").orderByChild("score").limitToFirst(3)
         userRef.addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 try {
@@ -103,7 +103,6 @@ class UserRepository (context: Context) {
                     Log.e("UserRepository", "Error parsing user data")
                 }
             }
-
             override fun onCancelled(error: DatabaseError) {
                 Log.e("UserRepository", error.message)
             }

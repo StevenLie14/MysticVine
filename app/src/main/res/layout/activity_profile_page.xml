@@ -301,31 +301,13 @@
                                     android:src="@drawable/plus_icon" />
                             </FrameLayout>
 
-                            <FrameLayout
-                                android:layout_width="160dp"
-                                android:layout_height="220dp"
-                                android:layout_margin="8dp"
-                                android:background="@drawable/light_dark_green_rounded">
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/rv_flash_card"
+                                />
 
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginHorizontal="10dp"
-                                    android:layout_marginTop="10dp"
-                                    android:text="The x2 Exp Booster doubles your earned XP for a limited time, helping you level up faster and unlock new abilities quickly. "
-                                    android:textSize="12dp" />
 
-                                <ImageView
-                                    android:layout_width="40dp"
-                                    android:layout_height="40dp"
-                                    android:layout_gravity="bottom|end"
-                                    android:layout_marginEnd="10dp"
-                                    android:layout_marginBottom="10dp"
-                                    android:background="@drawable/light_red_circle"
-                                    android:paddingHorizontal="5dp"
-                                    android:paddingVertical="5dp"
-                                    android:src="@drawable/trash_icon" />
-                            </FrameLayout>
                         </GridLayout>
                     </HorizontalScrollView>
 

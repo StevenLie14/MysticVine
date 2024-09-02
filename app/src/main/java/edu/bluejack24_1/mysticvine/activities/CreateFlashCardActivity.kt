@@ -16,7 +16,7 @@ import edu.bluejack24_1.mysticvine.viewmodel.UserViewModel
 class CreateFlashCardPage : AppCompatActivity() {
 
     private lateinit var binding: ActivityCreateFlashCardBinding
-    private lateinit var flashCardviewModel: FlashCardViewModel
+    private lateinit var flashCardViewModel: FlashCardViewModel
     private lateinit var userViewModel: UserViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,7 +25,7 @@ class CreateFlashCardPage : AppCompatActivity() {
         setContentView(binding.root)
 
         userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
-        flashCardviewModel = ViewModelProvider(this).get(FlashCardViewModel::class.java)
+        flashCardViewModel = ViewModelProvider(this).get(FlashCardViewModel::class.java)
 
         userViewModel.currentUser.observe(this) { user ->
             if (user == null) return@observe
@@ -33,17 +33,17 @@ class CreateFlashCardPage : AppCompatActivity() {
             binding.btnCreateCard.setOnClickListener {
                 val question = binding.etQuestion.text.toString()
                 val answer = binding.etAnswer.text.toString()
-                flashCardviewModel.createFlashCard(question, answer, user.id)
-                binding.etQuestion.text.clear()
-                binding.etAnswer.text.clear()
+                flashCardViewModel.createFlashCard(question, answer, user.id)
             }
         }
 
-        flashCardviewModel.flashCardsResult.observe(this) { result ->
+        flashCardViewModel.flashCardsResult.observe(this) { result ->
             if (result == "Flashcard created") {
-                Utils.showSnackBar(binding.root, "Flashcard created")
+                binding.etQuestion.text = null
+                binding.etAnswer.text = null
+                Utils.showSnackBar(binding.root, result,false)
             }else {
-                Utils.showSnackBar(binding.root, "Failed to create flashcard")
+                Utils.showSnackBar(binding.root, result,true)
             }
         }
 
