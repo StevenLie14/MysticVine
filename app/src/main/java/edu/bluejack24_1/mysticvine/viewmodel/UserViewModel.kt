@@ -83,7 +83,7 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
     val leaderboard: LiveData<List<Users>> = _leaderboard
 
     init {
-        userRepository.getLeaderBoard(_leaderboard)
+        userRepository.getLandingLeaderBoard(_leaderboard)
         userRepository.getCurrentUser(_currentUser)
     }
 

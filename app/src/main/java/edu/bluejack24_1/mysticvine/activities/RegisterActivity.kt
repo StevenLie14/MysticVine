@@ -21,7 +21,7 @@ class RegisterPage : AppCompatActivity() {
         setContentView(binding.root)
 
         userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
-        Utils.loggedInMiddleware(userViewModel, this)
+//        Utils.loggedInMiddleware(userViewModel, this)
 
         binding.btnRegister.setOnClickListener {
 
@@ -33,10 +33,7 @@ class RegisterPage : AppCompatActivity() {
             binding.progressBar.visibility = View.VISIBLE
             userViewModel.register(username, email, password, confirmPassword)
 
-            binding.etUsername.text = null
-            binding.etEmail.text = null
-            binding.etPassword.text = null
-            binding.etConfirmPassword.text = null
+
         }
 
         binding.linkLogin.setOnClickListener {
@@ -48,6 +45,10 @@ class RegisterPage : AppCompatActivity() {
         userViewModel.registerResult.observe(this) { result ->
             binding.progressBar.visibility = View.GONE
             if (result == "Register Success") {
+                binding.etUsername.text = null
+                binding.etEmail.text = null
+                binding.etPassword.text = null
+                binding.etConfirmPassword.text = null
                 val intent = Intent(this, LoginPage::class.java)
                 startActivity(intent)
                 finish()

@@ -32,8 +32,7 @@ class LoginPage : AppCompatActivity() {
             val password = binding.etPassword.text.toString()
             binding.progressBar.visibility = View.VISIBLE
             userViewModel.login(email, password)
-            binding.etEmail.text = null
-            binding.etPassword.text = null
+
         }
 
         binding.linkRegister.setOnClickListener {
@@ -45,6 +44,8 @@ class LoginPage : AppCompatActivity() {
         userViewModel.loginResult.observe(this) { result ->
             binding.progressBar.visibility = View.GONE
             if (result == "Login Success") {
+                binding.etEmail.text = null
+                binding.etPassword.text = null
                 val intent = Intent(this, LandingPage::class.java)
                 startActivity(intent)
                 finish()
