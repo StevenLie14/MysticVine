@@ -64,6 +64,7 @@ class ProfilePage : AppCompatActivity() {
             } else {
                 binding.userName.visibility = View.VISIBLE
                 binding.editUserName.visibility = View.GONE
+                binding.progressBar.visibility = View.VISIBLE
                 userViewModel.editUsername(binding.editUserName.text.toString())
             }
         }
@@ -75,11 +76,21 @@ class ProfilePage : AppCompatActivity() {
 
 
         userViewModel.editProfilePicResult.observe(this) { result ->
-            if (result == "Edit Profile Picture Success") {
-                Utils.showSnackBar(binding.root, result)
+            if (result == "Profile Picture Updated") {
+                Utils.showSnackBar(binding.root, result,false)
             } else {
                 Utils.showSnackBar(binding.root, result,true)
             }
+            binding.progressBar.visibility = View.GONE
+        }
+
+        userViewModel.editUsernameResult.observe(this) { result ->
+            if (result == "Username Updated") {
+                Utils.showSnackBar(binding.root, result,false)
+            } else {
+                Utils.showSnackBar(binding.root, result,true)
+            }
+            binding.progressBar.visibility = View.GONE
         }
 
         flashCardViewModel = ViewModelProvider(this).get(FlashCardViewModel::class.java)
@@ -98,6 +109,7 @@ class ProfilePage : AppCompatActivity() {
             } else {
                 Utils.showSnackBar(binding.root, result, true)
             }
+            binding.progressBar.visibility = View.GONE
         }
 
     }
@@ -106,7 +118,7 @@ class ProfilePage : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 0 && resultCode == RESULT_OK && data != null) {
             val uri = data.data
-
+            binding.progressBar.visibility = View.VISIBLE
             userViewModel.editProfilePic(uri!!)
         }
     }
