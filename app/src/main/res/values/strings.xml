@@ -5,4 +5,5 @@
     <string name="custom_game_title">Custom Game</string>
     <string name="welcome">Welcome,</string>
     <string name="coin">2.410.6188</string>
+    <string name="slash">/</string>
 </resources>

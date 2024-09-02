@@ -32,6 +32,11 @@ class RegisterPage : AppCompatActivity() {
 
             binding.progressBar.visibility = View.VISIBLE
             userViewModel.register(username, email, password, confirmPassword)
+
+            binding.etUsername.text = null
+            binding.etEmail.text = null
+            binding.etPassword.text = null
+            binding.etConfirmPassword.text = null
         }
 
         binding.linkLogin.setOnClickListener {

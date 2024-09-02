@@ -13,7 +13,7 @@ class SharedPrefUtils (context: Context) {
 
     companion object {
         private const val PREFS_NAME = "mystic_vine"
-        const val CURRENT_USER = "current_user"
+        const val CURRENT_USER = "user"
 
     }
 
