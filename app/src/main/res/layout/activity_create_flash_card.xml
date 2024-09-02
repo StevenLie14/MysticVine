@@ -72,6 +72,7 @@
                     android:background="@drawable/peach_rounded"
                     android:gravity="top"
                     android:hint="Question"
+                    android:id="@+id/et_question"
                     android:paddingHorizontal="15dp"
                     android:paddingVertical="15dp" />
 
@@ -82,6 +83,7 @@
                     android:layout_marginBottom="20dp"
                     android:background="@drawable/peach_rounded"
                     android:gravity="top"
+                    android:id="@+id/et_answer"
                     android:hint="Answer"
                     android:paddingHorizontal="15dp"
                     android:paddingVertical="15dp" />
@@ -90,6 +92,7 @@
 
         </FrameLayout>
         <Button
+            android:id="@+id/btn_create_card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingVertical="13dp"
