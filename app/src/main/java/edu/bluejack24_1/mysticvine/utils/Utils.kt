@@ -21,12 +21,12 @@ class Utils {
     private  lateinit var sharedPref: SharedPreferences
 
     companion object {
-        fun showSnackBar(view: View, message: String) {
+        fun showSnackBar(view: View, message: String, isError: Boolean = false) {
             val snackBar = Snackbar.make(view, message, Snackbar.LENGTH_LONG)
             val snackBarView = snackBar.view
             val textView = snackBarView.findViewById<TextView>(com.google.android.material.R.id.snackbar_text)
             snackBarView.setBackgroundColor(ContextCompat.getColor(view.context, R.color.dark_green))
-            textView.setTextColor(ContextCompat.getColor(view.context, R.color.dark_orange))
+            textView.setTextColor(ContextCompat.getColor(view.context, if (isError) R.color.light_red else R.color.dark_green))
             textView.maxLines = 5
             textView.ellipsize = null
 

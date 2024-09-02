@@ -32,8 +32,8 @@ class LandingPage : AppCompatActivity() {
         quizViewModel = ViewModelProvider(this).get(QuizViewModel::class.java)
         userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
         Utils.guestMiddleware(userViewModel, this)
-        userViewModel.getCurrentUser()
         userViewModel.currentUser.observe(this) { user ->
+            if (user == null) return@observe
             binding.welcomeText.text = "Welcome, ${user?.username}"
             binding.coinText.text = user?.coin.toString()
             binding.levelText.text = user?.level.toString()

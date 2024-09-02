@@ -2,6 +2,7 @@ package edu.bluejack24_1.mysticvine.viewmodel
 
 import android.app.Application
 import android.content.Intent
+import android.net.Uri
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -32,6 +33,7 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
 
         userRepository.login(email, password) { result ->
             _loginResult.value = result
+            userRepository.getCurrentUser(_currentUser)
         }
     }
 
@@ -54,23 +56,35 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    private val _currentUser = MutableLiveData<Users>()
-    val currentUser: LiveData<Users> = _currentUser
-    fun getCurrentUser() {
-        _currentUser.value = userRepository.getCurrentUser()
-    }
+    private val _currentUser = MutableLiveData<Users?>()
+    val currentUser: LiveData<Users?> = _currentUser
 
     fun isLoggedIn() : Boolean {
-        return userRepository.getCurrentUser() != null
+        return userRepository.isLoggedIn()
     }
 
+    private val _editProfilePicResult = MutableLiveData<String>()
+    val editProfilePicResult: LiveData<String> = _editProfilePicResult
+    fun editProfilePic(uri: Uri) {
+        userRepository.editProfilePicture(uri) {result ->
+            _editProfilePicResult.value = result
+        }
+    }
 
+    private val _editUsernameResult = MutableLiveData<String>()
+    val editUsernameResult: LiveData<String> = _editUsernameResult
+    fun editUsername(username: String) {
+        userRepository.editUsername(username) {result ->
+            _editUsernameResult.value = result
+        }
+    }
 
     private val _leaderboard = MutableLiveData<List<Users>>()
     val leaderboard: LiveData<List<Users>> = _leaderboard
 
     init {
         userRepository.getLeaderBoard(_leaderboard)
+        userRepository.getCurrentUser(_currentUser)
     }
 
 
