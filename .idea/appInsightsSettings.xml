@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="edu.bluejack24_1.mysticvine" />
+                  <option name="mobileSdkAppId" value="1:490260625423:android:b4e720e9c33c7ab8bacb7a" />
+                  <option name="projectId" value="mystic-vine-316b2" />
+                  <option name="projectNumber" value="490260625423" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

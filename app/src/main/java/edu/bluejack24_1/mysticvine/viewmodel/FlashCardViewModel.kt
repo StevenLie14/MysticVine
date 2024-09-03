@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import edu.bluejack24_1.mysticvine.model.FlashCard
 import edu.bluejack24_1.mysticvine.model.Users
 import edu.bluejack24_1.mysticvine.repositories.FlashCardRepository
+import java.time.LocalDate
 import java.time.LocalTime
 import java.util.UUID
 
@@ -23,7 +24,7 @@ class FlashCardViewModel (application: Application) : AndroidViewModel(applicati
             return
         }
 
-        val flashCard = FlashCard(UUID.randomUUID().toString(), question, answer, System.currentTimeMillis() ,userId)
+        val flashCard = FlashCard(UUID.randomUUID().toString(), question, answer, LocalDate.now().toString() ,userId)
         flashCardRepository.createFlashCard(flashCard) { result ->
             _flashCardsResult.value = result
         }
@@ -38,9 +39,24 @@ class FlashCardViewModel (application: Application) : AndroidViewModel(applicati
         }
     }
 
+    private val _updateFlashCardResult = MutableLiveData<String>()
+    val updateFlashCardResult: LiveData<String> = _updateFlashCardResult
+
+    fun updateFlashCardResult(flashCard: FlashCard, result: Boolean) {
+        flashCardRepository.updateRememberFlashCard(flashCard, result) { result ->
+            _updateFlashCardResult.value = result
+        }
+    }
+
     private val _flashcards = MutableLiveData<List<FlashCard>>()
     val flashcards: LiveData<List<FlashCard>> = _flashcards
+
+    private val _daily = MutableLiveData<List<FlashCard>>()
+    val daily: LiveData<List<FlashCard>> = _daily
     init {
+        flashCardRepository.updateDaily()
+
         flashCardRepository.getFlashCards(_flashcards)
+        flashCardRepository.getDailyFlashcards(_daily)
     }
 }

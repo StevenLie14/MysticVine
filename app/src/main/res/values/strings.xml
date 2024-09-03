@@ -6,4 +6,15 @@
     <string name="welcome">Welcome,</string>
     <string name="coin">2.410.6188</string>
     <string name="slash">/</string>
+    <string name="question">Question</string>
+    <string name="remember_flash">Don\'t forget to review your flash cards</string>
+    <string name="remember">Remember</string>
+    <string name="forgot">Forgot</string>
+    <string name="back_to_home">Back To Home</string>
+    <string name="username_et_hint">Enter your name</string>
+    <string name="finish_flash_card">You have finished the daily flashcard</string>
+    <string name="biometric_prompt_desc">"Biometric login for Mystic Vine"</string>
+    <string name="biometric_prompt_title">"Log in using your biometric credential</string>
+    <string name="cancel">Cancel</string>
+    <string name="biometric_auth_failed">Authentication failed</string>
 </resources>

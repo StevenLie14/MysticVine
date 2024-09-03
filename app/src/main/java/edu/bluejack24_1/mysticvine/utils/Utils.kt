@@ -16,6 +16,7 @@ import edu.bluejack24_1.mysticvine.R
 import edu.bluejack24_1.mysticvine.activities.LandingPage
 import edu.bluejack24_1.mysticvine.activities.LoginPage
 import edu.bluejack24_1.mysticvine.viewmodel.UserViewModel
+import java.time.LocalDate
 import kotlin.math.pow
 
 class Utils {
@@ -69,6 +70,12 @@ class Utils {
         fun backButton (activity: AppCompatActivity) {
             activity.onBackPressed()
         }
+
+        fun getLocalDate(date : String): LocalDate {
+            return LocalDate.parse(date)
+        }
+
+
 
 
     }

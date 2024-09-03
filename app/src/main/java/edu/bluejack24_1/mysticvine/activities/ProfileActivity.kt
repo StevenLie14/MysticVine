@@ -112,6 +112,19 @@ class ProfilePage : AppCompatActivity() {
             binding.progressBar.visibility = View.GONE
         }
 
+        binding.startFlash.setOnClickListener {
+            val intent = Intent(this, FlashCardPage::class.java)
+            startActivity(intent)
+        }
+
+        flashCardViewModel.daily.observe(this) {result ->
+            if (result.isNotEmpty()) {
+                binding.rememberFlash.visibility = View.VISIBLE
+            } else {
+                binding.rememberFlash.visibility = View.GONE
+            }
+        }
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
