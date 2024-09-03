@@ -79,399 +79,33 @@
                     android:src="@drawable/raining_trees" />
 
                 <EditText
+                    android:id="@+id/quiz_name"
                     android:layout_width="318dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="55dp"
+                    android:layout_marginStart="55dp"
+                    android:textSize="20sp"
                     android:gravity="top"
+                    android:textColor="@color/peach"
+                    android:textColorHint="@color/peach"
                     android:hint="Quiz Name"
                     android:background="@drawable/light_dark_green_rounded"/>
-
-
-
-
             </FrameLayout>
 
             <GridLayout
+                android:id="@+id/question_container"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="20dp"
                 android:columnCount="1">
 
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/dark_green_rounded"
-                    android:orientation="horizontal"
-                    android:paddingBottom="14dp"
-                    android:layout_marginBottom="20dp">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="2dp"
-                        android:orientation="vertical">
 
-                        <EditText
-                            android:layout_width="match_parent"
-                            android:layout_height="71dp"
-                            android:layout_marginHorizontal="25dp"
-                            android:layout_marginTop="30dp"
-                            android:layout_marginBottom="10dp"
-                            android:background="@drawable/peach_rounded"
-                            android:gravity="top"
-                            android:hint="Question"
-                            android:paddingHorizontal="15dp"
-                            android:paddingVertical="15dp" />
 
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="25dp"
-                            android:text="Answer" />
-
-                        <FrameLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="25dp">
-
-                            <EditText
-                                android:layout_width="match_parent"
-                                android:layout_height="60dp"
-                                android:layout_marginVertical="5dp"
-                                android:background="@drawable/peach_rounded"
-                                android:gravity="top"
-                                android:hint="Answer"
-                                android:paddingHorizontal="15dp"
-                                android:paddingVertical="15dp"
-                                android:paddingStart="85dp" />
-
-                            <TextView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center_vertical"
-                                android:layout_marginLeft="10dp"
-                                android:background="@drawable/dark_green_circle"
-                                android:gravity="center"
-                                android:text="B"
-                                android:textColor="@color/peach"
-                                android:textSize="25dp" />
-                        </FrameLayout>
-
-                        <FrameLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="25dp">
-
-                            <EditText
-                                android:layout_width="match_parent"
-                                android:layout_height="60dp"
-                                android:layout_marginVertical="5dp"
-                                android:background="@drawable/peach_rounded"
-                                android:gravity="top"
-                                android:hint="Answer"
-                                android:paddingHorizontal="15dp"
-                                android:paddingVertical="15dp"
-                                android:paddingStart="85dp" />
-
-                            <TextView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center_vertical"
-                                android:layout_marginLeft="10dp"
-                                android:background="@drawable/dark_green_circle"
-                                android:gravity="center"
-                                android:text="B"
-                                android:textColor="@color/peach"
-                                android:textSize="25dp" />
-                        </FrameLayout>
-
-                        <FrameLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="25dp">
-
-                            <EditText
-                                android:layout_width="match_parent"
-                                android:layout_height="60dp"
-                                android:layout_marginVertical="5dp"
-                                android:background="@drawable/peach_rounded"
-                                android:gravity="top"
-                                android:hint="Answer"
-                                android:paddingHorizontal="15dp"
-                                android:paddingVertical="15dp"
-                                android:paddingStart="85dp" />
-
-                            <TextView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center_vertical"
-                                android:layout_marginLeft="10dp"
-                                android:background="@drawable/dark_green_circle"
-                                android:gravity="center"
-                                android:text="B"
-                                android:textColor="@color/peach"
-                                android:textSize="25dp" />
-                        </FrameLayout>
-
-                        <FrameLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="25dp">
-
-                            <EditText
-                                android:layout_width="match_parent"
-                                android:layout_height="60dp"
-                                android:layout_marginVertical="5dp"
-                                android:background="@drawable/peach_rounded"
-                                android:gravity="top"
-                                android:hint="Answer"
-                                android:paddingHorizontal="15dp"
-                                android:paddingVertical="15dp"
-                                android:paddingStart="85dp" />
-
-                            <TextView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center_vertical"
-                                android:layout_marginLeft="10dp"
-                                android:background="@drawable/dark_green_circle"
-                                android:gravity="center"
-                                android:text="B"
-                                android:textColor="@color/peach"
-                                android:textSize="25dp" />
-                        </FrameLayout>
-
-                        <FrameLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="25dp">
-
-                            <EditText
-                                android:layout_width="match_parent"
-                                android:layout_height="60dp"
-                                android:layout_marginVertical="5dp"
-                                android:background="@drawable/peach_rounded"
-                                android:gravity="top"
-                                android:hint="Answer"
-                                android:paddingHorizontal="15dp"
-                                android:paddingVertical="15dp"
-                                android:paddingStart="85dp" />
-
-                            <TextView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center_vertical"
-                                android:layout_marginLeft="10dp"
-                                android:background="@drawable/dark_green_circle"
-                                android:gravity="center"
-                                android:text="B"
-                                android:textColor="@color/peach"
-                                android:textSize="25dp" />
-                        </FrameLayout>
-
-                    </LinearLayout>
-
-                    <ImageView
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
-                        android:layout_gravity="top|end"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginRight="8dp"
-                        android:padding="10dp"
-                        android:background="@drawable/light_orange_full_rounded"
-                        android:src="@drawable/orange_close" />
-
-                </FrameLayout>
-
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/dark_green_rounded"
-                    android:orientation="horizontal"
-                    android:paddingBottom="14dp"
-                    android:layout_marginBottom="20dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="2dp"
-                        android:orientation="vertical">
-
-                        <EditText
-                            android:layout_width="match_parent"
-                            android:layout_height="71dp"
-                            android:layout_marginHorizontal="25dp"
-                            android:layout_marginTop="30dp"
-                            android:layout_marginBottom="10dp"
-                            android:background="@drawable/peach_rounded"
-                            android:gravity="top"
-                            android:hint="Question"
-                            android:paddingHorizontal="15dp"
-                            android:paddingVertical="15dp" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="25dp"
-                            android:text="Answer" />
-
-                        <FrameLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="25dp">
-
-                            <EditText
-                                android:layout_width="match_parent"
-                                android:layout_height="60dp"
-                                android:layout_marginVertical="5dp"
-                                android:background="@drawable/peach_rounded"
-                                android:gravity="top"
-                                android:hint="Answer"
-                                android:paddingHorizontal="15dp"
-                                android:paddingVertical="15dp"
-                                android:paddingStart="85dp" />
-
-                            <TextView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center_vertical"
-                                android:layout_marginLeft="10dp"
-                                android:background="@drawable/dark_green_circle"
-                                android:gravity="center"
-                                android:text="B"
-                                android:textColor="@color/peach"
-                                android:textSize="25dp" />
-                        </FrameLayout>
-
-                        <FrameLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="25dp">
-
-                            <EditText
-                                android:layout_width="match_parent"
-                                android:layout_height="60dp"
-                                android:layout_marginVertical="5dp"
-                                android:background="@drawable/peach_rounded"
-                                android:gravity="top"
-                                android:hint="Answer"
-                                android:paddingHorizontal="15dp"
-                                android:paddingVertical="15dp"
-                                android:paddingStart="85dp" />
-
-                            <TextView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center_vertical"
-                                android:layout_marginLeft="10dp"
-                                android:background="@drawable/dark_green_circle"
-                                android:gravity="center"
-                                android:text="B"
-                                android:textColor="@color/peach"
-                                android:textSize="25dp" />
-                        </FrameLayout>
-
-                        <FrameLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="25dp">
-
-                            <EditText
-                                android:layout_width="match_parent"
-                                android:layout_height="60dp"
-                                android:layout_marginVertical="5dp"
-                                android:background="@drawable/peach_rounded"
-                                android:gravity="top"
-                                android:hint="Answer"
-                                android:paddingHorizontal="15dp"
-                                android:paddingVertical="15dp"
-                                android:paddingStart="85dp" />
-
-                            <TextView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center_vertical"
-                                android:layout_marginLeft="10dp"
-                                android:background="@drawable/dark_green_circle"
-                                android:gravity="center"
-                                android:text="B"
-                                android:textColor="@color/peach"
-                                android:textSize="25dp" />
-                        </FrameLayout>
-
-                        <FrameLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="25dp">
-
-                            <EditText
-                                android:layout_width="match_parent"
-                                android:layout_height="60dp"
-                                android:layout_marginVertical="5dp"
-                                android:background="@drawable/peach_rounded"
-                                android:gravity="top"
-                                android:hint="Answer"
-                                android:paddingHorizontal="15dp"
-                                android:paddingVertical="15dp"
-                                android:paddingStart="85dp" />
-
-                            <TextView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center_vertical"
-                                android:layout_marginLeft="10dp"
-                                android:background="@drawable/dark_green_circle"
-                                android:gravity="center"
-                                android:text="B"
-                                android:textColor="@color/peach"
-                                android:textSize="25dp" />
-                        </FrameLayout>
-
-                        <FrameLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="25dp">
-
-                            <EditText
-                                android:layout_width="match_parent"
-                                android:layout_height="60dp"
-                                android:layout_marginVertical="5dp"
-                                android:background="@drawable/peach_rounded"
-                                android:gravity="top"
-                                android:hint="Answer"
-                                android:paddingHorizontal="15dp"
-                                android:paddingVertical="15dp"
-                                android:paddingStart="85dp" />
-
-                            <TextView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center_vertical"
-                                android:layout_marginLeft="10dp"
-                                android:background="@drawable/dark_green_circle"
-                                android:gravity="center"
-                                android:text="B"
-                                android:textColor="@color/peach"
-                                android:textSize="25dp" />
-                        </FrameLayout>
-
-                    </LinearLayout>
-
-                    <ImageView
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
-                        android:layout_gravity="top|end"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginRight="8dp"
-                        android:padding="10dp"
-                        android:background="@drawable/light_orange_full_rounded"
-                        android:src="@drawable/orange_close" />
-
-                </FrameLayout>
             </GridLayout>
 
             <Button
+                android:id="@+id/create_quiz"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -485,11 +119,12 @@
         </LinearLayout>
     </ScrollView>
     <ImageView
+        android:id="@+id/add_question"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginRight="15dp"
         android:layout_marginBottom="15dp"
-        android:background="@drawable/dark_orange_circle"
+        android:background="@drawable/light_orange_circle"
         android:scaleType="centerCrop"
         android:layout_gravity="bottom|end"
         android:paddingHorizontal="15dp"

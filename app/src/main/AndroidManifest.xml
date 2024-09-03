@@ -13,20 +13,14 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@drawable/avatar"
+        android:icon="@drawable/avatar_orange"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/avatar"
+        android:roundIcon="@drawable/avatar_orange"
         android:supportsRtl="true"
         android:theme="@style/Theme.MysticVine"
         tools:targetApi="31">
-
-
-
         <activity
             android:name=".activities.RegisterPage"
-            android:exported="true" />
-        <activity
-            android:name=".activities.FlashCardPage"
             android:exported="true" />
         <activity
             android:name=".activities.LandingPage"
@@ -35,10 +29,16 @@
             android:name=".activities.CreateFlashCardPage"
             android:exported="true" />
         <activity
+            android:name=".activities.StorePage"
+            android:exported="true" />
+        <activity
+            android:name=".activities.CreateQuizPage"
+            android:exported="true" />
+        <activity
             android:name=".activities.ProfilePage"
             android:exported="true" />
         <activity
-            android:name=".activities.LandingPage"
+            android:name=".activities.LoginPage"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
