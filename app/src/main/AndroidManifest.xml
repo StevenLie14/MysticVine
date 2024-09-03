@@ -39,7 +39,7 @@
             android:name=".activities.ProfilePage"
             android:exported="true" />
         <activity
-            android:name=".activities.LoginPage"
+            android:name=".activities.LandingPage"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -2,6 +2,7 @@ package edu.bluejack24_1.mysticvine.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -14,6 +15,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import android.view.animation.AnimationUtils
+import android.widget.Toast
 import edu.bluejack24_1.mysticvine.R
 import edu.bluejack24_1.mysticvine.adapters.LandingLeaderBoardAdapter
 import edu.bluejack24_1.mysticvine.databinding.ActivityLandingBinding
@@ -31,6 +34,16 @@ class LandingPage : AppCompatActivity() {
     private  lateinit var quizViewModel : QuizViewModel
     private  lateinit var partyViewModel : PartyViewModel
     private  lateinit var userViewModel: UserViewModel
+
+    private val rotateOpen by lazy { AnimationUtils.loadAnimation(this, R.anim.rotate_open_anim) }
+    private val rotateClose by lazy { AnimationUtils.loadAnimation(this, R.anim.rotate_close_anim) }
+    private val fromBottom by lazy { AnimationUtils.loadAnimation(this, R.anim.from_bottom_anim) }
+    private val toBottom by lazy { AnimationUtils.loadAnimation(this, R.anim.top_bottom_anim) }
+
+
+
+    private var clicked = false
+
     private  lateinit var partyMemberViewModel: PartyMemberViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -126,6 +139,72 @@ class LandingPage : AppCompatActivity() {
 
             dialog.show()
         }
+        binding.sortFab.setOnClickListener{
 
+            setVisibility(clicked, binding)
+            setAnimation(clicked, binding)
+            setClickable(clicked, binding)
+            clicked = !clicked
+
+        }
+
+        binding.profile.setOnClickListener{
+            val intent = Intent(this, ProfilePage::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+        binding.shop.setOnClickListener{
+            val intent = Intent(this, StorePage::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+        binding.home.setOnClickListener{
+            val intent = Intent(this, LandingPage::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+    }
+
+
+    private fun setVisibility(clicked: Boolean, binding: ActivityLandingBinding){
+        if(!clicked){
+            Toast.makeText(this, "ON", Toast.LENGTH_SHORT).show()
+            binding.home.visibility = View.VISIBLE
+            binding.shop.visibility = View.VISIBLE
+            binding.profile.visibility = View.VISIBLE
+        } else {
+            Toast.makeText(this, "OFF", Toast.LENGTH_SHORT).show()
+            binding.home.visibility = View.GONE
+            binding.shop.visibility = View.GONE
+            binding.profile.visibility = View.GONE
+        }
+    }
+    private fun setAnimation(clicked: Boolean, binding: ActivityLandingBinding){
+        if(!clicked){
+            binding.home.startAnimation(fromBottom)
+            binding.shop.startAnimation(fromBottom)
+            binding.profile.startAnimation(fromBottom)
+            binding.sortFab.startAnimation(rotateOpen)
+        } else {
+            binding.home.startAnimation(toBottom)
+            binding.shop.startAnimation(toBottom)
+            binding.profile.startAnimation(toBottom)
+            binding.sortFab.startAnimation(rotateClose)
+        }
+    }
+
+    private fun setClickable(clicked: Boolean, binding: ActivityLandingBinding){
+        if(!clicked){
+            binding.home.isClickable = true
+            binding.shop.isClickable = true
+            binding.profile.isClickable = true
+        } else {
+            binding.home.isClickable = false
+            binding.shop.isClickable = false
+            binding.profile.isClickable = false
+        }
     }
 }

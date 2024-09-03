@@ -40,12 +40,12 @@
                     android:layout_height="wrap_content">
 
                     <TextView
+                        android:id="@+id/level_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:background="@drawable/light_dark_green_circle"
                         android:gravity="center"
-                        android:id="@+id/level_text"
                         android:textSize="20sp"
                         android:textStyle="bold" />
 
@@ -66,12 +66,12 @@
                     android:layout_gravity="bottom"
                     android:layout_margin="10dp"
                     android:elevation="4dp"
+                    android:max="50"
                     android:progressBackgroundTintMode="add"
                     app:indicatorColor="@color/light_orange"
                     app:trackColor="@color/light_dark_green"
                     app:trackCornerRadius="24dp"
                     app:trackThickness="8dp"
-                    android:max="50"
                     tools:progress="50" />
             </LinearLayout>
 
@@ -140,10 +140,9 @@
                             android:text="LeaderBoard" />
 
                         <androidx.recyclerview.widget.RecyclerView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
                             android:id="@+id/rv_leaderboard"
-                            />
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
 
 
                         <Button
@@ -420,22 +419,52 @@
         android:translationZ="-1dp" />
 
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/sort_fab"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
-        android:contentDescription="@string/app_name"
-        android:src="@drawable/sort_fab" />
+        android:orientation="vertical">
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/shop"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="16dp"
-        android:contentDescription="@string/app_name"
-        android:src="@drawable/shop" />
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/shop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="@color/light_orange"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/shop"
+            android:visibility="invisible" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="@color/light_orange"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/profile_icon"
+            android:visibility="invisible" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="@color/light_orange"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/round_home"
+            android:visibility="invisible" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/sort_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/navigation_icon" />
+
+
+    </LinearLayout>
+
 
 </FrameLayout>
