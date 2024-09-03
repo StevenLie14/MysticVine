@@ -9,6 +9,7 @@
         android:layout_width="match_parent"
         android:indeterminate="true"
         android:visibility="gone"
+        android:translationZ="100dp"
         android:layout_height="wrap_content" />
 
     <ImageView

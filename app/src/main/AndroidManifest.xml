@@ -25,9 +25,12 @@
         <activity
             android:name=".activities.RegisterPage"
             android:exported="true" />
-<!--        <activity-->
-<!--            android:name=".activities.LandingPage"-->
-<!--            android:exported="true" />-->
+        <activity
+            android:name=".activities.FlashCardPage"
+            android:exported="true" />
+        <activity
+            android:name=".activities.LandingPage"
+            android:exported="true" />
         <activity
             android:name=".activities.CreateFlashCardPage"
             android:exported="true" />
