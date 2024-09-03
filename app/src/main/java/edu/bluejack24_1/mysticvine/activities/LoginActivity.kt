@@ -10,7 +10,6 @@ import androidx.biometric.BiometricManager
 import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
-import edu.bluejack24_1.mysticvine.R
 import edu.bluejack24_1.mysticvine.databinding.ActivityLoginBinding
 import edu.bluejack24_1.mysticvine.utils.Utils
 import edu.bluejack24_1.mysticvine.viewmodel.UserViewModel
@@ -78,6 +77,8 @@ class LoginPage : AppCompatActivity() {
 
                     override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
                         super.onAuthenticationSucceeded(result)
+//                        Utils.showSnackBar(binding.root, "Authentication succeeded!")
+                        Log.d("Fingerprint", userViewModel.isLoggedIn().toString())
                         if (userViewModel.isLoggedIn()) {
                             val intent = Intent(this@LoginPage, ProfilePage::class.java)
                             startActivity(intent)
@@ -87,13 +88,13 @@ class LoginPage : AppCompatActivity() {
 
                     override fun onAuthenticationFailed() {
                         super.onAuthenticationFailed()
-                        Utils.showSnackBar(binding.root, getString(R.string.biometric_auth_failed))
+                        Utils.showSnackBar(binding.root, "Authentication failed")
                     }
                 })
                 var promptInfo = BiometricPrompt.PromptInfo.Builder()
-                    .setTitle(getString(R.string.biometric_prompt_title))
-                    .setSubtitle(getString(R.string.biometric_prompt_desc))
-                    .setNegativeButtonText(getString(R.string.cancel))
+                    .setTitle("Biometric login for Mystic Vine")
+                    .setSubtitle("Log in using your biometric credential")
+                    .setNegativeButtonText("Cancel")
                     .build()
 
                 binding.ivFingerprint.setOnClickListener() {

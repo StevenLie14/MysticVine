@@ -21,7 +21,6 @@
         android:src="@drawable/bottom_left_decoration" />
 
     <ImageView
-        android:id="@+id/close_button"
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:layout_gravity="top|start"
@@ -29,10 +28,9 @@
         android:layout_marginTop="20dp"
         android:background="@drawable/rounded_image"
         android:scaleType="centerCrop"
-        android:src="@drawable/close_button" />
+        android:src="@drawable/close_icon" />
 
     <ImageView
-        android:id="@+id/iv_avatar"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_gravity="top|end"
@@ -55,37 +53,17 @@
         android:layout_marginTop="50dp"
         android:orientation="vertical"
         android:paddingBottom="70dp">
-        <LinearLayout
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="20dp"
-                android:fontFamily="@font/source_sans_pro_bold"
-                android:text="@string/question"
-                android:textColor="@color/dark_green"
-                android:textSize="15sp" />
-
-            <TextView
-                android:id="@+id/tv_question_number"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="20dp"
-                android:fontFamily="@font/source_sans_pro_bold"
-                android:text="2/10 - Soal Medan"
-                android:textColor="@color/dark_green"
-                android:textSize="15sp" />
-
-        </LinearLayout>
-
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/source_sans_pro_bold"
+            android:text="Question 2/10 - Soal Medan"
+            android:textColor="@color/dark_green"
+            android:textSize="15dp" />
 
         <com.google.android.material.progressindicator.LinearProgressIndicator
-            android:id="@+id/question_progress"
             android:layout_width="match_parent"
             android:layout_height="18dp"
             android:layout_gravity="bottom"
@@ -108,13 +86,11 @@
             android:paddingBottom="70dp">
 
             <TextView
-                android:id="@+id/tv_question"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:gravity="center"
                 android:text="Suatu hari, seekor kucing bernama Mr. Whiskers menemukan sebuah remote control misterius di bawah sofa. Setelah menekannya, tiba-tiba ia bisa berbicara bahasa manusia! Namun, setiap kali dia bicara, suara yang keluar bukan suara kucing, melainkan salah satu dari suara-suara berikut. Kira-kira, suara mana yang paling mungkin keluar dari Mr. Whiskers saat dia pertama kali mencoba berbicara?"
                 android:paddingVertical="35dp"
                 android:paddingHorizontal="20dp"
@@ -131,20 +107,19 @@
                 <LinearLayout
                     android:layout_width="150dp"
                     android:layout_height="50dp"
-                    android:layout_gravity="end"
-                    android:layout_marginEnd="20dp"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="20dp"
                     android:layout_marginTop="20dp"
                     android:background="@drawable/light_red_rounded"
                     android:gravity="center_vertical"
-                    android:id="@+id/forgot_button"
                     android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        android:text="@string/forgot"
-                        android:textSize="13sp" />
+                        android:text="Forgot"
+                        android:textSize="13dp" />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="150dp"
@@ -153,32 +128,16 @@
                     android:layout_marginTop="20dp"
                     android:background="@drawable/light_green_rounded"
                     android:gravity="center_vertical"
-                    android:id="@+id/remember_button"
                     android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        android:text="@string/remember"
-                        android:textSize="13sp" />
+                        android:text="Remember"
+                        android:textSize="13dp" />
                 </LinearLayout>
 
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="250dp"
-                android:layout_height="50dp"
-                android:background="@drawable/light_orange_rounded"
-                android:visibility="gone"
-                android:id="@+id/back_to_home"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:text="@string/back_to_home"
-                    android:textSize="13sp" />
 
             </LinearLayout>
         </LinearLayout>
