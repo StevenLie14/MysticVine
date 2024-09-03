@@ -75,6 +75,13 @@ class Utils {
             return LocalDate.parse(date)
         }
 
+        fun generateCode(): String {
+            val chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+            return (1..6)
+                .map { chars.random() }
+                .joinToString("")
+        }
+
 
 
 

@@ -20,8 +20,9 @@
         android:theme="@style/Theme.MysticVine"
         tools:targetApi="31">
 
-
-
+        <activity
+            android:name=".activities.WaitingRoomPage"
+            android:exported="true" />
         <activity
             android:name=".activities.RegisterPage"
             android:exported="true" />

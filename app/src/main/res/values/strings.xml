@@ -17,4 +17,11 @@
     <string name="biometric_prompt_title">"Log in using your biometric credential</string>
     <string name="cancel">Cancel</string>
     <string name="biometric_auth_failed">Authentication failed</string>
+    <string name="join_party">Join Party</string>
+    <string name="create_party">Create Party</string>
+    <string name="party_code">*Party Code</string>
+    <string name="ef23_1">EF23-1</string>
+    <string name="host">*Host</string>
+    <string name="party_member">Party Member</string>
+    <string name="welcome_user">Welcome, %1$s</string>
 </resources>
