@@ -3,6 +3,7 @@ package edu.bluejack24_1.mysticvine.repositories
 import android.content.Context
 import android.net.Uri
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -164,6 +165,27 @@ class UserRepository (context: Context) {
                 callback(it.exception?.message ?: "Failed to update username")
             }
         }
+    }
+
+    fun getUserById(userId: String) : LiveData<Users> {
+        val user = MutableLiveData<Users>()
+        val userRef = db.getReference("users").child(userId)
+        userRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                try {
+                    val userDB = snapshot.getValue(Users::class.java)!!
+                    user.postValue(userDB)
+                } catch (e: Exception) {
+                    Log.e("UserRepository", "Error parsing user data")
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.e("UserRepository", error.message)
+            }
+        })
+
+        return user
     }
 
 }

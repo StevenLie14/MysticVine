@@ -141,6 +141,19 @@ class ProfilePage : AppCompatActivity() {
             finish()
         }
 
+        binding.startFlash.setOnClickListener {
+            val intent = Intent(this, FlashCardPage::class.java)
+            startActivity(intent)
+        }
+
+        flashCardViewModel.daily.observe(this) {result ->
+            if (result.isNotEmpty()) {
+                binding.rememberFlash.visibility = View.VISIBLE
+            } else {
+                binding.rememberFlash.visibility = View.GONE
+            }
+        }
+
 
     }
 
