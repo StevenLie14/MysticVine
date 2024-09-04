@@ -6,4 +6,26 @@
     <string name="welcome">Welcome,</string>
     <string name="coin">2.410.6188</string>
     <string name="slash">/</string>
+    <string name="question">Question</string>
+    <string name="remember_flash">Don\'t forget to review your flash cards</string>
+    <string name="remember">Remember</string>
+    <string name="forgot">Forgot</string>
+    <string name="back_to_home">Back To Home</string>
+    <string name="username_et_hint">Enter your name</string>
+    <string name="finish_flash_card">You have finished the daily flashcard</string>
+    <string name="biometric_prompt_desc">"Biometric login for Mystic Vine"</string>
+    <string name="biometric_prompt_title">"Log in using your biometric credential</string>
+    <string name="cancel">Cancel</string>
+    <string name="biometric_auth_failed">Authentication failed</string>
+    <string name="join_party">Join Party</string>
+    <string name="create_party">Create Party</string>
+    <string name="party_code">*Party Code</string>
+    <string name="ef23_1">EF23-1</string>
+    <string name="host">*Host</string>
+    <string name="party_member">Party Member</string>
+    <string name="welcome_user">Welcome, %1$s</string>
+    <string name="start_game">Start Game</string>
+    <string name="answer">Answer</string>
+    <string name="custom_quiz_title">Create a question and provide the correct answer to challenge your friends!</string>
+    <string name="finalize">Finalize</string>
 </resources>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/btn_create_party"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="4dp"
+        android:backgroundTint="@color/light_orange"
+        android:letterSpacing="0.05"
+        android:text="@string/create_party"
+        android:textSize="12sp" />
+
+    <EditText
+        android:id="@+id/et_party_code"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/btn_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="4dp"
+            android:backgroundTint="@color/light_orange"
+            android:letterSpacing="0.05"
+            android:text="@string/cancel"
+            android:textSize="12sp" />
+
+        <Button
+            android:id="@+id/btn_join_party"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="4dp"
+            android:backgroundTint="@color/light_orange"
+            android:letterSpacing="0.05"
+            android:text="@string/join_party"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+</LinearLayout>

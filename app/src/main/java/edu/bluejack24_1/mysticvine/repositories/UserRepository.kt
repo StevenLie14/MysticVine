@@ -92,6 +92,32 @@ class UserRepository (context: Context) {
             })
         }
     }
+
+    fun getUserByIds(userIds: List<String>,userList : MutableLiveData<List<Users>>) {
+        val users = mutableListOf<Users>()
+        val usersRef = db.getReference("users")
+        userIds.forEach { userId ->
+            val userRef = usersRef.child(userId)
+            userRef.addValueEventListener (object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    try {
+                        Log.v("UserRepository", snapshot.toString())
+                        val userDB : Users = snapshot.getValue(Users::class.java)!!
+                        userDB?.let { user ->
+                            users.removeIf { it.id == user.id }
+                            users.add(user)
+                            userList.postValue(users.toList())
+                        }
+                    }catch (e: Exception){
+                        Log.e("UserRepository", "Error parsing user data")
+                    }
+                }
+                override fun onCancelled(error: DatabaseError) {
+                    Log.e("UserRepository", error.message)
+                }
+            })
+        }
+    }
     fun getLandingLeaderBoard(userList : MutableLiveData<List<Users>>) {
         val userRef = db.getReference("users").orderByChild("score").limitToFirst(3)
         userRef.addValueEventListener(object : ValueEventListener{
@@ -109,7 +135,6 @@ class UserRepository (context: Context) {
 
         })
     }
-
     fun editProfilePicture(uri: Uri, callback: (String) -> Unit) {
         val storageRef = storage.getReference("users").child(auth.currentUser!!.uid)
         val fileRef = storageRef.child("${auth.currentUser!!.uid}.jpg")
