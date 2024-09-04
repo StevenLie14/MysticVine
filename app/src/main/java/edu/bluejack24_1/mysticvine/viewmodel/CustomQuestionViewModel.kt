@@ -15,8 +15,10 @@ class CustomQuestionViewModel (application: Application) : AndroidViewModel(appl
     private val _createCustomQuestionResult = MutableLiveData<String>()
     val createCustomQuestionResult: LiveData<String> = _createCustomQuestionResult
     fun createCustomQuestion(partyCode: String, question: String, userId: String) {
-        val question = CustomQuizQuestion(UUID.randomUUID().toString(),partyCode, question, userId)
-        customQuestionRepository.createCustomQuestion(question) { result ->
+
+        val questionModel = CustomQuizQuestion(UUID.randomUUID().toString(),partyCode,
+            question.ifEmpty { "No Question Inserted" }, userId)
+        customQuestionRepository.createCustomQuestion(questionModel) { result ->
             _createCustomQuestionResult.value = result
         }
     }

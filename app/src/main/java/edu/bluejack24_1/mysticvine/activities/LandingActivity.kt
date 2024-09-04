@@ -89,53 +89,40 @@ class LandingPage : AppCompatActivity() {
                 dialog.dismiss()
             }
 
-            dialogBinding.btnCreateParty.setOnClickListener {
-                userViewModel.currentUser.observe(this@LandingPage) { user ->
-                    if (user == null) {
-                        return@observe
-                    }
-                    partyViewModel.createParty(user.id)
+            userViewModel.currentUser.observe(this@LandingPage) { user ->
+                if (user == null) {
+                    return@observe
+                }
+                partyViewModel.createParty(user.id)
+                dialogBinding.btnCreateParty.setOnClickListener {
                     partyViewModel.createPartyResult.observe(this@LandingPage) {result ->
                         if (result.length == 6 ){
                             partyMemberViewModel.joinParty(result, user.id, "create")
-                            partyMemberViewModel.joinPartyResult.observe(this@LandingPage) { res ->
-                                if ( res ==  "Create party success" ) {
-                                    val intent = Intent(binding.root.context, WaitingRoomPage::class.java)
-                                    intent.putExtra("partyCode", result)
-                                    dialogBinding.etPartyCode.text = null
-                                    dialog.dismiss()
-                                    startActivity(intent)
-                                } else {
-                                    Utils.showSnackBar(binding.root, partyMemberViewModel.joinPartyResult.value!!,true)
-                                }
-                            }
+
                         }else {
                             Utils.showSnackBar(binding.root, result,true)
                         }
                     }
-
                 }
-            }
 
-            dialogBinding.btnJoinParty.setOnClickListener {
-                userViewModel.currentUser.observe(this@LandingPage) { user ->
-                    if (user == null) return@observe
+                dialogBinding.btnJoinParty.setOnClickListener {
                     val partyCode = dialogBinding.etPartyCode.text.toString()
                     partyMemberViewModel.joinParty(partyCode, user.id, "join")
-                    partyMemberViewModel.joinPartyResult.observe(this@LandingPage) { res ->
-                        Log.e("JOIN PARTY", res)
-                        if ( res ==  "Joined party success" ) {
-                            val intent = Intent(binding.root.context, WaitingRoomPage::class.java)
-                            intent.putExtra("partyCode", partyCode)
-                            dialogBinding.etPartyCode.text = null
-                            dialog.dismiss()
-                            startActivity(intent)
-                        } else {
-                            Utils.showSnackBar(binding.root, partyMemberViewModel.joinPartyResult.value!!,true)
-                        }
-                    }
+
                 }
 
+            }
+
+            partyMemberViewModel.joinPartyResult.observe(this@LandingPage) { res ->
+                dialogBinding.etPartyCode.text = null
+                if ( res.length == 6 ) {
+                    val intent = Intent(binding.root.context, WaitingRoomPage::class.java)
+                    intent.putExtra("partyCode", res)
+                    dialog.dismiss()
+                    startActivity(intent)
+                } else {
+                    Utils.showSnackBar(binding.root, partyMemberViewModel.joinPartyResult.value!!,true)
+                }
             }
 
             dialog.show()

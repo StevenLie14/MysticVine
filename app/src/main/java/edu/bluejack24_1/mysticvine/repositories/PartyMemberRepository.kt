@@ -17,11 +17,7 @@ class PartyMemberRepository {
         val partyRef = db.getReference("party members").child(partyCode).child(userId)
         partyRef.setValue(userId).addOnCompleteListener {
             if (it.isSuccessful) {
-                if (type == "create") {
-                    callback("Create party success")
-                } else if (type == "join") {
-                    callback("Joined party success")
-                }
+                callback(partyCode)
             } else {
                 callback(it.exception?.message ?: "Failed to join party")
             }

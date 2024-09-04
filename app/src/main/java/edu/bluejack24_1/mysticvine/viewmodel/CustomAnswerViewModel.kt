@@ -16,7 +16,7 @@ class CustomAnswerViewModel (application: Application) : AndroidViewModel(applic
     private val _createCustomAnswerResult = MutableLiveData<String>()
     val createCustomAnswerResult: LiveData<String> = _createCustomAnswerResult
     fun addCustomAnswer(questionId: String, answer: String, userId: String) {
-        val answer = CustomQuizAnswer(questionId, answer, userId)
+        val answer = CustomQuizAnswer(questionId, answer.ifEmpty { "No Answer Inserted" }, userId)
         customAnswerRepository.createCustomAnswer(answer) { result ->
             _createCustomAnswerResult.value = result
         }

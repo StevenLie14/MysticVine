@@ -19,6 +19,7 @@
         android:src="@drawable/bottom_left_decoration" />
 
     <ImageView
+        android:id="@+id/avatar"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_gravity="top|end"
@@ -63,6 +64,7 @@
                 android:background="@drawable/big_light_orange_rounded" />
 
             <TextView
+                android:id="@+id/tv_timer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -79,6 +81,7 @@
             android:background="@color/dark_green">
 
             <TextView
+                android:id="@+id/question"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Suatu hari, seekor kucing bernama Mr. Whiskers menemukan sebuah remote control misterius di bawah sofa. Setelah menekannya, melainkan salah satu dari suara-suara berikut. Kira-kira, suara mana yang paling mungkin keluar dari Mr. Whiskers saat dia pertama kali mencoba berbicara?"
@@ -94,6 +97,7 @@
             android:orientation="vertical">
 
             <EditText
+                android:id="@+id/et_answer"
                 android:layout_width="match_parent"
                 android:layout_height="180dp"
                 android:layout_marginVertical="40dp"
@@ -104,6 +108,7 @@
                 android:paddingVertical="15dp" />
 
             <Button
+                android:id="@+id/btn_finalize"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingVertical="13dp"

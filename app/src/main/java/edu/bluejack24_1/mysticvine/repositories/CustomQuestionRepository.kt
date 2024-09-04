@@ -32,6 +32,7 @@ class CustomQuestionRepository {
             override fun onDataChange(snapshot: DataSnapshot) {
                 try {
                     val customQuestionDB: List<CustomQuizQuestion> = snapshot.children.map { it.getValue(CustomQuizQuestion::class.java)!! }
+                    Log.d("CustomQuestion Repository", customQuestionDB.toString())
                     customQuestionList.postValue(customQuestionDB)
                 } catch (e: Exception) {
                     Log.e("CustomQuestion Repository", "Error parsing custom question data")
