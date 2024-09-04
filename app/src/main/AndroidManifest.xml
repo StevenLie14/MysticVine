@@ -4,12 +4,11 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.USE_FINGERPRINT" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
 
     <application
-        android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -18,10 +17,16 @@
         android:roundIcon="@drawable/avatar_orange"
         android:supportsRtl="true"
         android:theme="@style/Theme.MysticVine"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
-        <activity android:name=".activities.CustomAnswerQuizPage"
+        <activity
+            android:name=".activities.CustomQuizPage"
             android:exported="true" />
-        <activity android:name=".activities.CreateCustomQuizPage"
+        <activity
+            android:name=".activities.CustomAnswerQuizPage"
+            android:exported="true" />
+        <activity
+            android:name=".activities.CreateCustomQuizPage"
             android:exported="true" />
         <activity
             android:name=".activities.WaitingRoomPage"
@@ -44,6 +49,9 @@
             android:exported="true" />
         <activity
             android:name=".activities.ProfilePage"
+            android:exported="true" />
+        <activity
+            android:name=".activities.FlashCardPage"
             android:exported="true" />
         <activity
             android:name=".activities.LoginPage"

@@ -79,6 +79,12 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
+    fun getUserById(userId: String) : LiveData<Users> {
+        return userRepository.getUserById(userId)
+    }
+
+
+
     private val _leaderboard = MutableLiveData<List<Users>>()
     val leaderboard: LiveData<List<Users>> = _leaderboard
 

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import edu.bluejack24_1.mysticvine.R
 import androidx.appcompat.app.AppCompatActivity
 import androidx.biometric.BiometricManager
 import androidx.biometric.BiometricPrompt
@@ -80,7 +81,7 @@ class LoginPage : AppCompatActivity() {
 //                        Utils.showSnackBar(binding.root, "Authentication succeeded!")
                         Log.d("Fingerprint", userViewModel.isLoggedIn().toString())
                         if (userViewModel.isLoggedIn()) {
-                            val intent = Intent(this@LoginPage, LandingPage::class.java)
+                            val intent = Intent(this@LoginPage, ProfilePage::class.java)
                             startActivity(intent)
                             finish()
                         }
@@ -88,13 +89,13 @@ class LoginPage : AppCompatActivity() {
 
                     override fun onAuthenticationFailed() {
                         super.onAuthenticationFailed()
-                        Utils.showSnackBar(binding.root, "Authentication failed")
+                        Utils.showSnackBar(binding.root, getString(R.string.biometric_auth_failed))
                     }
                 })
                 var promptInfo = BiometricPrompt.PromptInfo.Builder()
-                    .setTitle("Biometric login for Mystic Vine")
-                    .setSubtitle("Log in using your biometric credential")
-                    .setNegativeButtonText("Cancel")
+                    .setTitle(getString(R.string.biometric_prompt_title))
+                    .setSubtitle(getString(R.string.biometric_prompt_desc))
+                    .setNegativeButtonText(getString(R.string.cancel))
                     .build()
 
                 binding.ivFingerprint.setOnClickListener() {
