@@ -53,6 +53,7 @@
         android:layout_marginTop="50dp"
         android:orientation="vertical"
         android:paddingBottom="70dp">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -77,69 +78,88 @@
             app:trackThickness="8dp"
             tools:progress="50" />
     </LinearLayout>
+
     <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="30dp"
-            android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingBottom="70dp">
+
+        <FrameLayout
+            android:id="@+id/toggle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+
             android:gravity="center"
-            android:paddingBottom="70dp">
+            android:orientation="vertical">
 
             <TextView
-                android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="20dp"
+                android:id="@+id/back"
+                android:paddingHorizontal="25dp"
+                android:paddingVertical="30dp"
+                android:background="@drawable/dark_green_rounded"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
-                android:text="Suatu hari, seekor kucing bernama Mr. Whiskers menemukan sebuah remote control misterius di bawah sofa. Setelah menekannya, tiba-tiba ia bisa berbicara bahasa manusia! Namun, setiap kali dia bicara, suara yang keluar bukan suara kucing, melainkan salah satu dari suara-suara berikut. Kira-kira, suara mana yang paling mungkin keluar dari Mr. Whiskers saat dia pertama kali mencoba berbicara?"
-                android:paddingVertical="35dp"
-                android:paddingHorizontal="20dp"
-                android:background="@drawable/dark_green_rounded"/>
+                android:text="Suatu hari, seekor kucing bernama Mr. Whiskers menemukan sebuah remote control misterius di bawah sofa. Setelah menekannya, tiba-tiba ia bisa berbicara bahasa manusia! " />
+            <TextView
+                android:id="@+id/front"
+                android:paddingHorizontal="25dp"
+                android:paddingVertical="30dp"
+                android:background="@drawable/dark_green_rounded"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:text="Suatu hari, seekor kucing bernama Mr. Whiskers menemukan sebuah remote control misterius di bawah sofa. Setelah menekannya, tiba-tiba ia bisa berbicara bahasa manusia! Namun, setiap kali dia bicara, suara yang keluar bukan suara kucing, melainkan salah satu dari suara-suara berikut. Kira-kira, suara mana yang paling mungkin keluar dari Mr. Whiskers saat dia pertama kali mencoba berbicara?" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_gravity="right"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/light_red_rounded"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="Forgot"
+                    android:textSize="13dp" />
+            </LinearLayout>
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_gravity="start"
                 android:layout_marginTop="20dp"
-                android:layout_marginHorizontal="20dp"
-                android:layout_gravity="bottom"
-                android:gravity="center"
+                android:background="@drawable/light_green_rounded"
+                android:gravity="center_vertical"
                 android:orientation="horizontal">
-                <LinearLayout
-                    android:layout_width="150dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="right"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginTop="20dp"
-                    android:background="@drawable/light_red_rounded"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:text="Forgot"
-                        android:textSize="13dp" />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="150dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="start"
-                    android:layout_marginTop="20dp"
-                    android:background="@drawable/light_green_rounded"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:text="Remember"
-                        android:textSize="13dp" />
-                </LinearLayout>
-
-
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="Remember"
+                    android:textSize="13dp" />
             </LinearLayout>
+
+
         </LinearLayout>
+    </LinearLayout>
 
 </FrameLayout>
