@@ -30,20 +30,19 @@ class FlashCardPage : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContentView(R.layout.activity_flash_card)
+        binding = ActivityFlashCardBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        frontView = findViewById(R.id.front)
-        backView = findViewById(R.id.back)
+        frontView = binding.front
+        backView = binding.back
 
         loadAnimations()
 
-        findViewById<FrameLayout>(R.id.toggle).setOnClickListener {
+        binding.toggle.setOnClickListener {
             flipCardAnimation()
         }
 
-        binding = ActivityFlashCardBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+
 
         userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
         flashCardViewModel = ViewModelProvider(this)[FlashCardViewModel::class.java]
@@ -71,11 +70,13 @@ class FlashCardPage : AppCompatActivity() {
                 if (id <= daily.size - 1) {
                     val card = daily[id]
                     binding.front.text = card.question
+                    binding.back.text = card.answer
                     binding.questionProgress.max = daily.size
                     binding.questionProgress.progress = id + 1
                     binding.tvQuestionNumber.text = "${id + 1}/${daily.size} "
                 } else {
                     binding.front.text = getString(R.string.finish_flash_card)
+                    binding.back.text = getString(R.string.finish_flash_card)
                     binding.rememberButton.visibility = View.GONE
                     binding.forgotButton.visibility = View.GONE
                     binding.backToHome.visibility = View.VISIBLE
@@ -103,10 +104,10 @@ class FlashCardPage : AppCompatActivity() {
     private fun flipCardAnimation() {
         val visibilityListener = object : AnimatorListenerAdapter() {
             override fun onAnimationStart(animation: Animator) {
-                findViewById<FrameLayout>(R.id.toggle).isClickable = false
+                binding.toggle.isClickable = false
             }
             override fun onAnimationEnd(animation: Animator) {
-                findViewById<FrameLayout>(R.id.toggle).isClickable = true
+                binding.toggle.isClickable = true
             }
         }
 
