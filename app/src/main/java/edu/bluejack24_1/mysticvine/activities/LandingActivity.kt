@@ -28,6 +28,8 @@ class LandingPage : AppCompatActivity() {
     private  lateinit var userViewModel: UserViewModel
 
 
+
+
     private val rotateOpen by lazy { AnimationUtils.loadAnimation(this, R.anim.rotate_open_anim) }
     private val rotateClose by lazy { AnimationUtils.loadAnimation(this, R.anim.rotate_close_anim) }
     private val fromBottom by lazy { AnimationUtils.loadAnimation(this, R.anim.from_bottom_anim) }
