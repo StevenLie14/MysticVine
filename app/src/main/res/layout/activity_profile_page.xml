@@ -387,60 +387,13 @@
                                 android:src="@drawable/plus_icon" />
                         </FrameLayout>
 
-                        <FrameLayout
+
+                        <androidx.recyclerview.widget.RecyclerView
                             android:layout_width="match_parent"
-                            android:layout_height="50dp"
-                            android:layout_margin="8dp"
-                            android:background="@drawable/light_dark_green_rounded">
-                            <ImageView
-                                android:layout_width="50dp"
-                                android:layout_height="50dp"
-                                android:layout_gravity="left|start"
-                                android:src="@drawable/raining_trees"
-                                android:paddingVertical="10dp"
-                                android:paddingHorizontal="10dp"/>
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Quiz 1"
-                                android:layout_marginLeft="55dp"
-                                android:layout_gravity="center_vertical"/>
-                            <ImageView
-                                android:layout_width="35dp"
-                                android:layout_height="35dp"
-                                android:layout_gravity="center_vertical|end"
-                                android:layout_marginRight="10dp"
-                                android:background="@drawable/light_orange_full_rounded"
-                                android:paddingVertical="10dp"
-                                android:src="@drawable/play" />
-                        </FrameLayout>
-                        <FrameLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="50dp"
-                            android:layout_margin="8dp"
-                            android:background="@drawable/light_dark_green_rounded">
-                            <ImageView
-                                android:layout_width="50dp"
-                                android:layout_height="50dp"
-                                android:layout_gravity="left|start"
-                                android:src="@drawable/raining_trees"
-                                android:paddingVertical="10dp"
-                                android:paddingHorizontal="10dp"/>
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Quiz 1"
-                                android:layout_marginLeft="55dp"
-                                android:layout_gravity="center_vertical"/>
-                            <ImageView
-                                android:layout_width="35dp"
-                                android:layout_height="35dp"
-                                android:layout_gravity="center_vertical|end"
-                                android:layout_marginRight="10dp"
-                                android:background="@drawable/light_orange_full_rounded"
-                                android:paddingVertical="10dp"
-                                android:src="@drawable/play" />
-                        </FrameLayout>
+                            android:layout_height="wrap_content"
+                            android:id="@+id/rv_quiz_card"
+
+                            />
                     </GridLayout>
                 </LinearLayout>
 

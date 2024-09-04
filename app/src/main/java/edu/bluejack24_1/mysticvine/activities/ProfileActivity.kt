@@ -17,11 +17,14 @@ import com.bumptech.glide.Glide
 import com.google.firebase.storage.StorageTask
 import edu.bluejack24_1.mysticvine.R
 import edu.bluejack24_1.mysticvine.adapters.FlashCardAdapter
+import edu.bluejack24_1.mysticvine.adapters.QuizzesAdapter
 import edu.bluejack24_1.mysticvine.databinding.ActivityLandingBinding
 import edu.bluejack24_1.mysticvine.databinding.ActivityProfilePageBinding
 import edu.bluejack24_1.mysticvine.databinding.ActivityRegisterBinding
 import edu.bluejack24_1.mysticvine.utils.Utils
 import edu.bluejack24_1.mysticvine.viewmodel.FlashCardViewModel
+import edu.bluejack24_1.mysticvine.viewmodel.QuestionViewModel
+import edu.bluejack24_1.mysticvine.viewmodel.QuizViewModel
 import edu.bluejack24_1.mysticvine.viewmodel.UserViewModel
 
 
@@ -30,6 +33,7 @@ class ProfilePage : AppCompatActivity() {
     private lateinit var binding: ActivityProfilePageBinding
     private lateinit var userViewModel: UserViewModel
     private lateinit var flashCardViewModel: FlashCardViewModel
+    private lateinit var quizViewModel: QuizViewModel
 
     private val rotateOpen by lazy { AnimationUtils.loadAnimation(this, R.anim.rotate_open_anim) }
     private val rotateClose by lazy { AnimationUtils.loadAnimation(this, R.anim.rotate_close_anim) }
@@ -65,10 +69,6 @@ class ProfilePage : AppCompatActivity() {
             binding.progressLevel.progress = user.exp
         }
 
-        binding.createQuiz.setOnClickListener(){
-            val intent = Intent(this, CreateQuizPage::class.java)
-            startActivity(intent)
-        }
 
         binding.editIcon.setOnClickListener(){
             if (binding.userName.visibility == View.VISIBLE){
@@ -113,6 +113,21 @@ class ProfilePage : AppCompatActivity() {
             }
         }
 
+        binding.createQuiz.setOnClickListener(){
+            val intent = Intent(this, CreateQuizPage::class.java)
+            startActivity(intent)
+        }
+
+
+        quizViewModel = ViewModelProvider(this).get(QuizViewModel::class.java)
+        val quizAdapter = QuizzesAdapter()
+        binding.rvQuizCard.adapter = quizAdapter
+        binding.rvQuizCard.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+
+        quizViewModel.quizzes.observe(this){
+            quizAdapter.updateList(it)
+        }
+
 
         binding.sortFab.setOnClickListener{
 
@@ -126,19 +141,16 @@ class ProfilePage : AppCompatActivity() {
         binding.profile.setOnClickListener{
             val intent = Intent(this, ProfilePage::class.java)
             startActivity(intent)
-            finish()
         }
 
         binding.shop.setOnClickListener{
             val intent = Intent(this, StorePage::class.java)
             startActivity(intent)
-            finish()
         }
 
         binding.home.setOnClickListener{
             val intent = Intent(this, LandingPage::class.java)
             startActivity(intent)
-            finish()
         }
 
         binding.startFlash.setOnClickListener {
