@@ -23,7 +23,7 @@
         android:layout_height="50dp"
         android:layout_gravity="top|end"
         android:layout_marginTop="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginEnd="10dp"
         android:background="@drawable/rounded_image"
         android:scaleType="centerCrop"
         android:src="@drawable/avatar" />
@@ -32,7 +32,7 @@
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:layout_gravity="top|start"
-        android:layout_marginLeft="25dp"
+        android:layout_marginStart="25dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/rounded_image"
         android:scaleType="centerCrop"
@@ -61,7 +61,7 @@
                 android:letterSpacing="0"
                 android:text="60"
                 android:textColor="@color/peach"
-                android:textSize="25dp" />
+                android:textSize="25sp" />
         </FrameLayout>
 
 
@@ -71,7 +71,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/dark_green"
-            android:text="Create a question and provide the correct answer to challenge your friends!"/>
+            android:text="@string/custom_quiz_title"/>
 
 
         <FrameLayout
@@ -86,6 +86,7 @@
                 android:orientation="vertical">
 
                 <EditText
+                    android:id="@+id/et_question"
                     android:layout_width="match_parent"
                     android:layout_height="71dp"
                     android:layout_marginHorizontal="25dp"
@@ -93,18 +94,19 @@
                     android:layout_marginBottom="25dp"
                     android:background="@drawable/peach_rounded"
                     android:gravity="top"
-                    android:hint="Question"
+                    android:hint="@string/question"
                     android:paddingHorizontal="15dp"
                     android:paddingVertical="15dp" />
 
                 <EditText
+                    android:id="@+id/et_answer"
                     android:layout_width="match_parent"
                     android:layout_height="225dp"
                     android:layout_marginHorizontal="25dp"
                     android:layout_marginBottom="20dp"
                     android:background="@drawable/peach_rounded"
                     android:gravity="top"
-                    android:hint="Answer"
+                    android:hint="@string/answer"
                     android:paddingHorizontal="15dp"
                     android:paddingVertical="15dp" />
             </LinearLayout>
@@ -112,6 +114,7 @@
 
         </FrameLayout>
         <Button
+            android:id="@+id/btn_finalize"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingVertical="13dp"
@@ -120,7 +123,7 @@
             android:layout_marginTop="35dp"
             android:backgroundTint="@color/light_orange"
             android:fontFamily="@font/source_sans_pro_bold"
-            android:text="Finalize" />
+            android:text="@string/finalize" />
     </LinearLayout>
 
 </FrameLayout>

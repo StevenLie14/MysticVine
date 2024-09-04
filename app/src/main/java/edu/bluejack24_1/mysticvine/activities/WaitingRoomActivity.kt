@@ -1,7 +1,9 @@
 package edu.bluejack24_1.mysticvine.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -34,20 +36,41 @@ class WaitingRoomPage : AppCompatActivity() {
         partyMemberViewModel = ViewModelProvider(this)[PartyMemberViewModel::class.java]
         userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
 
+        partyViewModel.getPartyHost(partyCode!!)
+        partyViewModel.getPartyRoom(partyCode!!)
+
         userViewModel.currentUser.observe(this) { user ->
             if (user == null) return@observe
             Glide.with(binding.ivAvatar)
                 .load(user.profilePicture)
                 .into(binding.ivAvatar)
-
+            partyViewModel.partyHost.observe(this) {host ->
+                if (host == null) return@observe
+                binding.hostUsername.text = host.username
+                binding.partyCode.text = partyCode
+                if (host.id != user.id) {
+                    binding.startBtn.visibility = View.GONE
+                }
+            }
         }
 
-        partyViewModel.getPartyHost(partyCode!!)
-        partyViewModel.partyHost.observe(this) {host ->
-            if (host == null) return@observe
-            binding.hostUsername.text = host.username
-            binding.partyCode.text = partyCode
+        binding.startBtn.setOnClickListener {
+            partyViewModel.changePartyStatus(partyCode!!, "Started")
         }
+
+
+
+        partyViewModel.partyRoom.observe(this) { partyRoom ->
+            if (partyRoom == null) return@observe
+            if (partyRoom.partyStatus == "Started") {
+                val intent = Intent(this, CreateCustomQuizPage::class.java)
+                intent.putExtra("partyCode", partyCode)
+                startActivity(intent)
+                finish()
+            }
+        }
+
+
 
         val waitingRoomAdapter = WaitingRoomAdapter()
         partyMemberViewModel.getPartyMember(partyCode)
@@ -58,6 +81,7 @@ class WaitingRoomPage : AppCompatActivity() {
         partyMemberViewModel.joinedMemberList.observe(this) {
             waitingRoomAdapter.updateUserList(it)
         }
+
 
 
 

@@ -79,7 +79,7 @@ class LoginPage : AppCompatActivity() {
                     override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
                         super.onAuthenticationSucceeded(result)
                         if (userViewModel.isLoggedIn()) {
-                            val intent = Intent(this@LoginPage, ProfilePage::class.java)
+                            val intent = Intent(this@LoginPage, LandingPage::class.java)
                             startActivity(intent)
                             finish()
                         }

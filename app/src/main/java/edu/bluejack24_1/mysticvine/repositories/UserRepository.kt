@@ -103,11 +103,10 @@ class UserRepository (context: Context) {
                     try {
                         Log.v("UserRepository", snapshot.toString())
                         val userDB : Users = snapshot.getValue(Users::class.java)!!
-                        if (userDB != null) {
-                            users.add(userDB)
-                        }
-                        if (users.size == userIds.size) {
-                            userList.postValue(users)
+                        userDB?.let { user ->
+                            users.removeIf { it.id == user.id }
+                            users.add(user)
+                            userList.postValue(users.toList())
                         }
                     }catch (e: Exception){
                         Log.e("UserRepository", "Error parsing user data")
@@ -118,7 +117,6 @@ class UserRepository (context: Context) {
                 }
             })
         }
-
     }
     fun getLandingLeaderBoard(userList : MutableLiveData<List<Users>>) {
         val userRef = db.getReference("users").orderByChild("score").limitToFirst(3)
@@ -137,7 +135,6 @@ class UserRepository (context: Context) {
 
         })
     }
-
     fun editProfilePicture(uri: Uri, callback: (String) -> Unit) {
         val storageRef = storage.getReference("users").child(auth.currentUser!!.uid)
         val fileRef = storageRef.child("${auth.currentUser!!.uid}.jpg")

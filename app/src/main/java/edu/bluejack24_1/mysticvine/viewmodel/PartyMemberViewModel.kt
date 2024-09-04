@@ -30,17 +30,16 @@ class PartyMemberViewModel (application: Application) : AndroidViewModel(applica
     val joinPartyResult : LiveData<String> = _joinPartyResult
 
     fun joinParty(partyCode: String, userId: String, type: String) {
-        partyRepository.checkPartyExist(partyCode) {
+        partyRepository.checkPartyExistAndNotStarted(partyCode) {
             if (!it) {
                 _joinPartyResult.value = "Party not exist"
-                return@checkPartyExist
+                return@checkPartyExistAndNotStarted
             }else {
                 partyMemberRepository.joinParty(partyCode, userId, type) {res ->
                     _joinPartyResult.value = res
                 }
             }
         }
-
     }
 
 }
