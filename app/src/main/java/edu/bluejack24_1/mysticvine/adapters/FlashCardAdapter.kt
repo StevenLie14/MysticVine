@@ -19,8 +19,9 @@ class FlashCardAdapter (flashCardViewModel: FlashCardViewModel) : RecyclerView.A
 
     fun updateList(update : List<FlashCard>){
         this.flashCardList = update
-        notifyDataSetChanged()
+        this.notifyDataSetChanged()
     }
+
     class ViewHolder(private val binding: ProfileFlashCardBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(flashCard: FlashCard,flashCardViewModel: FlashCardViewModel) {

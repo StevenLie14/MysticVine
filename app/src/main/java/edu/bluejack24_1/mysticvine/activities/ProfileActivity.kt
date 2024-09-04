@@ -4,6 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.animation.AnimationUtils
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.net.toUri
@@ -15,6 +17,7 @@ import com.bumptech.glide.Glide
 import com.google.firebase.storage.StorageTask
 import edu.bluejack24_1.mysticvine.R
 import edu.bluejack24_1.mysticvine.adapters.FlashCardAdapter
+import edu.bluejack24_1.mysticvine.databinding.ActivityLandingBinding
 import edu.bluejack24_1.mysticvine.databinding.ActivityProfilePageBinding
 import edu.bluejack24_1.mysticvine.databinding.ActivityRegisterBinding
 import edu.bluejack24_1.mysticvine.utils.Utils
@@ -28,6 +31,11 @@ class ProfilePage : AppCompatActivity() {
     private lateinit var userViewModel: UserViewModel
     private lateinit var flashCardViewModel: FlashCardViewModel
 
+    private val rotateOpen by lazy { AnimationUtils.loadAnimation(this, R.anim.rotate_open_anim) }
+    private val rotateClose by lazy { AnimationUtils.loadAnimation(this, R.anim.rotate_close_anim) }
+    private val fromBottom by lazy { AnimationUtils.loadAnimation(this, R.anim.from_bottom_anim) }
+    private val toBottom by lazy { AnimationUtils.loadAnimation(this, R.anim.top_bottom_anim) }
+    private var clicked = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityProfilePageBinding.inflate(layoutInflater)
@@ -57,6 +65,11 @@ class ProfilePage : AppCompatActivity() {
             binding.progressLevel.progress = user.exp
         }
 
+        binding.createQuiz.setOnClickListener(){
+            val intent = Intent(this, CreateQuizPage::class.java)
+            startActivity(intent)
+        }
+
         binding.editIcon.setOnClickListener(){
             if (binding.userName.visibility == View.VISIBLE){
                 binding.userName.visibility = View.GONE
@@ -64,7 +77,6 @@ class ProfilePage : AppCompatActivity() {
             } else {
                 binding.userName.visibility = View.VISIBLE
                 binding.editUserName.visibility = View.GONE
-                binding.progressBar.visibility = View.VISIBLE
                 userViewModel.editUsername(binding.editUserName.text.toString())
             }
         }
@@ -76,21 +88,11 @@ class ProfilePage : AppCompatActivity() {
 
 
         userViewModel.editProfilePicResult.observe(this) { result ->
-            if (result == "Profile Picture Updated") {
-                Utils.showSnackBar(binding.root, result,false)
+            if (result == "Edit Profile Picture Success") {
+                Utils.showSnackBar(binding.root, result)
             } else {
                 Utils.showSnackBar(binding.root, result,true)
             }
-            binding.progressBar.visibility = View.GONE
-        }
-
-        userViewModel.editUsernameResult.observe(this) { result ->
-            if (result == "Username Updated") {
-                Utils.showSnackBar(binding.root, result,false)
-            } else {
-                Utils.showSnackBar(binding.root, result,true)
-            }
-            binding.progressBar.visibility = View.GONE
         }
 
         flashCardViewModel = ViewModelProvider(this).get(FlashCardViewModel::class.java)
@@ -109,21 +111,36 @@ class ProfilePage : AppCompatActivity() {
             } else {
                 Utils.showSnackBar(binding.root, result, true)
             }
-            binding.progressBar.visibility = View.GONE
         }
 
-        binding.startFlash.setOnClickListener {
-            val intent = Intent(this, FlashCardPage::class.java)
+
+        binding.sortFab.setOnClickListener{
+
+            setVisibility(clicked, binding)
+            setAnimation(clicked, binding)
+            setClickable(clicked, binding)
+            clicked = !clicked
+
+        }
+
+        binding.profile.setOnClickListener{
+            val intent = Intent(this, ProfilePage::class.java)
             startActivity(intent)
+            finish()
         }
 
-        flashCardViewModel.daily.observe(this) {result ->
-            if (result.isNotEmpty()) {
-                binding.rememberFlash.visibility = View.VISIBLE
-            } else {
-                binding.rememberFlash.visibility = View.GONE
-            }
+        binding.shop.setOnClickListener{
+            val intent = Intent(this, StorePage::class.java)
+            startActivity(intent)
+            finish()
         }
+
+        binding.home.setOnClickListener{
+            val intent = Intent(this, LandingPage::class.java)
+            startActivity(intent)
+            finish()
+        }
+
 
     }
 
@@ -131,8 +148,48 @@ class ProfilePage : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 0 && resultCode == RESULT_OK && data != null) {
             val uri = data.data
-            binding.progressBar.visibility = View.VISIBLE
+
             userViewModel.editProfilePic(uri!!)
+        }
+    }
+
+
+
+
+    private fun setVisibility(clicked: Boolean, binding: ActivityProfilePageBinding){
+        if(!clicked){
+            binding.home.visibility = View.VISIBLE
+            binding.shop.visibility = View.VISIBLE
+            binding.profile.visibility = View.VISIBLE
+        } else {
+            binding.home.visibility = View.GONE
+            binding.shop.visibility = View.GONE
+            binding.profile.visibility = View.GONE
+        }
+    }
+    private fun setAnimation(clicked: Boolean, binding: ActivityProfilePageBinding){
+        if(!clicked){
+            binding.home.startAnimation(fromBottom)
+            binding.shop.startAnimation(fromBottom)
+            binding.profile.startAnimation(fromBottom)
+            binding.sortFab.startAnimation(rotateOpen)
+        } else {
+            binding.home.startAnimation(toBottom)
+            binding.shop.startAnimation(toBottom)
+            binding.profile.startAnimation(toBottom)
+            binding.sortFab.startAnimation(rotateClose)
+        }
+    }
+
+    private fun setClickable(clicked: Boolean, binding: ActivityProfilePageBinding){
+        if(!clicked){
+            binding.home.isClickable = true
+            binding.shop.isClickable = true
+            binding.profile.isClickable = true
+        } else {
+            binding.home.isClickable = false
+            binding.shop.isClickable = false
+            binding.profile.isClickable = false
         }
     }
 }

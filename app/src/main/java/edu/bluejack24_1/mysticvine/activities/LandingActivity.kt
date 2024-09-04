@@ -34,6 +34,9 @@ class LandingPage : AppCompatActivity() {
     private  lateinit var partyViewModel : PartyViewModel
     private  lateinit var userViewModel: UserViewModel
 
+
+
+
     private val rotateOpen by lazy { AnimationUtils.loadAnimation(this, R.anim.rotate_open_anim) }
     private val rotateClose by lazy { AnimationUtils.loadAnimation(this, R.anim.rotate_close_anim) }
     private val fromBottom by lazy { AnimationUtils.loadAnimation(this, R.anim.from_bottom_anim) }
@@ -46,7 +49,6 @@ class LandingPage : AppCompatActivity() {
     private  lateinit var partyMemberViewModel: PartyMemberViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
 
         binding = ActivityLandingBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -138,6 +140,7 @@ class LandingPage : AppCompatActivity() {
 
             dialog.show()
         }
+        
         binding.sortFab.setOnClickListener{
 
             setVisibility(clicked, binding)
@@ -164,18 +167,15 @@ class LandingPage : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
-
     }
 
 
     private fun setVisibility(clicked: Boolean, binding: ActivityLandingBinding){
         if(!clicked){
-            Toast.makeText(this, "ON", Toast.LENGTH_SHORT).show()
             binding.home.visibility = View.VISIBLE
             binding.shop.visibility = View.VISIBLE
             binding.profile.visibility = View.VISIBLE
         } else {
-            Toast.makeText(this, "OFF", Toast.LENGTH_SHORT).show()
             binding.home.visibility = View.GONE
             binding.shop.visibility = View.GONE
             binding.profile.visibility = View.GONE
