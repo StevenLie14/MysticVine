@@ -73,7 +73,11 @@ class CreateCustomQuizPage : AppCompatActivity() {
             }
         }
 
-
+        binding.closeButton.setOnClickListener {
+            val intent = Intent(this, ProfilePage::class.java)
+            startActivity(intent)
+            finish()
+        }
 
     }
 }

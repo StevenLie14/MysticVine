@@ -127,6 +127,12 @@ class CreateQuizPage : AppCompatActivity() {
                 }
             }
         }
+
+        binding.closeButton.setOnClickListener {
+            val intent = Intent(this, ProfilePage::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 
     private fun addNewQuestion() {

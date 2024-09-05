@@ -8,6 +8,9 @@ data class Users(
     val level: Int = 1,
     val exp: Int = 0,
     val coin: Int = 0,
-    val score: Int = 0
+    val score: Int = 0,
+    val coinBooster: Int = 0,
+    val expBooster:Int = 0,
+    val shieldBooster:Int = 0,
 )
 

@@ -13,10 +13,11 @@ class LandingLeaderBoardAdapter : RecyclerView.Adapter<LandingLeaderBoardAdapter
     private var userList: List<Users> = emptyList()
     private lateinit var binding: LandingLeaderboardCardBinding
 
-     fun updateUserList(update : List<Users>){
+    fun updateUserList(update: List<Users>) {
         this.userList = update
-         notifyDataSetChanged()
+        notifyDataSetChanged()
     }
+
     class ViewHolder(private val binding: LandingLeaderboardCardBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(user: Users) {
@@ -25,7 +26,11 @@ class LandingLeaderBoardAdapter : RecyclerView.Adapter<LandingLeaderBoardAdapter
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        binding = LandingLeaderboardCardBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+        binding = LandingLeaderboardCardBinding.inflate(
+            LayoutInflater.from(parent.context),
+            parent,
+            false
+        )
         return ViewHolder(binding)
     }
 

@@ -1,5 +1,6 @@
 package edu.bluejack24_1.mysticvine.activities
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -45,6 +46,12 @@ class CreateFlashCardPage : AppCompatActivity() {
             }else {
                 Utils.showSnackBar(binding.root, result,true)
             }
+        }
+
+        binding.closeButton.setOnClickListener {
+            val intent = Intent(this, ProfilePage::class.java)
+            startActivity(intent)
+            finish()
         }
     }
 }
