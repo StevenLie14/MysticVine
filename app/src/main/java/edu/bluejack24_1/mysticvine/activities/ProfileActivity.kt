@@ -67,6 +67,22 @@ class ProfilePage : AppCompatActivity() {
             binding.tvCoin.text = user.coin.toString()
             binding.progressLevel.max = Utils.getExpForLevel(user.level)
             binding.progressLevel.progress = user.exp
+            binding.coinBoosterCount.text = user.coinBooster.toString() + "x"
+            binding.expBoosterCount.text = user.expBooster.toString() + "x"
+            binding.shieldBoosterCount.text = user.shieldBooster.toString() + "x"
+
+            if(user.coinBooster != 0){
+                binding.coinBooster.visibility = View.VISIBLE
+            }
+
+            if(user.expBooster != 0){
+                binding.expBooster.visibility = View.VISIBLE
+            }
+
+            if(user.shieldBooster != 0){
+                binding.shieldBooster.visibility = View.VISIBLE
+            }
+
         }
 
 
@@ -124,7 +140,7 @@ class ProfilePage : AppCompatActivity() {
         binding.rvQuizCard.adapter = quizAdapter
         binding.rvQuizCard.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
 
-        quizViewModel.quizzes.observe(this){
+        quizViewModel.userQuizzes.observe(this){
             quizAdapter.updateList(it)
         }
 
@@ -166,6 +182,10 @@ class ProfilePage : AppCompatActivity() {
             }
         }
 
+        binding.highscore.setOnClickListener{
+            val intent = Intent(this, LeaderBoardPage::class.java)
+            startActivity(intent)
+        }
 
     }
 
@@ -186,9 +206,11 @@ class ProfilePage : AppCompatActivity() {
             binding.home.visibility = View.VISIBLE
             binding.shop.visibility = View.VISIBLE
             binding.profile.visibility = View.VISIBLE
+            binding.highscore.visibility = View.VISIBLE
         } else {
             binding.home.visibility = View.GONE
             binding.shop.visibility = View.GONE
+            binding.highscore.visibility = View.GONE
             binding.profile.visibility = View.GONE
         }
     }
@@ -197,11 +219,13 @@ class ProfilePage : AppCompatActivity() {
             binding.home.startAnimation(fromBottom)
             binding.shop.startAnimation(fromBottom)
             binding.profile.startAnimation(fromBottom)
+            binding.highscore.startAnimation(fromBottom)
             binding.sortFab.startAnimation(rotateOpen)
         } else {
             binding.home.startAnimation(toBottom)
             binding.shop.startAnimation(toBottom)
             binding.profile.startAnimation(toBottom)
+            binding.highscore.startAnimation(toBottom)
             binding.sortFab.startAnimation(rotateClose)
         }
     }
@@ -209,11 +233,13 @@ class ProfilePage : AppCompatActivity() {
     private fun setClickable(clicked: Boolean, binding: ActivityProfilePageBinding){
         if(!clicked){
             binding.home.isClickable = true
+            binding.highscore.isClickable = true
             binding.shop.isClickable = true
             binding.profile.isClickable = true
         } else {
             binding.home.isClickable = false
             binding.shop.isClickable = false
+            binding.highscore.isClickable = false
             binding.profile.isClickable = false
         }
     }

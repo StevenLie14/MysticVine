@@ -19,7 +19,7 @@
                 android:layout_width="50dp"
                 android:layout_height="320dp"
                 android:layout_gravity="top|start"
-                android:layout_marginLeft="-5dp"
+                android:layout_marginStart="-5dp"
                 android:layout_marginTop="280dp"
                 android:src="@drawable/left_blob"
                 android:translationZ="-1dp" />
@@ -181,13 +181,15 @@
                     <GridLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="left"
+                        android:layout_gravity="start"
                         android:layout_marginHorizontal="30dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="15dp"
                         android:rowCount="1">
 
                         <FrameLayout
+                            android:id="@+id/coin_booster"
+                            android:visibility="gone"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">
 
@@ -200,6 +202,7 @@
                                 android:src="@drawable/coin_booster" />
 
                             <TextView
+                                android:id="@+id/coin_booster_count"
                                 android:layout_width="22dp"
                                 android:layout_height="22dp"
                                 android:layout_gravity="bottom"
@@ -207,11 +210,13 @@
                                 android:gravity="center"
                                 android:paddingHorizontal="4dp"
                                 android:text="2x"
-                                android:textSize="10dp" />
+                                android:textSize="10sp" />
 
                         </FrameLayout>
 
                         <FrameLayout
+                            android:id="@+id/exp_booster"
+                            android:visibility="gone"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">
 
@@ -224,6 +229,8 @@
                                 android:src="@drawable/exp_booster" />
 
                             <TextView
+                                android:id="@+id/exp_booster_count"
+
                                 android:layout_width="22dp"
                                 android:layout_height="22dp"
                                 android:layout_gravity="bottom"
@@ -231,11 +238,13 @@
                                 android:gravity="center"
                                 android:paddingHorizontal="4dp"
                                 android:text="2x"
-                                android:textSize="10dp" />
+                                android:textSize="10sp" />
 
                         </FrameLayout>
 
                         <FrameLayout
+                            android:id="@+id/shield_booster"
+                            android:visibility="gone"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">
 
@@ -248,6 +257,7 @@
                                 android:src="@drawable/shield_booster" />
 
                             <TextView
+                                android:id="@+id/shield_booster_count"
                                 android:layout_width="22dp"
                                 android:layout_height="22dp"
                                 android:layout_gravity="bottom"
@@ -255,7 +265,7 @@
                                 android:gravity="center"
                                 android:paddingHorizontal="4dp"
                                 android:text="2x"
-                                android:textSize="10dp" />
+                                android:textSize="10sp" />
 
                         </FrameLayout>
                     </GridLayout>
@@ -274,7 +284,7 @@
                         android:layout_gravity="center"
                         android:text="My Flash Card"
                         android:textColor="@color/dark_green"
-                        android:textSize="20dp" />
+                        android:textSize="20sp" />
 
                     <View
                         android:layout_width="match_parent"
@@ -319,17 +329,16 @@
                         android:id="@+id/remember_flash"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginHorizontal="10dp"
+                        android:paddingTop="10dp"
                         android:layout_gravity="center"
                         android:clipChildren="false"
+                        android:layout_margin="8dp"
                         android:clipToPadding="false">
 
                         <TextView
                             android:layout_width="wrap_content"
-                            android:layout_height="150dp"
-                            android:layout_marginRight="25dp"
-                            android:layout_marginBottom="20dp"
+                            android:layout_height="120dp"
                             android:background="@drawable/light_dark_green_rounded"
                             android:paddingHorizontal="15dp"
                             android:paddingVertical="15dp"
@@ -341,8 +350,8 @@
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:layout_gravity="bottom|end"
-                            android:layout_marginEnd="5dp"
-                            android:layout_marginBottom="10dp"
+                            android:layout_marginEnd="15dp"
+                            android:layout_marginBottom="15dp"
                             android:background="@drawable/light_orange_full_rounded"
                             android:paddingVertical="12dp"
                             android:src="@drawable/play" />
@@ -352,9 +361,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
-                        android:text="My Quizzez"
+                        android:text="My Quizzes"
                         android:textColor="@color/dark_green"
-                        android:textSize="20dp" />
+                        android:textSize="20sp" />
 
                     <View
                         android:layout_width="match_parent"
@@ -412,8 +421,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:layout_margin="16dp"
+        android:layout_marginHorizontal="16dp"
         android:orientation="vertical">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/highscore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="@color/light_orange"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/highscore_icon"
+            android:visibility="invisible" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/shop"
@@ -449,8 +468,10 @@
             android:id="@+id/sort_fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
             android:contentDescription="@string/app_name"
-            android:src="@drawable/navigation_icon" />
+            android:src="@drawable/navigation_icon"
+            android:elevation="0dp"/>
 
 
     </LinearLayout>

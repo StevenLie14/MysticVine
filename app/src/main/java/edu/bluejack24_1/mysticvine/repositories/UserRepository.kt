@@ -50,7 +50,7 @@ class UserRepository (context: Context) {
         auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 val userRef = db.reference.child("users").child(auth.currentUser!!.uid)
-                val user = Users(auth.currentUser!!.uid, username, email, "https://firebasestorage.googleapis.com/v0/b/mystic-vine-316b2.appspot.com/o/users%2Flogo.png?alt=media&token=1284a3fe-ad3f-4442-a74d-29df730ccdba" , 1, 0, 0, 0)
+                val user = Users(auth.currentUser!!.uid, username, email, "https://firebasestorage.googleapis.com/v0/b/mystic-vine-316b2.appspot.com/o/users%2Flogo.png?alt=media&token=1284a3fe-ad3f-4442-a74d-29df730ccdba" , 1, 0, 0, 0,0,0,0    )
                 userRef.setValue(user).addOnCompleteListener {
                     if (it.isSuccessful) {
                         callback("Register Success")
@@ -167,6 +167,105 @@ class UserRepository (context: Context) {
         }
     }
 
+    fun updateExpBooster(callback: (String) -> Unit) {
+            val userRef = db.getReference("users").child(auth.currentUser!!.uid)
+            Log.d("User", "${userRef}")
+            userRef.child("expBooster").get().addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val currentBooster = task.result.getValue(Int::class.java) ?: 0
+                    val newBoosterValue = currentBooster + 1
+                    userRef.child("expBooster").setValue(newBoosterValue).addOnCompleteListener { boosterTask ->
+                        if (boosterTask.isSuccessful) {
+                            userRef.child("coin").get().addOnCompleteListener { coinTask ->
+                                if (coinTask.isSuccessful) {
+                                    Log.d("Coins", "${coinTask.result}")
+                                    val currentCoins = coinTask.result.getValue(Int::class.java) ?: 0
+                                    val newCoinValue = currentCoins - 500
+
+                                    if (newCoinValue >= 0) {
+                                        userRef.child("coin").setValue(newCoinValue).addOnCompleteListener { coinUpdateTask ->
+                                            if (coinUpdateTask.isSuccessful) {
+                                                callback("Experience booster obtained.")
+                                            } else {
+                                                callback(coinUpdateTask.exception?.message ?: "Failed to update coins.")
+                                            }
+                                        }
+                                    } else {
+                                        callback("Not enough coins to purchase Exp Booster.")
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+    fun updateCoinBooster(callback: (String) -> Unit) {
+            val userRef = db.getReference("users").child(auth.currentUser!!.uid)
+            userRef.child("coinBooster").get().addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val currentBooster = task.result.getValue(Int::class.java) ?: 0
+                    val newBoosterValue = currentBooster + 1
+                    userRef.child("coinBooster").setValue(newBoosterValue).addOnCompleteListener { boosterTask ->
+                        if (boosterTask.isSuccessful) {
+                            userRef.child("coin").get().addOnCompleteListener { coinTask ->
+                                if (coinTask.isSuccessful) {
+                                    val currentCoins = coinTask.result.getValue(Int::class.java) ?: 0
+                                    val newCoinValue = currentCoins - 1000
+                                    if (newCoinValue >= 0) {
+                                        userRef.child("coin").setValue(newCoinValue).addOnCompleteListener { coinUpdateTask ->
+                                            if (coinUpdateTask.isSuccessful) {
+                                                callback("Coin booster obtained")
+                                            } else {
+                                                callback(coinUpdateTask.exception?.message ?: "Failed to update coins.")
+                                            }
+                                        }
+                                    } else {
+                                        callback("Not enough coins to purchase Coin Booster.")
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    fun updateShieldBooster(callback: (String) -> Unit) {
+        val userRef = db.getReference("users").child(auth.currentUser!!.uid)
+        userRef.child("shieldBooster").get().addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                val currentBooster = task.result.getValue(Int::class.java) ?: 0
+                val newBoosterValue = currentBooster + 1
+                userRef.child("shieldBooster").setValue(newBoosterValue).addOnCompleteListener { boosterTask ->
+                    if (boosterTask.isSuccessful) {
+                        userRef.child("coin").get().addOnCompleteListener { coinTask ->
+                            if (coinTask.isSuccessful) {
+                                val currentCoins = coinTask.result.getValue(Int::class.java) ?: 0
+                                val newCoinValue = currentCoins - 1500
+                                if (newCoinValue >= 0) {
+                                    userRef.child("coin").setValue(newCoinValue).addOnCompleteListener { coinUpdateTask ->
+                                        if (coinUpdateTask.isSuccessful) {
+                                            callback("Shield Booster obtained")
+                                        } else {
+                                            callback(coinUpdateTask.exception?.message ?: "Failed to update coins.")
+                                        }
+                                    }
+                                } else {
+                                    callback("Not enough coins to purchase Shield Booster.")
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
+
+
+
     fun getUserById(userId: String) : LiveData<Users> {
         val user = MutableLiveData<Users>()
         val userRef = db.getReference("users").child(userId)
@@ -179,7 +278,6 @@ class UserRepository (context: Context) {
                     Log.e("UserRepository", "Error parsing user data")
                 }
             }
-
             override fun onCancelled(error: DatabaseError) {
                 Log.e("UserRepository", error.message)
             }

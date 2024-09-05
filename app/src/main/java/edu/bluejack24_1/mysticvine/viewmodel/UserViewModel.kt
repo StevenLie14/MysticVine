@@ -30,7 +30,6 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
             _loginResult.value = "Please fill all the fields"
             return
         }
-
         userRepository.login(email, password) { result ->
             _loginResult.value = result
             userRepository.getCurrentUser(_currentUser)
@@ -78,7 +77,24 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
             _editUsernameResult.value = result
         }
     }
+    private val _boosterResult = MutableLiveData<String>()
+    val boosterResult: LiveData<String> = _boosterResult
+    fun AddCoinBooster(){
+        userRepository.updateCoinBooster () {result ->
+            _boosterResult.value = result
+        }
+    }
 
+    fun AddExpBooster(){
+        userRepository.updateExpBooster{result ->
+            _boosterResult.value = result
+        }
+    }
+    fun AddShieldBooster(){
+        userRepository.updateShieldBooster {result ->
+            _boosterResult.value = result
+        }
+    }
     fun getUserById(userId: String) : LiveData<Users> {
         return userRepository.getUserById(userId)
     }

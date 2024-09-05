@@ -24,8 +24,27 @@ class QuizRepository {
             }
         }
     }
-
-    fun getQuizzes(quizList: MutableLiveData<List<Quizzes>>) {
+    fun getAllQuizzes(quizList: MutableLiveData<List<Quizzes>>) {
+        val quizRef = db.getReference("quizzes")
+        quizRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                try {
+                    val allQuizzes = mutableListOf<Quizzes>()
+                    for (userSnapshot in snapshot.children) {
+                        val userQuizzes = userSnapshot.children.mapNotNull { it.getValue(Quizzes::class.java) }
+                        allQuizzes.addAll(userQuizzes)
+                    }
+                    quizList.postValue(allQuizzes)
+                } catch (e: Exception) {
+                    Log.e("QuizRepository", "Error parsing quiz data", e)
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {
+                Log.e("QuizRepository", "Database error: ${error.message}")
+            }
+        })
+    }
+    fun getUserQuizzes(quizList: MutableLiveData<List<Quizzes>>) {
         val quizRef = db.getReference("quizzes").child(auth.currentUser!!.uid)
 
         quizRef.addValueEventListener(object : ValueEventListener {

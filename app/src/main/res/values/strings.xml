@@ -28,4 +28,7 @@
     <string name="answer">Answer</string>
     <string name="custom_quiz_title">Create a question and provide the correct answer to challenge your friends!</string>
     <string name="finalize">Finalize</string>
+    <string name="enter_party_code">Enter Party Code</string>
+    <string name="create_a_new_party">Create a new party</string>
+    <string name="custom_game">Custom Game</string>
 </resources>

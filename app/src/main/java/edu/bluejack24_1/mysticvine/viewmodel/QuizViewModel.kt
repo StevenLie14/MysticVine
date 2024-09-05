@@ -28,9 +28,22 @@ class QuizViewModel : ViewModel() {
         }
     }
 
-    private val _quizzes = MutableLiveData<List<Quizzes>>()
-    val quizzes: LiveData<List<Quizzes>> = _quizzes
+    private val _allQuizzes = MutableLiveData<List<Quizzes>>()
+    val allQuizzes: LiveData<List<Quizzes>> = _allQuizzes
+
+    private val _userQuizzes = MutableLiveData<List<Quizzes>>()
+    val userQuizzes: LiveData<List<Quizzes>> = _userQuizzes
+
     init {
-        quizRepository.getQuizzes(_quizzes)
+        fetchAllQuizzes()
+        fetchUserQuizzes()
+    }
+
+    private fun fetchAllQuizzes() {
+        quizRepository.getAllQuizzes(_allQuizzes)
+    }
+
+    private fun fetchUserQuizzes() {
+        quizRepository.getUserQuizzes(_userQuizzes)
     }
 }
