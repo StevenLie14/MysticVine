@@ -104,8 +104,16 @@ class ProfilePage : AppCompatActivity() {
 
 
         userViewModel.editProfilePicResult.observe(this) { result ->
-            if (result == "Edit Profile Picture Success") {
-                Utils.showSnackBar(binding.root, result)
+            if (result == "Profile Picture Updated") {
+                Utils.showSnackBar(binding.root, result, false)
+            } else {
+                Utils.showSnackBar(binding.root, result,true)
+            }
+        }
+
+        userViewModel.editUsernameResult.observe(this) { result ->
+            if (result == "Username Updated") {
+                Utils.showSnackBar(binding.root, result, false)
             } else {
                 Utils.showSnackBar(binding.root, result,true)
             }

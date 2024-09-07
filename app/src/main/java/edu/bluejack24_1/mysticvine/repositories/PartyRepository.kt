@@ -13,6 +13,7 @@ import edu.bluejack24_1.mysticvine.model.PartyRoomMember
 import edu.bluejack24_1.mysticvine.model.Users
 import edu.bluejack24_1.mysticvine.utils.SharedPrefUtils
 import edu.bluejack24_1.mysticvine.utils.Utils
+import java.util.UUID
 
 class PartyRepository {
 
@@ -54,28 +55,32 @@ class PartyRepository {
         })
     }
 
-    fun updateGameStatus (partyCode: String, status: String, callback: (String) -> Unit) {
+    fun updateGameStatus (partyCode: String, status: String,partyQuestionId : String, callback: (Int,String) -> Unit) {
         val partyRef = db.getReference("parties").child(partyCode)
         partyRef.get().addOnSuccessListener {
             if (it.exists()) {
                 val partyRoom = it.getValue(PartyRoom::class.java)
                 if (partyRoom != null) {
                     partyRoom.partyStatus = status
+                    if (status == "Started") {
+                        partyRoom.partyIndex = 0
+                        partyRoom.partyQuestionID = partyQuestionId
+                    }
                     partyRef.setValue(partyRoom).addOnCompleteListener {
                         if (it.isSuccessful) {
-                            callback("Success game Status")
+                            callback(200,"Success game Status")
                         } else {
-                            callback(it.exception?.message ?: "Failed to update game status")
+                            callback(400,it.exception?.message ?: "Failed to update game status")
                         }
                     }
                 } else {
-                    callback("Party not found")
+                    callback(400,"Party not found")
                 }
             } else {
-                callback("Party not found")
+                callback(400,"Party not found")
             }
         }.addOnFailureListener {
-            callback("Failed to update game status")
+            callback(400,"Failed to update game status")
         }
     }
     private fun generateCode(callback: (String) -> Unit) {
@@ -125,6 +130,28 @@ class PartyRepository {
             }
         }.addOnFailureListener {
             callback(null)
+        }
+    }
+
+    fun deleteParty (partyCode: String, callback: (String) -> Unit) {
+        val partyRef = db.getReference("parties").child(partyCode)
+        partyRef.removeValue().addOnCompleteListener {
+            if (it.isSuccessful) {
+                callback("Success")
+            } else {
+                callback(it.exception?.message ?: "Failed to delete party")
+            }
+        }
+    }
+
+    fun nextAnswer (partyRoom: PartyRoom) {
+        val partyRef = db.getReference("parties").child(partyRoom.partyCode)
+        partyRef.setValue(partyRoom).addOnCompleteListener {
+            if (it.isSuccessful) {
+                Log.d("Party Repository", "Next answer success")
+            } else {
+                Log.e("Party Repository", it.exception?.message ?: "Failed to next answer")
+            }
         }
     }
 

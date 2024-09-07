@@ -26,6 +26,8 @@ import edu.bluejack24_1.mysticvine.databinding.ActivityLandingBinding
 import edu.bluejack24_1.mysticvine.databinding.CustomGamePopUpBinding
 import edu.bluejack24_1.mysticvine.model.Users
 import edu.bluejack24_1.mysticvine.utils.Utils
+import edu.bluejack24_1.mysticvine.viewmodel.CustomAnswerViewModel
+import edu.bluejack24_1.mysticvine.viewmodel.CustomQuestionViewModel
 import edu.bluejack24_1.mysticvine.viewmodel.PartyMemberViewModel
 import edu.bluejack24_1.mysticvine.viewmodel.PartyViewModel
 import edu.bluejack24_1.mysticvine.viewmodel.QuizViewModel
@@ -37,16 +39,13 @@ class LandingPage : AppCompatActivity() {
     private  lateinit var quizViewModel : QuizViewModel
     private  lateinit var partyViewModel : PartyViewModel
     private  lateinit var userViewModel: UserViewModel
-
-
-
+    private lateinit var customQuestionViewModel: CustomQuestionViewModel
+    private lateinit var customAnswerViewModel: CustomAnswerViewModel
 
     private val rotateOpen by lazy { AnimationUtils.loadAnimation(this, R.anim.rotate_open_anim) }
     private val rotateClose by lazy { AnimationUtils.loadAnimation(this, R.anim.rotate_close_anim) }
     private val fromBottom by lazy { AnimationUtils.loadAnimation(this, R.anim.from_bottom_anim) }
     private val toBottom by lazy { AnimationUtils.loadAnimation(this, R.anim.top_bottom_anim) }
-
-
 
     private var clicked = false
 
@@ -61,6 +60,12 @@ class LandingPage : AppCompatActivity() {
         userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
         partyViewModel = ViewModelProvider(this)[PartyViewModel::class.java]
         partyMemberViewModel = ViewModelProvider(this)[PartyMemberViewModel::class.java]
+        customQuestionViewModel = ViewModelProvider(this)[CustomQuestionViewModel::class.java]
+        customAnswerViewModel = ViewModelProvider(this)[CustomAnswerViewModel::class.java]
+        partyViewModel.resetAll()
+        partyMemberViewModel.resetAll()
+        customQuestionViewModel.resetAll()
+        customAnswerViewModel.resetAll()
 
         Utils.guestMiddleware(userViewModel, this)
         userViewModel.currentUser.observe(this) { user ->
@@ -93,6 +98,8 @@ class LandingPage : AppCompatActivity() {
         }
 
         binding.customGame.setOnClickListener {
+            partyViewModel.resetAll()
+            partyMemberViewModel.resetAll()
             val dialogBinding = CustomGamePopUpBinding.inflate(layoutInflater)
 
             val builder = AlertDialog.Builder(binding.root.context)
@@ -104,54 +111,44 @@ class LandingPage : AppCompatActivity() {
                 dialog.dismiss()
             }
 
-            dialogBinding.btnCreateParty.setOnClickListener {
-                userViewModel.currentUser.observe(this@LandingPage) { user ->
-                    if (user == null) {
-                        return@observe
-                    }
+            userViewModel.currentUser.observe(this@LandingPage) { user ->
+                if (user == null) {
+                    return@observe
+                }
+                dialogBinding.btnCreateParty.setOnClickListener {
                     partyViewModel.createParty(user.id)
                     partyViewModel.createPartyResult.observe(this@LandingPage) {result ->
                         if (result.length == 6 ){
                             partyMemberViewModel.joinParty(result, user.id, "create")
-                            partyMemberViewModel.joinPartyResult.observe(this@LandingPage) { res ->
-                                if ( res ==  "Create party success" ) {
-                                    val intent = Intent(binding.root.context, WaitingRoomPage::class.java)
-                                    intent.putExtra("partyCode", result)
-                                    dialogBinding.etPartyCode.text = null
-                                    dialog.dismiss()
-                                    startActivity(intent)
-                                } else {
-                                    Utils.showSnackBar(binding.root, partyMemberViewModel.joinPartyResult.value!!,true)
-                                }
-                            }
-                        }else {
+                        }else if (result != "") {
                             Utils.showSnackBar(binding.root, result,true)
                         }
                     }
-
                 }
-            }
 
-            dialogBinding.btnJoinParty.setOnClickListener {
-                userViewModel.currentUser.observe(this@LandingPage) { user ->
-                    if (user == null) return@observe
+                dialogBinding.btnJoinParty.setOnClickListener {
                     val partyCode = dialogBinding.etPartyCode.text.toString()
                     partyMemberViewModel.joinParty(partyCode, user.id, "join")
-                    partyMemberViewModel.joinPartyResult.observe(this@LandingPage) { res ->
-                        Log.e("JOIN PARTY", res)
-                        if ( res ==  "Joined party success" ) {
-                            val intent = Intent(binding.root.context, WaitingRoomPage::class.java)
-                            intent.putExtra("partyCode", partyCode)
-                            dialogBinding.etPartyCode.text = null
-                            dialog.dismiss()
-                            startActivity(intent)
-                        } else {
-                            Utils.showSnackBar(binding.root, partyMemberViewModel.joinPartyResult.value!!,true)
-                        }
-                    }
                 }
 
             }
+
+            partyMemberViewModel.joinPartyResult.observe(this@LandingPage) { res ->
+                dialogBinding.etPartyCode.text = null
+                Log.d("JoinPartyResult bruh", res)
+                if ( res.length == 6 ) {
+                    dialog.dismiss()
+                    val intent = Intent(binding.root.context, WaitingRoomPage::class.java)
+                    intent.putExtra("partyCode", res)
+                    startActivity(intent)
+                    partyMemberViewModel.joinPartyResult.removeObservers(this@LandingPage)
+
+                } else if (res != "") {
+                    Utils.showSnackBar(binding.root, partyMemberViewModel.joinPartyResult.value!!,true)
+                }
+            }
+
+
 
             dialog.show()
         }
@@ -173,6 +170,7 @@ class LandingPage : AppCompatActivity() {
             val intent = Intent(this, LeaderBoardPage::class.java)
             startActivity(intent)
         }
+        
         binding.sortFab.setOnClickListener{
 
             setVisibility(clicked, binding)

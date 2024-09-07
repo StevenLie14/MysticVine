@@ -14,24 +14,25 @@ class CustomQuestionRepository {
     private val db = FirebaseDatabase.getInstance()
     private val auth = FirebaseAuth.getInstance()
 
-    fun createCustomQuestion(question: CustomQuizQuestion, callback: (String) -> Unit) {
-        val questionRef = db.getReference("custom questions").child(question.partyCode).child(question.questionId)
+    fun createCustomQuestion(partyQuestionId : String, question: CustomQuizQuestion, callback: (String) -> Unit) {
+        val questionRef = db.getReference("custom questions").child(question.partyCode).child(partyQuestionId).child(question.userId)
         questionRef.setValue(question).addOnCompleteListener {
             if (it.isSuccessful) {
-                callback(question.questionId)
+                callback("Question created")
             } else {
                 callback("Failed to create question")
             }
         }
     }
 
-    fun getCustomQuestions(partyCode: String, customQuestionList: MutableLiveData<List<CustomQuizQuestion>>) {
-        val questionRef = db.getReference("custom questions").child(partyCode)
+    fun getCustomQuestions(partyCode: String,partyQuestionId : String , customQuestionList: MutableLiveData<List<CustomQuizQuestion>>) {
+        val questionRef = db.getReference("custom questions").child(partyCode).child(partyQuestionId)
 
         questionRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 try {
                     val customQuestionDB: List<CustomQuizQuestion> = snapshot.children.map { it.getValue(CustomQuizQuestion::class.java)!! }
+                    Log.d("CustomQuestion Repository", customQuestionDB.toString())
                     customQuestionList.postValue(customQuestionDB)
                 } catch (e: Exception) {
                     Log.e("CustomQuestion Repository", "Error parsing custom question data")
@@ -44,4 +45,28 @@ class CustomQuestionRepository {
 
         })
     }
+    fun getNotRTCustomQuestions (partyCode: String, callback: (List<CustomQuizQuestion>) -> Unit) {
+        val questionRef = db.getReference("custom questions").child(partyCode)
+        questionRef.get().addOnSuccessListener {
+            if (it.exists()) {
+                val customQuestionDB: List<CustomQuizQuestion> = it.children.map { it.getValue(CustomQuizQuestion::class.java)!! }
+                callback(customQuestionDB)
+            } else {
+                callback(emptyList())
+            }
+        }
+    }
+
+    fun deleteQuestions (partyCode: String, callback: (String) -> Unit) {
+        val questionRef = db.getReference("custom questions").child(partyCode)
+        questionRef.removeValue().addOnCompleteListener {
+            if (it.isSuccessful) {
+                callback("Questions deleted")
+            } else {
+                callback(it.exception?.message ?: "Failed to delete questions")
+            }
+        }
+    }
+
+
 }

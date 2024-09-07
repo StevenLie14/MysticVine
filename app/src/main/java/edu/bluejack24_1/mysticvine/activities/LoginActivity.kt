@@ -81,7 +81,7 @@ class LoginPage : AppCompatActivity() {
 //                        Utils.showSnackBar(binding.root, "Authentication succeeded!")
                         Log.d("Fingerprint", userViewModel.isLoggedIn().toString())
                         if (userViewModel.isLoggedIn()) {
-                            val intent = Intent(this@LoginPage, ProfilePage::class.java)
+                            val intent = Intent(this@LoginPage, LandingPage::class.java)
                             startActivity(intent)
                             finish()
                         }

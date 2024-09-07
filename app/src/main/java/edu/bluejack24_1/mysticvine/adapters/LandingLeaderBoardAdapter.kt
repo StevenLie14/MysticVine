@@ -20,8 +20,9 @@ class LandingLeaderBoardAdapter : RecyclerView.Adapter<LandingLeaderBoardAdapter
 
     class ViewHolder(private val binding: LandingLeaderboardCardBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(user: Users) {
+        fun bind(user: Users, position: Int) {
             binding.user = user
+            binding.leaderboardRank.text = (position + 1).toString()
         }
     }
 
@@ -40,7 +41,7 @@ class LandingLeaderBoardAdapter : RecyclerView.Adapter<LandingLeaderBoardAdapter
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val user = userList[position]
-        holder.bind(user)
+        holder.bind(user,position)
     }
 
 

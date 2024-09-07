@@ -3,6 +3,7 @@ package edu.bluejack24_1.mysticvine.viewmodel
 import android.app.Application
 import android.content.Intent
 import android.net.Uri
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -42,6 +43,11 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
     fun register(username: String, email: String, password: String, confirmPassword: String) {
         if (username.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
             _registerResult.value = "Please fill all the fields"
+            return
+        }
+
+        if (username.length > 8) {
+            _registerResult.value = "Username must be less than 8 characters"
             return
         }
 
@@ -85,18 +91,22 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
+    fun getUserById(userId: String, callback : (Users) -> Unit){
+        userRepository.getUserById(userId)   {
+            callback(it)
+        }
+    }
+
     fun AddExpBooster(){
         userRepository.updateExpBooster{result ->
             _boosterResult.value = result
         }
     }
+    
     fun AddShieldBooster(){
         userRepository.updateShieldBooster {result ->
             _boosterResult.value = result
         }
-    }
-    fun getUserById(userId: String) : LiveData<Users> {
-        return userRepository.getUserById(userId)
     }
 
     private val _leaderboardPageAfter4 = MutableLiveData<List<Users>>()

@@ -119,6 +119,28 @@ class UserRepository (context: Context) {
             })
         }
     }
+
+    fun getNonRTUserByIds(userIds: List<String>, callback: (List<Users>) -> Unit) {
+        val users = mutableListOf<Users>()
+        val usersRef = db.getReference("users")
+        userIds.forEach { userId ->
+            val userRef = usersRef.child(userId)
+            userRef.get().addOnSuccessListener { snapshot ->
+                try {
+                    val userDB = snapshot.getValue(Users::class.java)
+                    userDB?.let { user ->
+                        users.removeIf { it.id == user.id }
+                        users.add(user)
+                        callback(users.toList())
+                    }
+                } catch (e: Exception) {
+                    Log.e("UserRepository", "Error parsing user data")
+                }
+            }.addOnFailureListener { error ->
+                Log.e("UserRepository", error.message ?: "Failed to get user data")
+            }
+        }
+    }
     fun getLandingLeaderBoard(userList : MutableLiveData<List<Users>>) {
         val userRef = db.getReference("users").orderByChild("score")
         userRef.addValueEventListener(object : ValueEventListener{
@@ -194,7 +216,7 @@ class UserRepository (context: Context) {
             }
         }
     }
-
+    
     fun updateExpBooster(callback: (String) -> Unit) {
             val userRef = db.getReference("users").child(auth.currentUser!!.uid)
             Log.d("User", "${userRef}")
@@ -290,24 +312,23 @@ class UserRepository (context: Context) {
         }
     }
 
-    fun getUserById(userId: String) : LiveData<Users> {
-        val user = MutableLiveData<Users>()
+    
+  fun getUserById(userId: String, callback : (Users) -> Unit) {
         val userRef = db.getReference("users").child(userId)
-        userRef.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
+        userRef.get().addOnSuccessListener { dataSnapshot ->
+            if (dataSnapshot.exists()) {
                 try {
-                    val userDB = snapshot.getValue(Users::class.java)!!
-                    user.postValue(userDB)
+                    val userDB = dataSnapshot.getValue(Users::class.java)
+                    callback(userDB!!)
                 } catch (e: Exception) {
                     Log.e("UserRepository", "Error parsing user data")
                 }
+            } else {
+                Log.e("UserRepository", "No user data found")
             }
-            override fun onCancelled(error: DatabaseError) {
-                Log.e("UserRepository", error.message)
-            }
-        })
-
-        return user
+        }.addOnFailureListener { exception ->
+            Log.e("UserRepository", exception.message ?: "Failed to get user data")
+        }
     }
 
 }

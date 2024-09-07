@@ -4,5 +4,5 @@ data class CustomQuizQuestion(
     val questionId: String = "",
     val partyCode: String = "",
     val question: String = "",
-    val userId: String = ""
+    val userId: String = "",
 )
