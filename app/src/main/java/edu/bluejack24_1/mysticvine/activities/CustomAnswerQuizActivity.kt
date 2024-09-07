@@ -21,7 +21,7 @@ import edu.bluejack24_1.mysticvine.utils.Utils
 import edu.bluejack24_1.mysticvine.viewmodel.CustomAnswerViewModel
 import edu.bluejack24_1.mysticvine.viewmodel.CustomQuestionViewModel
 import edu.bluejack24_1.mysticvine.viewmodel.PartyMemberViewModel
-import edu.bluejack24_1.mysticvine.viewmodel.PartyViewMode
+import edu.bluejack24_1.mysticvine.viewmodel.PartyViewModel
 import edu.bluejack24_1.mysticvine.viewmodel.UserViewModel
 
 
@@ -76,9 +76,6 @@ class CustomAnswerQuizPage : AppCompatActivity() {
         userViewModel.currentUser.observe(this) {user ->
             if (user == null) return@observe
             Glide.with(binding.ivAvatar).load(user.profilePicture).into(binding.ivAvatar)
-
-
-
 
 
             partyViewModel.partyRoom.observe(this) { room ->

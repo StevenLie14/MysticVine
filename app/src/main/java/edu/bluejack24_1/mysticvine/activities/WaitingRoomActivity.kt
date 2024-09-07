@@ -54,7 +54,7 @@ class WaitingRoomPage : AppCompatActivity() {
                     binding.startBtn.visibility = View.VISIBLE
                     binding.startBtn.isEnabled = false
                     binding.startBtn.text = getString(R.string.waiting_for_host_to_start)
-                    binding.ivClose.setOnClickListener {
+                    binding.closeButton.setOnClickListener {
                         partyMemberViewModel.leaveParty(partyCode, user.id ) {
                             if (it == "Success") {
                                 val intent = Intent(this, LandingPage::class.java)
@@ -66,7 +66,7 @@ class WaitingRoomPage : AppCompatActivity() {
 
 
                 }else {
-                    binding.ivClose.setOnClickListener {
+                    binding.closeButton.setOnClickListener {
                         partyViewModel.deleteParty(partyCode)
                     }
 
