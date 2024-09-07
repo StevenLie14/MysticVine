@@ -19,7 +19,7 @@ import kotlinx.coroutines.launch
 
 class UserViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val userRepository : UserRepository = UserRepository(application);
+    private val userRepository : UserRepository = UserRepository(application)
 
 
     private val _loginResult = MutableLiveData<String>()
@@ -99,7 +99,8 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         return userRepository.getUserById(userId)
     }
 
-
+    private val _leaderboardPageAfter4 = MutableLiveData<List<Users>>()
+    val leaderboardPageAfter4: LiveData<List<Users>> = _leaderboardPageAfter4
 
     private val _leaderboard = MutableLiveData<List<Users>>()
     val leaderboard: LiveData<List<Users>> = _leaderboard
@@ -107,7 +108,9 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
     init {
         userRepository.getLandingLeaderBoard(_leaderboard)
         userRepository.getCurrentUser(_currentUser)
+        userRepository.getLeaderBoardAfter4ranks(_leaderboardPageAfter4)
     }
+
 
 
 

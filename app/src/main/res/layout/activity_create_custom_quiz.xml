@@ -18,15 +18,15 @@
         android:layout_marginBottom="-45dp"
         android:layout_gravity="bottom|start"
         android:src="@drawable/bottom_left_decoration" />
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profile_picture"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_gravity="top|end"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
-        android:background="@drawable/rounded_image"
-        android:scaleType="centerCrop"
-        android:src="@drawable/avatar" />
+        android:background="@drawable/light_orange_circle"
+        android:scaleType="centerCrop" />
 
     <ImageView
         android:id="@+id/close_button"
@@ -35,7 +35,6 @@
         android:layout_gravity="top|start"
         android:layout_marginStart="15dp"
         android:layout_marginTop="15dp"
-        android:background="@drawable/rounded_image"
         android:scaleType="centerCrop"
         android:src="@drawable/close_button" />
 
@@ -112,8 +111,6 @@
                     android:paddingHorizontal="15dp"
                     android:paddingVertical="15dp" />
             </LinearLayout>
-
-
         </FrameLayout>
         <Button
             android:id="@+id/btn_finalize"

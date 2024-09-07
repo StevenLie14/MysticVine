@@ -8,11 +8,16 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.net.toUri
+import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.Glide
 import edu.bluejack24_1.mysticvine.R
 import edu.bluejack24_1.mysticvine.databinding.ActivityQuestionPageBinding
+import edu.bluejack24_1.mysticvine.viewmodel.UserViewModel
 
 class QuestionPage : AppCompatActivity() {
     private lateinit var binding: ActivityQuestionPageBinding
+    private lateinit var userViewModel: UserViewModel
     private val correctAnswer: String = "A"
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,6 +41,14 @@ class QuestionPage : AppCompatActivity() {
 
         val timer = MyCounter(10000, 1000, timerText, this)
         timer.start()
+
+        userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
+        userViewModel.currentUser.observe(this) { user ->
+            if (user == null) return@observe
+            Glide.with(binding.profilePicture)
+                .load(user.profilePicture.toUri())
+                .into(binding.profilePicture)
+        }
     }
     private fun setOptionClickListener(option: LinearLayout, selectedAnswer: String) {
         option.setOnClickListener {
@@ -78,6 +91,7 @@ class QuestionPage : AppCompatActivity() {
                 timerTextView.setTextColor(ContextCompat.getColor(context, R.color.dark_green))
             }
         }
+
     }
 
     private fun showToast(message: String) {

@@ -8,6 +8,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import edu.bluejack24_1.mysticvine.model.Quizzes
+import edu.bluejack24_1.mysticvine.model.Users
 
 class QuizRepository {
 
@@ -62,4 +63,31 @@ class QuizRepository {
             }
         })
     }
+
+    fun get3RandomQuiz(quizList: MutableLiveData<List<Quizzes>>) {
+        val quizRef = db.getReference("quizzes")
+        quizRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                try {
+                    val allQuizzes = mutableListOf<Quizzes>()
+                    for (userSnapshot in snapshot.children) {
+                        val userQuizzes = userSnapshot.children.mapNotNull { it.getValue(Quizzes::class.java) }
+                        allQuizzes.addAll(userQuizzes)
+                    }
+                    Log.d("QuizRandom", "${allQuizzes}")
+                    val randomQuizzes = allQuizzes.shuffled().take(3)
+                    Log.d("QuizRandom", "${randomQuizzes}")
+                    quizList.postValue(randomQuizzes)
+                } catch (e: Exception) {
+                    Log.e("QuizRepository", "Error parsing quiz data", e)
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {
+                Log.e("QuizRepository", error.message)
+            }
+        })
+    }
+
+
+
 }
