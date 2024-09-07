@@ -31,11 +31,7 @@
         android:letterSpacing="0.05"
         android:text="@string/create_party"
         android:textSize="12sp" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/enter_party_code"
-        android:textColor="@color/dark_green"/>
+
     <EditText
         android:id="@+id/et_party_code"
         android:layout_width="match_parent"

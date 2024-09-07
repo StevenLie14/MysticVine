@@ -34,16 +34,12 @@ class QuizViewModel : ViewModel() {
     private val _userQuizzes = MutableLiveData<List<Quizzes>>()
     val userQuizzes: LiveData<List<Quizzes>> = _userQuizzes
 
+    private val _random3Quiz = MutableLiveData<List<Quizzes>>()
+    val random3Quiz: LiveData<List<Quizzes>> = _random3Quiz
+
     init {
-        fetchAllQuizzes()
-        fetchUserQuizzes()
-    }
-
-    private fun fetchAllQuizzes() {
         quizRepository.getAllQuizzes(_allQuizzes)
-    }
-
-    private fun fetchUserQuizzes() {
         quizRepository.getUserQuizzes(_userQuizzes)
+        quizRepository.get3RandomQuiz(_random3Quiz)
     }
 }

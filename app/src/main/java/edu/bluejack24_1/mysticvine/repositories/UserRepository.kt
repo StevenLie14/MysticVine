@@ -50,7 +50,7 @@ class UserRepository (context: Context) {
         auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 val userRef = db.reference.child("users").child(auth.currentUser!!.uid)
-                val user = Users(auth.currentUser!!.uid, username, email, "https://firebasestorage.googleapis.com/v0/b/mystic-vine-316b2.appspot.com/o/users%2Flogo.png?alt=media&token=1284a3fe-ad3f-4442-a74d-29df730ccdba" , 1, 0, 0, 0,0,0,0    )
+                val user = Users(auth.currentUser!!.uid, username, email, "https://firebasestorage.googleapis.com/v0/b/mystic-vine-316b2.appspot.com/o/users%2Flogo.png?alt=media&token=b649647c-3440-4b01-92b2-93f22b649845" , 1, 0, 0, 0,0,0,0    )
                 userRef.setValue(user).addOnCompleteListener {
                     if (it.isSuccessful) {
                         callback("Register Success")
@@ -120,11 +120,14 @@ class UserRepository (context: Context) {
         }
     }
     fun getLandingLeaderBoard(userList : MutableLiveData<List<Users>>) {
-        val userRef = db.getReference("users").orderByChild("score").limitToFirst(3)
+        val userRef = db.getReference("users").orderByChild("score")
         userRef.addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 try {
-                    val userDB : List<Users> = snapshot.children.map { it.getValue(Users::class.java)!! }
+                    val userDB: List<Users> = snapshot.children
+                        .mapNotNull { it.getValue(Users::class.java) }
+                        .sortedByDescending { it.score }
+                        .take(3)
                     userList.postValue(userDB)
                 }catch (e: Exception){
                     Log.e("UserRepository", "Error parsing user data")
@@ -136,6 +139,31 @@ class UserRepository (context: Context) {
 
         })
     }
+
+    fun getLeaderBoardAfter4ranks(userList: MutableLiveData<List<Users>>) {
+        val userRef = db.getReference("users").orderByChild("score")
+        userRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                try {
+                    val userDB: List<Users> = snapshot.children.mapNotNull { it.getValue(Users::class.java) }
+                        .sortedByDescending { it.score }
+
+                    if (userDB.size > 3) {
+                        userList.postValue(userDB.drop(3))
+                    } else {
+                        userList.postValue(emptyList())
+                    }
+                } catch (e: Exception) {
+                    Log.e("UserRepository", "Error parsing user data", e)
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.e("UserRepository", error.message)
+            }
+        })
+    }
+
     fun editProfilePicture(uri: Uri, callback: (String) -> Unit) {
         val storageRef = storage.getReference("users").child(auth.currentUser!!.uid)
         val fileRef = storageRef.child("${auth.currentUser!!.uid}.jpg")
@@ -261,10 +289,6 @@ class UserRepository (context: Context) {
             }
         }
     }
-
-
-
-
 
     fun getUserById(userId: String) : LiveData<Users> {
         val user = MutableLiveData<Users>()

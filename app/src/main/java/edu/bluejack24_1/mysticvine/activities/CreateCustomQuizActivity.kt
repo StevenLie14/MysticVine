@@ -4,9 +4,11 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.net.toUri
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.Glide
 import edu.bluejack24_1.mysticvine.R
 import edu.bluejack24_1.mysticvine.databinding.ActivityCreateCustomQuizBinding
 import edu.bluejack24_1.mysticvine.viewmodel.CustomAnswerViewModel
@@ -43,6 +45,10 @@ class CreateCustomQuizPage : AppCompatActivity() {
 
         userViewModel.currentUser.observe(this) {user ->
             if (user == null) return@observe
+            Glide.with(binding.profilePicture)
+                .load(user.profilePicture.toUri())
+                .into(binding.profilePicture)
+
             binding.btnFinalize.setOnClickListener {
                 val question = binding.etQuestion.text.toString()
                 val answer = binding.etAnswer.text.toString()

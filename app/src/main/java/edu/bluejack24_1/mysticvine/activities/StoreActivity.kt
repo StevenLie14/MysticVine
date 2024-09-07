@@ -37,6 +37,9 @@ class StorePage : AppCompatActivity() {
             if (user == null) return@observe
             binding.currentCoin.text = user.coin.toString()
             currentCoin =  user.coin
+            Glide.with(binding.profilePicture)
+                .load(user.profilePicture.toUri())
+                .into(binding.profilePicture)
         }
 
 
@@ -62,7 +65,6 @@ class StorePage : AppCompatActivity() {
                 Utils.showSnackBar(binding.root, result, true)
             }
         }
-
 
         binding.closeButton.setOnClickListener {
             val intent = Intent(this, ProfilePage::class.java)

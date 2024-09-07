@@ -16,9 +16,12 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.animation.AnimationUtils
 import android.widget.Toast
+import androidx.core.net.toUri
+import com.bumptech.glide.Glide
 import edu.bluejack24_1.mysticvine.R
 import edu.bluejack24_1.mysticvine.adapters.LandingLeaderBoardAdapter
 import edu.bluejack24_1.mysticvine.adapters.QuizzesAdapter
+import edu.bluejack24_1.mysticvine.adapters.Random3QuizAdapter
 import edu.bluejack24_1.mysticvine.databinding.ActivityLandingBinding
 import edu.bluejack24_1.mysticvine.databinding.CustomGamePopUpBinding
 import edu.bluejack24_1.mysticvine.model.Users
@@ -67,7 +70,19 @@ class LandingPage : AppCompatActivity() {
             binding.levelText.text = user?.level.toString()
             binding.levelProgress.progress = user?.exp ?: 0
             binding.levelProgress.max = Utils.getExpForLevel(user?.level ?: 0)
+            Glide.with(binding.profilePicture)
+                .load(user.profilePicture.toUri())
+                .into(binding.profilePicture)
         }
+
+        val random3QuizAdapter = Random3QuizAdapter()
+        binding.rvRandom3Quiz.adapter = random3QuizAdapter
+        binding.rvRandom3Quiz.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        binding.rvRandom3Quiz.setHasFixedSize(true)
+        quizViewModel.random3Quiz.observe(this) {
+            random3QuizAdapter.updateList(it)
+        }
+
 
         val leaderBoardAdapter = LandingLeaderBoardAdapter()
         binding.rvLeaderboard.adapter = leaderBoardAdapter
