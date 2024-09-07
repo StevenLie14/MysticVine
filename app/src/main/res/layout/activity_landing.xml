@@ -197,13 +197,12 @@
                             android:padding="8dp"
                             android:src="@drawable/play" />
 
-                        <!--                <com.google.android.material.floatingactionbutton.FloatingActionButton-->
-                        <!--                    android:layout_width="wrap_content"-->
-                        <!--                    android:layout_height="wrap_content"-->
-                        <!--                    android:layout_gravity="bottom|end"-->
-                        <!--                    android:layout_margin="8dp"-->
-                        <!--                    android:contentDescription="@string/app_name"-->
-                        <!--                    android:src="@drawable/play" />-->
+<!--                                        <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--                                            android:layout_width="wrap_content"-->
+<!--                                            android:layout_height="wrap_content"-->
+<!--                                            android:layout_gravity="bottom|end"-->
+<!--                                            android:contentDescription="@string/app_name"-->
+<!--                                            android:src="@drawable/play" />-->
 
 
                         <!--                <include layout="@layout/landing_leaderboard_card" />-->

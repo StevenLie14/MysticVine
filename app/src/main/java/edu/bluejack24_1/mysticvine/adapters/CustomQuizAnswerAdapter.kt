@@ -14,24 +14,22 @@ import edu.bluejack24_1.mysticvine.model.Users
 import edu.bluejack24_1.mysticvine.viewmodel.FlashCardViewModel
 import edu.bluejack24_1.mysticvine.viewmodel.UserViewModel
 
-class CustomQuizAnswerAdapter (userViewModel: UserViewModel) : RecyclerView.Adapter<CustomQuizAnswerAdapter.ViewHolder>() {
+class CustomQuizAnswerAdapter : RecyclerView.Adapter<CustomQuizAnswerAdapter.ViewHolder>() {
 
-    private var customQuizAnswerList: List<CustomQuizAnswer> = emptyList()
+    private var customQuizAnswerList: List<Pair<CustomQuizAnswer,Users>> = emptyList()
     private lateinit var binding: CustomQuizAnswerCardBinding
-    private val userViewModel = userViewModel
 
-    fun updateList(update : List<CustomQuizAnswer>){
+    fun updateList(update : List<Pair<CustomQuizAnswer,Users>>){
         this.customQuizAnswerList = update
         this.notifyDataSetChanged()
     }
 
     class ViewHolder(private val binding: CustomQuizAnswerCardBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(answer: CustomQuizAnswer,userViewModel: UserViewModel) {
-            binding.answer = answer
-            userViewModel.getUserById(answer.userId).observe(itemView.context as androidx.lifecycle.LifecycleOwner){
-                binding.user = it
-            }
+        fun bind(answer: Pair<CustomQuizAnswer,Users>) {
+            Log.d("CustomQuizAnswerAdapter", "bind: $answer")
+            binding.answer = answer.first
+            binding.user = answer.second
         }
 
     }
@@ -46,8 +44,8 @@ class CustomQuizAnswerAdapter (userViewModel: UserViewModel) : RecyclerView.Adap
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val user = customQuizAnswerList[position]
-        holder.bind(user,userViewModel)
+        val answer = customQuizAnswerList[position]
+        holder.bind(answer)
 
     }
 

@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide
 import edu.bluejack24_1.mysticvine.R
 import edu.bluejack24_1.mysticvine.adapters.WaitingRoomAdapter
 import edu.bluejack24_1.mysticvine.databinding.ActivityWaitingRoomBinding
+import edu.bluejack24_1.mysticvine.utils.Utils
 import edu.bluejack24_1.mysticvine.viewmodel.PartyMemberViewModel
 import edu.bluejack24_1.mysticvine.viewmodel.PartyViewModel
 import edu.bluejack24_1.mysticvine.viewmodel.UserViewModel
@@ -35,9 +36,10 @@ class WaitingRoomPage : AppCompatActivity() {
         partyViewModel = ViewModelProvider(this)[PartyViewModel::class.java]
         partyMemberViewModel = ViewModelProvider(this)[PartyMemberViewModel::class.java]
         userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
+        partyViewModel.resetAll()
 
         partyViewModel.getPartyHost(partyCode!!)
-        partyViewModel.getPartyRoom(partyCode!!)
+        partyViewModel.getPartyRoom(partyCode)
 
         userViewModel.currentUser.observe(this) { user ->
             if (user == null) return@observe
@@ -49,7 +51,25 @@ class WaitingRoomPage : AppCompatActivity() {
                 binding.hostUsername.text = host.username
                 binding.partyCode.text = partyCode
                 if (host.id != user.id) {
-                    binding.startBtn.visibility = View.GONE
+                    binding.startBtn.visibility = View.VISIBLE
+                    binding.startBtn.isEnabled = false
+                    binding.startBtn.text = getString(R.string.waiting_for_host_to_start)
+                    binding.ivClose.setOnClickListener {
+                        partyMemberViewModel.leaveParty(partyCode, user.id ) {
+                            if (it == "Success") {
+                                val intent = Intent(this, LandingPage::class.java)
+                                startActivity(intent)
+                                finish()
+                            }
+                        }
+                    }
+
+
+                }else {
+                    binding.ivClose.setOnClickListener {
+                        partyViewModel.deleteParty(partyCode)
+                    }
+
                 }
             }
         }
@@ -61,10 +81,17 @@ class WaitingRoomPage : AppCompatActivity() {
 
 
         partyViewModel.partyRoom.observe(this) { partyRoom ->
-            if (partyRoom == null) return@observe
+            if (partyRoom == null) {
+                Utils.showSnackBar(binding.root, "Host has leave the party")
+                val intent = Intent(this, LandingPage::class.java)
+                startActivity(intent)
+                finish()
+                return@observe
+            }
             if (partyRoom.partyStatus == "Started") {
                 val intent = Intent(this, CreateCustomQuizPage::class.java)
                 intent.putExtra("partyCode", partyCode)
+                intent.putExtra("partyQuestionId",partyRoom.partyQuestionID)
                 startActivity(intent)
                 finish()
             }

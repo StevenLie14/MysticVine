@@ -7,6 +7,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import edu.bluejack24_1.mysticvine.model.FlashCard
+import edu.bluejack24_1.mysticvine.model.PartyRoomMember
 import edu.bluejack24_1.mysticvine.model.Users
 
 class PartyMemberRepository {
@@ -41,5 +42,39 @@ class PartyMemberRepository {
             }
 
         })
+    }
+
+    fun getNonRTPartyMember (partyCode: String, callback: (List<String>) -> Unit) {
+        val partyRef = db.getReference("party members").child(partyCode)
+        partyRef.get().addOnSuccessListener {
+            if (it.exists()) {
+                val joinedMemberDB : List<String> = it.children.map { it.getValue(String::class.java)!! }
+                callback(joinedMemberDB)
+            } else {
+                Log.e("Party Member Repository", "Error parsing user data")
+            }
+        }
+    }
+
+    fun leaveParty (partyCode: String, userId: String, callback: (String) -> Unit) {
+        val partyRef = db.getReference("party members").child(partyCode).child(userId)
+        partyRef.removeValue().addOnCompleteListener {
+            if (it.isSuccessful) {
+                callback("Success")
+            } else {
+                callback(it.exception?.message ?: "Failed to leave party")
+            }
+        }
+    }
+
+    fun deleteParty(partyCode: String, callback: (String) -> Unit) {
+        val partyRef = db.getReference("party members").child(partyCode)
+        partyRef.removeValue().addOnCompleteListener {
+            if (it.isSuccessful) {
+                callback("Success")
+            } else {
+                callback(it.exception?.message ?: "Failed to delete party")
+            }
+        }
     }
 }

@@ -28,4 +28,11 @@
     <string name="answer">Answer</string>
     <string name="custom_quiz_title">Create a question and provide the correct answer to challenge your friends!</string>
     <string name="finalize">Finalize</string>
+    <string name="asked_by">Asked by %1$s</string>
+    <string name="back_to_party">Back To Party</string>
+    <string name="waiting_for_host_back_to_party">Waiting for host back to party</string>
+    <string name="room_not_available">Room Not Available</string>
+    <string name="waiting_for_other_players">Waiting for other players</string>
+    <string name="waiting_for_host_to_start">Waiting for Host to Start</string>
+    <string name="waiting_for_host_to_continue">Waiting for host to continue</string>
 </resources>

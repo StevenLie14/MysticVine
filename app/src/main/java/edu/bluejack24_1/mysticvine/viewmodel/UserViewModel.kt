@@ -3,6 +3,7 @@ package edu.bluejack24_1.mysticvine.viewmodel
 import android.app.Application
 import android.content.Intent
 import android.net.Uri
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -46,6 +47,11 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
             return
         }
 
+        if (username.length > 8) {
+            _registerResult.value = "Username must be less than 8 characters"
+            return
+        }
+
         if (password != confirmPassword) {
             _registerResult.value = "Password and Confirm Password must be the same"
             return
@@ -79,8 +85,10 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    fun getUserById(userId: String) : LiveData<Users> {
-        return userRepository.getUserById(userId)
+    fun getUserById(userId: String, callback : (Users) -> Unit){
+        userRepository.getUserById(userId)   {
+            callback(it)
+        }
     }
 
 

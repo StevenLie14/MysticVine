@@ -18,17 +18,18 @@
         android:layout_height="50dp"
         android:layout_gravity="top|end"
         android:layout_marginTop="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginEnd="10dp"
         android:background="@drawable/rounded_image"
         android:scaleType="centerCrop"
         android:id="@+id/iv_avatar"
         android:src="@drawable/avatar" />
 
     <ImageView
+        android:id="@+id/iv_close"
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:layout_gravity="top|start"
-        android:layout_marginLeft="25dp"
+        android:layout_marginStart="25dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/rounded_image"
         android:scaleType="centerCrop"
