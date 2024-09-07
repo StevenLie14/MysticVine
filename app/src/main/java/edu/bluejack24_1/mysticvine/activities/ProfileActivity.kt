@@ -17,11 +17,14 @@ import com.bumptech.glide.Glide
 import com.google.firebase.storage.StorageTask
 import edu.bluejack24_1.mysticvine.R
 import edu.bluejack24_1.mysticvine.adapters.FlashCardAdapter
+import edu.bluejack24_1.mysticvine.adapters.QuizzesAdapter
 import edu.bluejack24_1.mysticvine.databinding.ActivityLandingBinding
 import edu.bluejack24_1.mysticvine.databinding.ActivityProfilePageBinding
 import edu.bluejack24_1.mysticvine.databinding.ActivityRegisterBinding
 import edu.bluejack24_1.mysticvine.utils.Utils
 import edu.bluejack24_1.mysticvine.viewmodel.FlashCardViewModel
+import edu.bluejack24_1.mysticvine.viewmodel.QuestionViewModel
+import edu.bluejack24_1.mysticvine.viewmodel.QuizViewModel
 import edu.bluejack24_1.mysticvine.viewmodel.UserViewModel
 
 
@@ -30,6 +33,7 @@ class ProfilePage : AppCompatActivity() {
     private lateinit var binding: ActivityProfilePageBinding
     private lateinit var userViewModel: UserViewModel
     private lateinit var flashCardViewModel: FlashCardViewModel
+    private lateinit var quizViewModel: QuizViewModel
 
     private val rotateOpen by lazy { AnimationUtils.loadAnimation(this, R.anim.rotate_open_anim) }
     private val rotateClose by lazy { AnimationUtils.loadAnimation(this, R.anim.rotate_close_anim) }
@@ -63,12 +67,24 @@ class ProfilePage : AppCompatActivity() {
             binding.tvCoin.text = user.coin.toString()
             binding.progressLevel.max = Utils.getExpForLevel(user.level)
             binding.progressLevel.progress = user.exp
+            binding.coinBoosterCount.text = user.coinBooster.toString() + "x"
+            binding.expBoosterCount.text = user.expBooster.toString() + "x"
+            binding.shieldBoosterCount.text = user.shieldBooster.toString() + "x"
+
+            if(user.coinBooster != 0){
+                binding.coinBooster.visibility = View.VISIBLE
+            }
+
+            if(user.expBooster != 0){
+                binding.expBooster.visibility = View.VISIBLE
+            }
+
+            if(user.shieldBooster != 0){
+                binding.shieldBooster.visibility = View.VISIBLE
+            }
+
         }
 
-        binding.createQuiz.setOnClickListener(){
-            val intent = Intent(this, CreateQuizPage::class.java)
-            startActivity(intent)
-        }
 
         binding.editIcon.setOnClickListener(){
             if (binding.userName.visibility == View.VISIBLE){
@@ -121,6 +137,21 @@ class ProfilePage : AppCompatActivity() {
             }
         }
 
+        binding.createQuiz.setOnClickListener(){
+            val intent = Intent(this, CreateQuizPage::class.java)
+            startActivity(intent)
+        }
+
+
+        quizViewModel = ViewModelProvider(this).get(QuizViewModel::class.java)
+        val quizAdapter = QuizzesAdapter()
+        binding.rvQuizCard.adapter = quizAdapter
+        binding.rvQuizCard.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+
+        quizViewModel.userQuizzes.observe(this){
+            quizAdapter.updateList(it)
+        }
+
 
         binding.sortFab.setOnClickListener{
 
@@ -134,19 +165,16 @@ class ProfilePage : AppCompatActivity() {
         binding.profile.setOnClickListener{
             val intent = Intent(this, ProfilePage::class.java)
             startActivity(intent)
-            finish()
         }
 
         binding.shop.setOnClickListener{
             val intent = Intent(this, StorePage::class.java)
             startActivity(intent)
-            finish()
         }
 
         binding.home.setOnClickListener{
             val intent = Intent(this, LandingPage::class.java)
             startActivity(intent)
-            finish()
         }
 
         binding.startFlash.setOnClickListener {
@@ -162,6 +190,10 @@ class ProfilePage : AppCompatActivity() {
             }
         }
 
+        binding.highscore.setOnClickListener{
+            val intent = Intent(this, LeaderBoardPage::class.java)
+            startActivity(intent)
+        }
 
     }
 
@@ -182,9 +214,11 @@ class ProfilePage : AppCompatActivity() {
             binding.home.visibility = View.VISIBLE
             binding.shop.visibility = View.VISIBLE
             binding.profile.visibility = View.VISIBLE
+            binding.highscore.visibility = View.VISIBLE
         } else {
             binding.home.visibility = View.GONE
             binding.shop.visibility = View.GONE
+            binding.highscore.visibility = View.GONE
             binding.profile.visibility = View.GONE
         }
     }
@@ -193,11 +227,13 @@ class ProfilePage : AppCompatActivity() {
             binding.home.startAnimation(fromBottom)
             binding.shop.startAnimation(fromBottom)
             binding.profile.startAnimation(fromBottom)
+            binding.highscore.startAnimation(fromBottom)
             binding.sortFab.startAnimation(rotateOpen)
         } else {
             binding.home.startAnimation(toBottom)
             binding.shop.startAnimation(toBottom)
             binding.profile.startAnimation(toBottom)
+            binding.highscore.startAnimation(toBottom)
             binding.sortFab.startAnimation(rotateClose)
         }
     }
@@ -205,11 +241,13 @@ class ProfilePage : AppCompatActivity() {
     private fun setClickable(clicked: Boolean, binding: ActivityProfilePageBinding){
         if(!clicked){
             binding.home.isClickable = true
+            binding.highscore.isClickable = true
             binding.shop.isClickable = true
             binding.profile.isClickable = true
         } else {
             binding.home.isClickable = false
             binding.shop.isClickable = false
+            binding.highscore.isClickable = false
             binding.profile.isClickable = false
         }
     }

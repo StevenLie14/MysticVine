@@ -18,20 +18,20 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:padding="25dp"
             android:layout_marginHorizontal="10dp"
             android:layout_marginTop="10dp"
             android:text="@{flash_card.question}"
             android:textSize="12sp" />
 
         <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
             android:layout_gravity="bottom|end"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/light_red_circle"
-            android:paddingHorizontal="5dp"
-            android:paddingVertical="5dp"
+            android:padding="10dp"
             android:id="@+id/iv_delete_flash_card"
             android:src="@drawable/trash_icon" />
     </FrameLayout>

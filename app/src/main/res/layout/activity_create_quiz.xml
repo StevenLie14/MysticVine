@@ -15,25 +15,6 @@
         android:layout_marginEnd="-4dp"
         android:src="@drawable/top_right_decoration" />
 
-    <ImageView
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_gravity="top|start"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/rounded_image"
-        android:scaleType="centerCrop"
-        android:src="@drawable/close_icon" />
-
-    <ImageView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_gravity="top|end"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="10dp"
-        android:background="@drawable/rounded_image"
-        android:scaleType="centerCrop"
-        android:src="@drawable/avatar" />
 
     <ImageView
         android:layout_width="180dp"
@@ -46,21 +27,49 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
             android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="30dp"
-                android:fontFamily="@font/source_sans_pro_bold"
-                android:text="Create Quiz"
-                android:textColor="@color/dark_green"
-                android:textSize="25dp" />
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/close_button"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="top|start"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="15dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/close_button" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/profile_picture"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="top|end"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/light_orange_circle"
+                    android:scaleType="centerCrop" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="30dp"
+                    android:fontFamily="@font/source_sans_pro_bold"
+                    android:text="Create Quiz"
+                    android:textColor="@color/dark_green"
+                    android:textSize="25dp" />
+
+            </FrameLayout>
+
 
             <FrameLayout
                 android:layout_width="match_parent"
@@ -84,12 +93,12 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="55dp"
-                    android:textSize="20sp"
+                    android:background="@drawable/light_dark_green_rounded"
                     android:gravity="top"
+                    android:hint="Quiz Name"
                     android:textColor="@color/peach"
                     android:textColorHint="@color/peach"
-                    android:hint="Quiz Name"
-                    android:background="@drawable/light_dark_green_rounded"/>
+                    android:textSize="20sp" />
             </FrameLayout>
 
             <GridLayout
@@ -98,8 +107,6 @@
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="20dp"
                 android:columnCount="1">
-
-
 
 
             </GridLayout>
@@ -118,16 +125,17 @@
                 android:text="Finalize" />
         </LinearLayout>
     </ScrollView>
+
     <ImageView
         android:id="@+id/add_question"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:layout_gravity="bottom|end"
         android:layout_marginRight="15dp"
         android:layout_marginBottom="15dp"
         android:background="@drawable/light_orange_circle"
-        android:scaleType="centerCrop"
-        android:layout_gravity="bottom|end"
         android:paddingHorizontal="15dp"
         android:paddingVertical="10dp"
+        android:scaleType="centerCrop"
         android:src="@drawable/plus_icon" />
 </FrameLayout>

@@ -20,7 +20,7 @@ import kotlinx.coroutines.launch
 
 class UserViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val userRepository : UserRepository = UserRepository(application);
+    private val userRepository : UserRepository = UserRepository(application)
 
 
     private val _loginResult = MutableLiveData<String>()
@@ -31,7 +31,6 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
             _loginResult.value = "Please fill all the fields"
             return
         }
-
         userRepository.login(email, password) { result ->
             _loginResult.value = result
             userRepository.getCurrentUser(_currentUser)
@@ -84,6 +83,13 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
             _editUsernameResult.value = result
         }
     }
+    private val _boosterResult = MutableLiveData<String>()
+    val boosterResult: LiveData<String> = _boosterResult
+    fun AddCoinBooster(){
+        userRepository.updateCoinBooster () {result ->
+            _boosterResult.value = result
+        }
+    }
 
     fun getUserById(userId: String, callback : (Users) -> Unit){
         userRepository.getUserById(userId)   {
@@ -91,7 +97,20 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
+    fun AddExpBooster(){
+        userRepository.updateExpBooster{result ->
+            _boosterResult.value = result
+        }
+    }
+    
+    fun AddShieldBooster(){
+        userRepository.updateShieldBooster {result ->
+            _boosterResult.value = result
+        }
+    }
 
+    private val _leaderboardPageAfter4 = MutableLiveData<List<Users>>()
+    val leaderboardPageAfter4: LiveData<List<Users>> = _leaderboardPageAfter4
 
     private val _leaderboard = MutableLiveData<List<Users>>()
     val leaderboard: LiveData<List<Users>> = _leaderboard
@@ -99,7 +118,9 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
     init {
         userRepository.getLandingLeaderBoard(_leaderboard)
         userRepository.getCurrentUser(_currentUser)
+        userRepository.getLeaderBoardAfter4ranks(_leaderboardPageAfter4)
     }
+
 
 
 

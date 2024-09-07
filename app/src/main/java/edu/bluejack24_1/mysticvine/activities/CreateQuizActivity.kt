@@ -9,7 +9,9 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.net.toUri
 import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.Glide
 import edu.bluejack24_1.mysticvine.R
 import edu.bluejack24_1.mysticvine.databinding.ActivityCreateQuizBinding
 import edu.bluejack24_1.mysticvine.utils.Utils
@@ -37,6 +39,9 @@ class CreateQuizPage : AppCompatActivity() {
         userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
         userViewModel.currentUser.observe(this) { user ->
             if (user == null) return@observe
+            Glide.with(binding.profilePicture)
+                .load(user.profilePicture.toUri())
+                .into(binding.profilePicture)
             binding.createQuiz.setOnClickListener {
                 if (binding.questionContainer.childCount < 1) {
                     Toast.makeText(this, "Please add at least one question.", Toast.LENGTH_SHORT)
@@ -126,6 +131,12 @@ class CreateQuizPage : AppCompatActivity() {
                     Utils.showSnackBar(binding.root, result, true)
                 }
             }
+        }
+
+        binding.closeButton.setOnClickListener {
+            val intent = Intent(this, ProfilePage::class.java)
+            startActivity(intent)
+            finish()
         }
     }
 

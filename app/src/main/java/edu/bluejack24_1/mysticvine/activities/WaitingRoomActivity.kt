@@ -78,7 +78,11 @@ class WaitingRoomPage : AppCompatActivity() {
             partyViewModel.changePartyStatus(partyCode!!, "Started")
         }
 
-
+        binding.closeButton.setOnClickListener {
+            val intent = Intent(this, LandingPage::class.java)
+            startActivity(intent)
+            finish()
+        }
 
         partyViewModel.partyRoom.observe(this) { partyRoom ->
             if (partyRoom == null) {

@@ -16,8 +16,12 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.animation.AnimationUtils
 import android.widget.Toast
+import androidx.core.net.toUri
+import com.bumptech.glide.Glide
 import edu.bluejack24_1.mysticvine.R
 import edu.bluejack24_1.mysticvine.adapters.LandingLeaderBoardAdapter
+import edu.bluejack24_1.mysticvine.adapters.QuizzesAdapter
+import edu.bluejack24_1.mysticvine.adapters.Random3QuizAdapter
 import edu.bluejack24_1.mysticvine.databinding.ActivityLandingBinding
 import edu.bluejack24_1.mysticvine.databinding.CustomGamePopUpBinding
 import edu.bluejack24_1.mysticvine.model.Users
@@ -71,7 +75,19 @@ class LandingPage : AppCompatActivity() {
             binding.levelText.text = user?.level.toString()
             binding.levelProgress.progress = user?.exp ?: 0
             binding.levelProgress.max = Utils.getExpForLevel(user?.level ?: 0)
+            Glide.with(binding.profilePicture)
+                .load(user.profilePicture.toUri())
+                .into(binding.profilePicture)
         }
+
+        val random3QuizAdapter = Random3QuizAdapter()
+        binding.rvRandom3Quiz.adapter = random3QuizAdapter
+        binding.rvRandom3Quiz.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        binding.rvRandom3Quiz.setHasFixedSize(true)
+        quizViewModel.random3Quiz.observe(this) {
+            random3QuizAdapter.updateList(it)
+        }
+
 
         val leaderBoardAdapter = LandingLeaderBoardAdapter()
         binding.rvLeaderboard.adapter = leaderBoardAdapter
@@ -137,6 +153,24 @@ class LandingPage : AppCompatActivity() {
             dialog.show()
         }
 
+        quizViewModel = ViewModelProvider(this).get(QuizViewModel::class.java)
+
+        val quizAdapter = QuizzesAdapter()
+
+        binding.rvQuizCard.adapter = quizAdapter
+        binding.rvQuizCard.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+
+        quizViewModel.allQuizzes.observe(this) { quizzes ->
+            quizAdapter.updateList(quizzes)
+        }
+
+
+
+        binding.highscore.setOnClickListener{
+            val intent = Intent(this, LeaderBoardPage::class.java)
+            startActivity(intent)
+        }
+        
         binding.sortFab.setOnClickListener{
 
             setVisibility(clicked, binding)
@@ -145,23 +179,19 @@ class LandingPage : AppCompatActivity() {
             clicked = !clicked
 
         }
-
         binding.profile.setOnClickListener{
             val intent = Intent(this, ProfilePage::class.java)
             startActivity(intent)
-            finish()
         }
 
         binding.shop.setOnClickListener{
             val intent = Intent(this, StorePage::class.java)
             startActivity(intent)
-            finish()
         }
 
         binding.home.setOnClickListener{
             val intent = Intent(this, LandingPage::class.java)
             startActivity(intent)
-            finish()
         }
     }
 
@@ -171,9 +201,11 @@ class LandingPage : AppCompatActivity() {
             binding.home.visibility = View.VISIBLE
             binding.shop.visibility = View.VISIBLE
             binding.profile.visibility = View.VISIBLE
+            binding.highscore.visibility = View.VISIBLE
         } else {
             binding.home.visibility = View.GONE
             binding.shop.visibility = View.GONE
+            binding.highscore.visibility = View.GONE
             binding.profile.visibility = View.GONE
         }
     }
@@ -182,11 +214,13 @@ class LandingPage : AppCompatActivity() {
             binding.home.startAnimation(fromBottom)
             binding.shop.startAnimation(fromBottom)
             binding.profile.startAnimation(fromBottom)
+            binding.highscore.startAnimation(fromBottom)
             binding.sortFab.startAnimation(rotateOpen)
         } else {
             binding.home.startAnimation(toBottom)
             binding.shop.startAnimation(toBottom)
             binding.profile.startAnimation(toBottom)
+            binding.highscore.startAnimation(toBottom)
             binding.sortFab.startAnimation(rotateClose)
         }
     }
@@ -194,11 +228,13 @@ class LandingPage : AppCompatActivity() {
     private fun setClickable(clicked: Boolean, binding: ActivityLandingBinding){
         if(!clicked){
             binding.home.isClickable = true
+            binding.highscore.isClickable = true
             binding.shop.isClickable = true
             binding.profile.isClickable = true
         } else {
             binding.home.isClickable = false
             binding.shop.isClickable = false
+            binding.highscore.isClickable = false
             binding.profile.isClickable = false
         }
     }

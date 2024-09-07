@@ -35,4 +35,7 @@
     <string name="waiting_for_other_players">Waiting for other players</string>
     <string name="waiting_for_host_to_start">Waiting for Host to Start</string>
     <string name="waiting_for_host_to_continue">Waiting for host to continue</string>
+    <string name="enter_party_code">Enter Party Code</string>
+    <string name="create_a_new_party">Create a new party</string>
+    <string name="custom_game">Custom Game</string>
 </resources>

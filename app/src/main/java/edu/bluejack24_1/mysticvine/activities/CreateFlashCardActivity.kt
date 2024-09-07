@@ -1,11 +1,14 @@
 package edu.bluejack24_1.mysticvine.activities
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.net.toUri
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.Glide
 import edu.bluejack24_1.mysticvine.R
 import edu.bluejack24_1.mysticvine.databinding.ActivityCreateFlashCardBinding
 import edu.bluejack24_1.mysticvine.utils.Utils
@@ -27,8 +30,14 @@ class CreateFlashCardPage : AppCompatActivity() {
         userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
         flashCardViewModel = ViewModelProvider(this).get(FlashCardViewModel::class.java)
 
+
+
         userViewModel.currentUser.observe(this) { user ->
             if (user == null) return@observe
+
+            Glide.with(binding.profilePicture)
+                .load(user.profilePicture.toUri())
+                .into(binding.profilePicture)
 
             binding.btnCreateCard.setOnClickListener {
                 val question = binding.etQuestion.text.toString()
@@ -45,6 +54,12 @@ class CreateFlashCardPage : AppCompatActivity() {
             }else {
                 Utils.showSnackBar(binding.root, result,true)
             }
+        }
+
+        binding.closeButton.setOnClickListener {
+            val intent = Intent(this, ProfilePage::class.java)
+            startActivity(intent)
+            finish()
         }
     }
 }

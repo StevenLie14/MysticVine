@@ -13,27 +13,25 @@
         android:layout_marginEnd="-4dp"
         android:src="@drawable/top_right_decoration" />
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/iv_avatar"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_gravity="top|end"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
-        android:background="@drawable/rounded_image"
-        android:scaleType="centerCrop"
-        android:id="@+id/iv_avatar"
-        android:src="@drawable/avatar" />
+        android:background="@drawable/light_orange_circle"
+        android:scaleType="centerCrop" />
 
     <ImageView
-        android:id="@+id/iv_close"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
+        android:id="@+id/close_button"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_gravity="top|start"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/rounded_image"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/close_icon" />
+        android:src="@drawable/close_button" />
 
     <ImageView
         android:layout_width="180dp"

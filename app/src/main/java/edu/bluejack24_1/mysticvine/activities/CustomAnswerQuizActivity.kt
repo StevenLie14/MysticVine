@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.net.toUri
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
@@ -20,7 +21,7 @@ import edu.bluejack24_1.mysticvine.utils.Utils
 import edu.bluejack24_1.mysticvine.viewmodel.CustomAnswerViewModel
 import edu.bluejack24_1.mysticvine.viewmodel.CustomQuestionViewModel
 import edu.bluejack24_1.mysticvine.viewmodel.PartyMemberViewModel
-import edu.bluejack24_1.mysticvine.viewmodel.PartyViewModel
+import edu.bluejack24_1.mysticvine.viewmodel.PartyViewMode
 import edu.bluejack24_1.mysticvine.viewmodel.UserViewModel
 
 
