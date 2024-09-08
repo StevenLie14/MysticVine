@@ -76,7 +76,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="6dp"
-                android:text="Already have an account?"
+                android:text="@string/already_have_an_account"
                 android:textColor="@color/dark_green"
                 android:textSize="12sp" />
 
@@ -85,7 +85,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/source_sans_pro_bold"
-                android:text="Login Now!!!"
+                android:text="@string/login_now"
                 android:textColor="@color/dark_orange"
                 android:textSize="12sp" />
         </LinearLayout>
@@ -104,7 +104,7 @@
             android:layout_marginBottom="35dp"
             android:gravity="center_vertical"
             android:background="@drawable/background_edit_text"
-            android:hint="Username"
+            android:hint="@string/username"
             android:paddingBottom="7dp"
             android:paddingHorizontal="15dp" />
 
@@ -114,7 +114,7 @@
             android:layout_height="48dp"
             android:layout_marginBottom="35dp"
             android:background="@drawable/background_edit_text"
-            android:hint="Email"
+            android:hint="@string/email"
             android:paddingBottom="7dp"
             android:paddingHorizontal="15dp"/>
         <EditText
@@ -123,7 +123,7 @@
             android:layout_marginBottom="35dp"
             android:id="@+id/et_password"
             android:background="@drawable/background_edit_text"
-            android:hint="Password"
+            android:hint="@string/password"
             android:paddingBottom="7dp"
             android:inputType="textPassword"
             android:paddingHorizontal="15dp"/>
@@ -133,7 +133,7 @@
             android:layout_height="48dp"
             android:layout_marginBottom="55dp"
             android:background="@drawable/background_edit_text"
-            android:hint="Confirm Password"
+            android:hint="@string/confirm_password"
             android:paddingBottom="7dp"
             android:inputType="textPassword"
             android:paddingHorizontal="15dp"/>
@@ -142,6 +142,6 @@
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:background="@drawable/light_orange_full_rounded"
-            android:text="REGISTER" />
+            android:text="@string/register" />
     </LinearLayout>
 </FrameLayout>

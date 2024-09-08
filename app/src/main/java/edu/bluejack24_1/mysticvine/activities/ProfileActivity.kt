@@ -24,6 +24,7 @@ import edu.bluejack24_1.mysticvine.databinding.ActivityRegisterBinding
 import edu.bluejack24_1.mysticvine.utils.Utils
 import edu.bluejack24_1.mysticvine.viewmodel.FlashCardViewModel
 import edu.bluejack24_1.mysticvine.viewmodel.QuestionViewModel
+import edu.bluejack24_1.mysticvine.viewmodel.QuizResultViewModel
 import edu.bluejack24_1.mysticvine.viewmodel.QuizViewModel
 import edu.bluejack24_1.mysticvine.viewmodel.UserViewModel
 
@@ -34,6 +35,7 @@ class ProfilePage : AppCompatActivity() {
     private lateinit var userViewModel: UserViewModel
     private lateinit var flashCardViewModel: FlashCardViewModel
     private lateinit var quizViewModel: QuizViewModel
+    private lateinit var quizResultViewModel: QuizResultViewModel
 
     private val rotateOpen by lazy { AnimationUtils.loadAnimation(this, R.anim.rotate_open_anim) }
     private val rotateClose by lazy { AnimationUtils.loadAnimation(this, R.anim.rotate_close_anim) }
@@ -52,7 +54,10 @@ class ProfilePage : AppCompatActivity() {
         }
 
 
-        userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
+        userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
+        quizResultViewModel = ViewModelProvider(this)[QuizResultViewModel::class.java]
+        quizViewModel = ViewModelProvider(this).get(QuizViewModel::class.java)
+
         userViewModel.currentUser.observe(this) { user ->
             Log.e("user", user.toString())
             if (user == null) return@observe
@@ -81,6 +86,27 @@ class ProfilePage : AppCompatActivity() {
 
             if(user.shieldBooster != 0){
                 binding.shieldBooster.visibility = View.VISIBLE
+            }
+
+            val quizAdapter = QuizzesAdapter() { quizId, creatorId ->
+                quizResultViewModel.createQuizResult(quizId, user.id) { code, message ->
+                    if (code == 200) {
+                        val intent = Intent(this, QuestionPage::class.java)
+                        intent.putExtra("quizId", quizId)
+                        intent.putExtra("resultId", message)
+                        intent.putExtra("creatorId", creatorId)
+                        startActivity(intent)
+                    } else {
+                        Utils.showSnackBar(binding.root, message,true)
+                    }
+
+                }
+            }
+            binding.rvQuizCard.adapter = quizAdapter
+            binding.rvQuizCard.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+
+            quizViewModel.userQuizzes.observe(this){
+                quizAdapter.updateList(it)
             }
 
         }
@@ -143,14 +169,7 @@ class ProfilePage : AppCompatActivity() {
         }
 
 
-        quizViewModel = ViewModelProvider(this).get(QuizViewModel::class.java)
-        val quizAdapter = QuizzesAdapter()
-        binding.rvQuizCard.adapter = quizAdapter
-        binding.rvQuizCard.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
 
-        quizViewModel.userQuizzes.observe(this){
-            quizAdapter.updateList(it)
-        }
 
 
         binding.sortFab.setOnClickListener{

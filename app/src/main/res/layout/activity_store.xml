@@ -67,7 +67,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:fontFamily="@font/source_sans_pro_bold"
-                android:text="Store"
+                android:text="@string/store"
                 android:textColor="@color/dark_green"
                 android:textSize="25sp" />
 
@@ -133,15 +133,15 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="8dp"
-                        android:text="x2 Exp Booster"
-                        android:textSize="17sp" />
+                        android:text="@string/exp2x_title"
+                        android:textSize="16sp" />
 
                     <TextView
                         android:layout_width="147dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:fontFamily="@font/source_sans_pro_regular"
-                        android:text="The x2 Exp Booster doubles your earned XP for a limited time, helping you level up faster and unlock new abilities quickly. "
+                        android:text="@string/exp2x_desc"
                         android:textSize="10sp" />
 
                     <FrameLayout
@@ -198,15 +198,15 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="8dp"
-                        android:text="x2 Coin Booster"
-                        android:textSize="17sp" />
+                        android:text="@string/x2_coin_title"
+                        android:textSize="16sp" />
 
                     <TextView
                         android:layout_width="147dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:fontFamily="@font/source_sans_pro_regular"
-                        android:text="The x2 Coin Booster doubles the coins you earn, allowing you to accumulate wealth faster and unlock valuable items more quickly."
+                        android:text="@string/x2_coin_desc"
                         android:textSize="10sp" />
 
                     <FrameLayout
@@ -262,15 +262,15 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="8dp"
-                        android:text="x2 Loss Reducer"
-                        android:textSize="17sp" />
+                        android:text="@string/exp_loss_title"
+                        android:textSize="16sp" />
 
                     <TextView
                         android:layout_width="147dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:fontFamily="@font/source_sans_pro_regular"
-                        android:text="The x2 Exp Loss Reducer halves the XP you lose, helping you maintain your progress and level up more efficiently."
+                        android:text="@string/exp_loss_desc"
                         android:textSize="10sp" />
 
                     <FrameLayout

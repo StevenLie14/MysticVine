@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import edu.bluejack24_1.mysticvine.databinding.QuizPlayCardBinding
 import edu.bluejack24_1.mysticvine.model.Quizzes
 
-class QuizzesAdapter :
+class QuizzesAdapter (private val onItemClicked: (quizId: String, creatorId : String) -> Unit) :
     RecyclerView.Adapter<QuizzesAdapter.ViewHolder>() {
 
     private var quizzesList: List<Quizzes> = emptyList()
@@ -33,8 +33,11 @@ class QuizzesAdapter :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val user = quizzesList[position]
-        holder.bind(user)
+        val quiz = quizzesList[position]
+        holder.bind(quiz)
+        holder.itemView.setOnClickListener {
+            onItemClicked(quiz.id, quiz.userId)
+        }
     }
 
 

@@ -80,6 +80,8 @@ class CustomQuizPage : AppCompatActivity() {
         customQuestionViewModel.getCustomQuestions(partyCode!!, partyQuestionId!!)
         partyMemberViewModel.getPartyMember(partyCode)
 
+        binding.closeButton.setOnClickListener { finish() }
+
         userViewModel.currentUser.observe(this) { currentUser ->
             if (currentUser == null) return@observe
             user = currentUser

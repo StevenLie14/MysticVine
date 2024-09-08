@@ -59,7 +59,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/dark_green"
-            android:text="Create a question and provide the correct answer for your flash card"/>
+            android:text="@string/create_a_question_and_provide_the_correct_answer_for_your_flash_card"/>
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="390dp"
@@ -81,7 +81,7 @@
                     android:layout_marginBottom="25dp"
                     android:background="@drawable/peach_rounded"
                     android:gravity="top"
-                    android:hint="Question"
+                    android:hint="@string/question"
                     android:id="@+id/et_question"
                     android:paddingHorizontal="15dp"
                     android:paddingVertical="15dp" />
@@ -94,7 +94,7 @@
                     android:background="@drawable/peach_rounded"
                     android:gravity="top"
                     android:id="@+id/et_answer"
-                    android:hint="Answer"
+                    android:hint="@string/answer"
                     android:paddingHorizontal="15dp"
                     android:paddingVertical="15dp" />
             </LinearLayout>
@@ -111,7 +111,7 @@
             android:layout_marginTop="35dp"
             android:backgroundTint="@color/light_orange"
             android:fontFamily="@font/source_sans_pro_bold"
-            android:text="Create Card" />
+            android:text="@string/create_card" />
     </LinearLayout>
 
 </FrameLayout>

@@ -36,7 +36,8 @@ class CreateQuizPage : AppCompatActivity() {
         binding.addQuestion.setOnClickListener {
             addNewQuestion()
         }
-        userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
+
+        userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
         userViewModel.currentUser.observe(this) { user ->
             if (user == null) return@observe
             Glide.with(binding.profilePicture)
@@ -44,8 +45,7 @@ class CreateQuizPage : AppCompatActivity() {
                 .into(binding.profilePicture)
             binding.createQuiz.setOnClickListener {
                 if (binding.questionContainer.childCount < 1) {
-                    Toast.makeText(this, "Please add at least one question.", Toast.LENGTH_SHORT)
-                        .show()
+                    Utils.showSnackBar(binding.root, "Please add at least one question.", true)
                 } else {
                     var allQuestionsEligible = true
                     for (i in 0 until binding.questionContainer.childCount) {
@@ -65,7 +65,7 @@ class CreateQuizPage : AppCompatActivity() {
                         val optionCValue = optionC.text.toString()
                         val optionDValue = optionD.text.toString()
                         val optionEValue = optionE.text.toString()
-                        Toast.makeText(this, questionView.tag.toString(), Toast.LENGTH_SHORT).show()
+//                        Toast.makeText(this, questionView.tag.toString(), Toast.LENGTH_SHORT).show()
 
                         if (selectedAnswer.isNullOrEmpty() || !questionViewModel.isQuestionEligible(
                                 questions.text.toString(),
@@ -82,11 +82,11 @@ class CreateQuizPage : AppCompatActivity() {
                         }
                     }
                     if (!(allQuestionsEligible && quizViewModel.isQuizEligible(binding.quizName.text.toString()))) {
-                        Toast.makeText(
-                            this,
+                        Utils.showSnackBar(
+                            binding.root,
                             "Please ensure all fields are filled out correctly.",
-                            Toast.LENGTH_SHORT
-                        ).show()
+                            true
+                        )
                     } else {
 
                         val id: String = UUID.randomUUID().toString()
@@ -134,8 +134,6 @@ class CreateQuizPage : AppCompatActivity() {
         }
 
         binding.closeButton.setOnClickListener {
-            val intent = Intent(this, ProfilePage::class.java)
-            startActivity(intent)
             finish()
         }
     }

@@ -88,6 +88,24 @@ class QuizRepository {
         })
     }
 
+    fun getQuizById(quizId: String, creatorId: String, quiz: MutableLiveData<Quizzes>) {
+        val quizRef = db.getReference("quizzes").child(creatorId).child(quizId)
+        quizRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                try {
+                    val quizDB = snapshot.getValue(Quizzes::class.java)
+                    quiz.postValue(quizDB)
+                } catch (e: Exception) {
+                    Log.e("QuizRepository", "Error parsing quiz data", e)
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.e("QuizRepository", "Database error: ${error.message}")
+            }
+        })
+    }
+
 
 
 }

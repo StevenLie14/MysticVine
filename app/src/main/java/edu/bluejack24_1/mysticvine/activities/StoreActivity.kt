@@ -2,12 +2,8 @@ package edu.bluejack24_1.mysticvine.activities
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.net.toUri
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import edu.bluejack24_1.mysticvine.R
@@ -45,17 +41,17 @@ class StorePage : AppCompatActivity() {
 
 
         binding.buyExpBooster.setOnClickListener {
-            userViewModel.AddExpBooster()
+            userViewModel.addExpBooster()
         }
 
 
         binding.buyCoinBooster.setOnClickListener(){
-            userViewModel.AddCoinBooster()
+            userViewModel.addCoinBooster()
 
         }
 
         binding.buyShieldBooster.setOnClickListener(){
-            userViewModel.AddShieldBooster()
+            userViewModel.addShieldBooster()
         }
 
         userViewModel.boosterResult.observe(this) { result ->
@@ -67,8 +63,6 @@ class StorePage : AppCompatActivity() {
         }
 
         binding.closeButton.setOnClickListener {
-            val intent = Intent(this, ProfilePage::class.java)
-            startActivity(intent)
             finish()
         }
 

@@ -25,18 +25,11 @@ class LeaderBoardPage : AppCompatActivity() {
 
         userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
 
-        val leaderBoardAdapter = LeaderboardAdapter()
-        binding.rvLeaderboardRanking.adapter = leaderBoardAdapter
-        binding.rvLeaderboardRanking.layoutManager = LinearLayoutManager(this)
-        binding.rvLeaderboardRanking.setHasFixedSize(true)
 
-        userViewModel.leaderboardPageAfter4.observe(this) { userList ->
-            leaderBoardAdapter.updateUserList(userList)
-        }
 
         userViewModel.leaderboard.observe(this) { userList ->
             if (userList != null) {
-                if (userList.size > 0) {
+                if (userList.isNotEmpty()) {
                     binding.rank1Score.text = userList[0].score.toString()
                     binding.rank1Username.text = userList[0].username
                     Glide.with(binding.rank1Picture)
@@ -69,11 +62,21 @@ class LeaderBoardPage : AppCompatActivity() {
             Glide.with(binding.profilePicture)
                 .load(user.profilePicture.toUri())
                 .into(binding.profilePicture)
+
+            val leaderBoardAdapter = LeaderboardAdapter()
+            binding.rvLeaderboardRanking.adapter = leaderBoardAdapter
+            binding.rvLeaderboardRanking.layoutManager = LinearLayoutManager(this)
+            binding.rvLeaderboardRanking.setHasFixedSize(true)
+
+            userViewModel.leaderboardPageAfter4.observe(this) { userList ->
+                leaderBoardAdapter.updateUserList(userList)
+
+                var idx = userList.indexOfFirst { it.id == user.id }
+                binding.rvLeaderboardRanking.scrollToPosition(idx)
+            }
         }
 
         binding.closeButton.setOnClickListener {
-            val intent = Intent(this, ProfilePage::class.java)
-            startActivity(intent)
             finish()
         }
 

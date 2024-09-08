@@ -73,7 +73,7 @@ class FlashCardPage : AppCompatActivity() {
                     binding.back.text = card.answer
                     binding.questionProgress.max = daily.size
                     binding.questionProgress.progress = id + 1
-                    binding.tvQuestionNumber.text = "${id + 1}/${daily.size} "
+                    binding.tvQuestionNumber.text = "  ${id + 1}/${daily.size} - ${user.username} FLash Card"
                 } else {
                     binding.front.text = getString(R.string.finish_flash_card)
                     binding.back.text = getString(R.string.finish_flash_card)

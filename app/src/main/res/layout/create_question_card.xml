@@ -24,7 +24,7 @@
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/peach_rounded"
                 android:gravity="top"
-                android:hint="Question"
+                android:hint="@string/question"
                 android:paddingHorizontal="15dp"
                 android:paddingVertical="15dp" />
 
@@ -40,7 +40,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginBottom="10dp"
                     android:gravity="center"
-                    android:text="Answer "
+                    android:text="@string/answer"
                     android:textSize="20sp" />
 
                 <HorizontalScrollView
@@ -121,7 +121,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="25dp"
-                android:text="Option" />
+                android:text="@string/option" />
 
             <FrameLayout
                 android:layout_width="match_parent"
@@ -135,7 +135,7 @@
                     android:layout_marginVertical="5dp"
                     android:background="@drawable/peach_rounded"
                     android:gravity="top"
-                    android:hint="Option A"
+                    android:hint="@string/option_a"
                     android:paddingHorizontal="15dp"
                     android:paddingVertical="15dp"
                     android:paddingStart="85dp" />
@@ -164,7 +164,7 @@
                     android:layout_marginVertical="5dp"
                     android:background="@drawable/peach_rounded"
                     android:gravity="top"
-                    android:hint="Option B"
+                    android:hint="@string/option_b"
                     android:paddingHorizontal="15dp"
                     android:paddingVertical="15dp"
                     android:paddingStart="85dp" />
@@ -193,7 +193,7 @@
                     android:layout_marginVertical="5dp"
                     android:background="@drawable/peach_rounded"
                     android:gravity="top"
-                    android:hint="Option C"
+                    android:hint="@string/option_c"
                     android:paddingHorizontal="15dp"
                     android:paddingVertical="15dp"
                     android:paddingStart="85dp" />
@@ -222,7 +222,7 @@
                     android:layout_marginVertical="5dp"
                     android:background="@drawable/peach_rounded"
                     android:gravity="top"
-                    android:hint="Option D"
+                    android:hint="@string/option_d"
                     android:paddingHorizontal="15dp"
                     android:paddingVertical="15dp"
                     android:paddingStart="85dp" />
@@ -251,7 +251,7 @@
                     android:layout_marginVertical="5dp"
                     android:background="@drawable/peach_rounded"
                     android:gravity="top"
-                    android:hint="Option E"
+                    android:hint="@string/option_e"
                     android:paddingHorizontal="15dp"
                     android:paddingVertical="15dp"
                     android:paddingStart="85dp" />

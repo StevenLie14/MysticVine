@@ -57,21 +57,41 @@
                         android:textSize="12sp" />
                 </FrameLayout>
 
-                <com.google.android.material.progressindicator.LinearProgressIndicator
-                    android:id="@+id/level_progress"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="18dp"
-                    android:layout_gravity="bottom"
-                    android:layout_marginVertical="10dp"
-                    android:layout_marginEnd="40dp"
-                    android:elevation="4dp"
-                    android:max="50"
-                    android:progressBackgroundTintMode="add"
-                    app:indicatorColor="@color/light_orange"
-                    app:trackColor="@color/light_dark_green"
-                    app:trackCornerRadius="24dp"
-                    app:trackThickness="8dp"
-                    tools:progress="50" />
+                    android:layout_height="match_parent"
+                    android:gravity="bottom"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/exp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="10000"
+                        android:layout_marginEnd="40dp"
+                        android:layout_marginStart="10dp"
+                        android:gravity="end"
+                        android:textColor="@color/light_orange" />
+
+                    <com.google.android.material.progressindicator.LinearProgressIndicator
+                        android:id="@+id/level_progress"
+                        android:layout_width="match_parent"
+                        android:layout_height="18dp"
+                        android:layout_gravity="bottom"
+                        android:layout_marginVertical="10dp"
+                        android:layout_marginEnd="40dp"
+                        android:layout_marginStart="10dp"
+                        android:elevation="4dp"
+                        android:max="50"
+                        android:progressBackgroundTintMode="add"
+                        app:indicatorColor="@color/light_orange"
+                        app:trackColor="@color/light_dark_green"
+                        app:trackCornerRadius="24dp"
+                        app:trackThickness="8dp"
+                        tools:progress="50" />
+                </LinearLayout>
+
+
             </LinearLayout>
 
             <LinearLayout
@@ -83,6 +103,7 @@
                 android:paddingVertical="4dp">
 
                 <ImageView
+                    android:contentDescription="@string/coin"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/coin" />
@@ -116,9 +137,9 @@
 
         </FrameLayout>
 
-        <ScrollView
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -149,7 +170,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="LeaderBoard" />
+                            android:text="@string/leaderboard" />
 
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/rv_leaderboard"
@@ -158,12 +179,13 @@
 
 
                         <Button
+                            android:id="@+id/leaderboard_button"
                             android:layout_width="152dp"
-                            android:layout_height="32dp"
+                            android:layout_height="40dp"
                             android:layout_marginHorizontal="4dp"
                             android:backgroundTint="@color/light_orange"
                             android:letterSpacing="0.05"
-                            android:text="See More..."
+                            android:text="@string/see_more"
                             android:textSize="12sp" />
 
                     </LinearLayout>
@@ -230,7 +252,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="16dp"
-                        android:text="Recommended Quizzes"
+                        android:text="@string/recommended_quizzes"
                         android:textColor="@color/white"
                         android:textSize="24sp" />
 
@@ -258,7 +280,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="16dp"
-                        android:text="Explore On Quizzes"
+                        android:text="@string/explore_on_quizzes"
                         android:textColor="@color/dark_green"
                         android:textSize="20sp" />
 
@@ -279,14 +301,13 @@
                             android:id="@+id/rv_quiz_card"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:nestedScrollingEnabled="false"
                             />
                     </GridLayout>
 
                 </LinearLayout>
             </LinearLayout>
-
-
-        </ScrollView>
+        </androidx.core.widget.NestedScrollView>
 
 
     </LinearLayout>

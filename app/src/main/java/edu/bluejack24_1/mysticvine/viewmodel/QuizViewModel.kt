@@ -37,6 +37,13 @@ class QuizViewModel : ViewModel() {
     private val _random3Quiz = MutableLiveData<List<Quizzes>>()
     val random3Quiz: LiveData<List<Quizzes>> = _random3Quiz
 
+    private val _quiz = MutableLiveData<Quizzes>()
+    val quiz: LiveData<Quizzes> = _quiz
+
+    fun getQuizById(quizId: String, creatorId : String) {
+        quizRepository.getQuizById( quizId, creatorId, _quiz)
+    }
+
     init {
         quizRepository.getAllQuizzes(_allQuizzes)
         quizRepository.getUserQuizzes(_userQuizzes)

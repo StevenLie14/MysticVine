@@ -51,5 +51,16 @@ class QuestionViewModel : ViewModel() {
         }
     }
 
+    private val _questions = MutableLiveData<List<Questions>>()
+    val questions: LiveData<List<Questions>> = _questions
+    fun getQuestions(quizId: String) {
+        questionRepository.getQuestions(_questions, quizId)
+    }
+
+    init {
+        _questionResult.value = ""
+        _questions.value = listOf()
+    }
+
 }
 

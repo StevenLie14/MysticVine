@@ -162,6 +162,27 @@ class UserRepository (context: Context) {
         })
     }
 
+    fun getAllLeaderBoard(userList: MutableLiveData<List<Users>>) {
+        val userRef = db.getReference("users").orderByChild("score")
+        userRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                try {
+                    val userDB: List<Users> = snapshot.children.mapNotNull { it.getValue(Users::class.java) }
+                        .sortedByDescending { it.score }
+
+                    userList.postValue(userDB)
+
+                } catch (e: Exception) {
+                    Log.e("UserRepository", "Error parsing user data", e)
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.e("UserRepository", error.message)
+            }
+        })
+    }
+
     fun getLeaderBoardAfter4ranks(userList: MutableLiveData<List<Users>>) {
         val userRef = db.getReference("users").orderByChild("score")
         userRef.addValueEventListener(object : ValueEventListener {
@@ -328,6 +349,17 @@ class UserRepository (context: Context) {
             }
         }.addOnFailureListener { exception ->
             Log.e("UserRepository", exception.message ?: "Failed to get user data")
+        }
+    }
+
+    fun updateUser (users: Users, callback: (Int, String) -> Unit) {
+        val userRef = db.getReference("users").child(users.id)
+        userRef.setValue(users).addOnCompleteListener {
+            if (it.isSuccessful) {
+                callback(200, "Item deleted")
+            } else {
+                callback(400, it.exception?.message ?: "Failed to delete item")
+            }
         }
     }
 

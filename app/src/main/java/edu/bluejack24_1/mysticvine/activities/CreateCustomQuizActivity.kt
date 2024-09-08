@@ -79,6 +79,10 @@ class CreateCustomQuizPage : AppCompatActivity() {
         customAnswerViewModel.resetAll()
         partyMemberViewModel.resetAll()
 
+        binding.closeButton.setOnClickListener {
+            finish()
+        }
+
         customQuestionViewModel.createCustomQuestionResult.observe(this) { result ->
             if (result == "Answer created") {
                 binding.btnFinalize.isEnabled = false

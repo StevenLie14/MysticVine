@@ -30,6 +30,7 @@ import edu.bluejack24_1.mysticvine.viewmodel.CustomAnswerViewModel
 import edu.bluejack24_1.mysticvine.viewmodel.CustomQuestionViewModel
 import edu.bluejack24_1.mysticvine.viewmodel.PartyMemberViewModel
 import edu.bluejack24_1.mysticvine.viewmodel.PartyViewModel
+import edu.bluejack24_1.mysticvine.viewmodel.QuizResultViewModel
 import edu.bluejack24_1.mysticvine.viewmodel.QuizViewModel
 import edu.bluejack24_1.mysticvine.viewmodel.UserViewModel
 
@@ -41,6 +42,7 @@ class LandingPage : AppCompatActivity() {
     private  lateinit var userViewModel: UserViewModel
     private lateinit var customQuestionViewModel: CustomQuestionViewModel
     private lateinit var customAnswerViewModel: CustomAnswerViewModel
+    private lateinit var quizResultViewModel: QuizResultViewModel
 
     private val rotateOpen by lazy { AnimationUtils.loadAnimation(this, R.anim.rotate_open_anim) }
     private val rotateClose by lazy { AnimationUtils.loadAnimation(this, R.anim.rotate_close_anim) }
@@ -62,31 +64,83 @@ class LandingPage : AppCompatActivity() {
         partyMemberViewModel = ViewModelProvider(this)[PartyMemberViewModel::class.java]
         customQuestionViewModel = ViewModelProvider(this)[CustomQuestionViewModel::class.java]
         customAnswerViewModel = ViewModelProvider(this)[CustomAnswerViewModel::class.java]
+        quizResultViewModel = ViewModelProvider(this)[QuizResultViewModel::class.java]
+        quizViewModel = ViewModelProvider(this)[QuizViewModel::class.java]
+
+
         partyViewModel.resetAll()
         partyMemberViewModel.resetAll()
         customQuestionViewModel.resetAll()
         customAnswerViewModel.resetAll()
+        quizResultViewModel.resetAll()
 
         Utils.guestMiddleware(userViewModel, this)
+
+        binding.leaderboardButton.setOnClickListener {
+            val intent = Intent(this, LeaderBoardPage::class.java)
+            startActivity(intent)
+        }
         userViewModel.currentUser.observe(this) { user ->
             if (user == null) return@observe
             binding.welcomeText.text = getString(R.string.welcome_user, user?.username)
-            binding.coinText.text = user?.coin.toString()
-            binding.levelText.text = user?.level.toString()
-            binding.levelProgress.progress = user?.exp ?: 0
-            binding.levelProgress.max = Utils.getExpForLevel(user?.level ?: 0)
+            binding.coinText.text = user.coin.toString()
+            binding.levelText.text = user.level.toString()
+            binding.levelProgress.progress = user.exp ?: 0
+            binding.levelProgress.max = Utils.getExpForLevel(user.level)
+            binding.exp.text = "${user.exp}/${Utils.getExpForLevel(user.level)}"
             Glide.with(binding.profilePicture)
                 .load(user.profilePicture.toUri())
                 .into(binding.profilePicture)
+
+            val random3QuizAdapter = Random3QuizAdapter() {quizId, creatorId ->
+                quizResultViewModel.createQuizResult(quizId, user.id) { code, message ->
+                    if (code == 200) {
+                        val intent = Intent(this, QuestionPage::class.java)
+                        intent.putExtra("quizId", quizId)
+                        intent.putExtra("resultId", message)
+                        intent.putExtra("creatorId", creatorId)
+                        startActivity(intent)
+                    } else {
+                        Utils.showSnackBar(binding.root, message,true)
+                    }
+
+                }
+            }
+
+
+            binding.rvRandom3Quiz.adapter = random3QuizAdapter
+            binding.rvRandom3Quiz.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+            binding.rvRandom3Quiz.setHasFixedSize(true)
+            quizViewModel.random3Quiz.observe(this) {
+                random3QuizAdapter.updateList(it)
+            }
+
+
+            val quizAdapter = QuizzesAdapter() { quizId, creatorId ->
+                quizResultViewModel.createQuizResult(quizId, user.id) { code, message ->
+                    if (code == 200) {
+                        Log.d("QuizResult", message)
+                        val intent = Intent(this, QuestionPage::class.java)
+                        intent.putExtra("quizId", quizId)
+                        intent.putExtra("resultId", message)
+                        intent.putExtra("creatorId", creatorId)
+                        startActivity(intent)
+                    } else {
+                        Utils.showSnackBar(binding.root, message,true)
+                    }
+
+                }
+            }
+
+            binding.rvQuizCard.adapter = quizAdapter
+            binding.rvQuizCard.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+
+            quizViewModel.allQuizzes.observe(this) { quizzes ->
+                quizAdapter.updateList(quizzes)
+            }
         }
 
-        val random3QuizAdapter = Random3QuizAdapter()
-        binding.rvRandom3Quiz.adapter = random3QuizAdapter
-        binding.rvRandom3Quiz.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        binding.rvRandom3Quiz.setHasFixedSize(true)
-        quizViewModel.random3Quiz.observe(this) {
-            random3QuizAdapter.updateList(it)
-        }
+
 
 
         val leaderBoardAdapter = LandingLeaderBoardAdapter()
@@ -153,16 +207,7 @@ class LandingPage : AppCompatActivity() {
             dialog.show()
         }
 
-        quizViewModel = ViewModelProvider(this).get(QuizViewModel::class.java)
 
-        val quizAdapter = QuizzesAdapter()
-
-        binding.rvQuizCard.adapter = quizAdapter
-        binding.rvQuizCard.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-
-        quizViewModel.allQuizzes.observe(this) { quizzes ->
-            quizAdapter.updateList(quizzes)
-        }
 
 
 

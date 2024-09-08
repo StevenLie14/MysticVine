@@ -64,7 +64,7 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="30dp"
                     android:fontFamily="@font/source_sans_pro_bold"
-                    android:text="Create Quiz"
+                    android:text="@string/create_quiz"
                     android:textColor="@color/dark_green"
                     android:textSize="25dp" />
 
@@ -95,7 +95,7 @@
                     android:layout_marginStart="55dp"
                     android:background="@drawable/light_dark_green_rounded"
                     android:gravity="top"
-                    android:hint="Quiz Name"
+                    android:hint="@string/quiz_name"
                     android:textColor="@color/peach"
                     android:textColorHint="@color/peach"
                     android:textSize="20sp" />
@@ -122,7 +122,7 @@
                 android:backgroundTint="@color/light_orange"
                 android:fontFamily="@font/source_sans_pro_bold"
                 android:paddingVertical="13dp"
-                android:text="Finalize" />
+                android:text="@string/finalize" />
         </LinearLayout>
     </ScrollView>
 
