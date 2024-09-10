@@ -106,6 +106,10 @@ class QuestionPage : AppCompatActivity() {
         quizViewModel.getQuizById(quizId,creatorId)
         questionViewModel.getQuestions(quizId)
 
+        binding.closeButton.setOnClickListener {
+            finish()
+        }
+
 
         userViewModel.currentUser.observe(this) { user ->
             if (user == null) return@observe

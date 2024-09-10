@@ -21,6 +21,7 @@
         android:src="@drawable/bottom_left_decoration" />
 
     <ImageView
+        android:id="@+id/close_button"
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:layout_gravity="top|start"
