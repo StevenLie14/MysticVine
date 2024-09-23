@@ -197,17 +197,20 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
             users.profilePicture,
             level,
             exp,
-            users.coin + coin,  // Update coin balance
+            users.coin + coin,
             userScore,
             users.coinBooster,
             users.expBooster,
             users.shieldBooster
         )
 
-        // Update the user in the repository and invoke callback
         userRepository.updateUser(user) { code, _ ->
             callback(code)
         }
+    }
+
+    fun logout() {
+        userRepository.logout()
     }
 
 

@@ -423,6 +423,16 @@
         android:orientation="vertical">
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/logout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="@color/light_orange"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/logout"
+            android:visibility="invisible" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/highscore"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -201,6 +201,13 @@ class ProfilePage : AppCompatActivity() {
             startActivity(intent)
         }
 
+        binding.logout.setOnClickListener {
+            userViewModel.logout()
+            val intent = Intent(this, LoginPage::class.java)
+            startActivity(intent)
+            finish()
+        }
+
         flashCardViewModel.daily.observe(this) {result ->
             if (result.isNotEmpty()) {
                 binding.rememberFlash.visibility = View.VISIBLE
@@ -234,11 +241,13 @@ class ProfilePage : AppCompatActivity() {
             binding.shop.visibility = View.VISIBLE
             binding.profile.visibility = View.VISIBLE
             binding.highscore.visibility = View.VISIBLE
+            binding.logout.visibility = View.VISIBLE
         } else {
             binding.home.visibility = View.GONE
             binding.shop.visibility = View.GONE
             binding.highscore.visibility = View.GONE
             binding.profile.visibility = View.GONE
+            binding.logout.visibility = View.GONE
         }
     }
     private fun setAnimation(clicked: Boolean, binding: ActivityProfilePageBinding){
@@ -247,12 +256,14 @@ class ProfilePage : AppCompatActivity() {
             binding.shop.startAnimation(fromBottom)
             binding.profile.startAnimation(fromBottom)
             binding.highscore.startAnimation(fromBottom)
+            binding.logout.startAnimation(fromBottom)
             binding.sortFab.startAnimation(rotateOpen)
         } else {
             binding.home.startAnimation(toBottom)
             binding.shop.startAnimation(toBottom)
             binding.profile.startAnimation(toBottom)
             binding.highscore.startAnimation(toBottom)
+            binding.logout.startAnimation(toBottom)
             binding.sortFab.startAnimation(rotateClose)
         }
     }
@@ -263,11 +274,13 @@ class ProfilePage : AppCompatActivity() {
             binding.highscore.isClickable = true
             binding.shop.isClickable = true
             binding.profile.isClickable = true
+            binding.logout.isClickable = true
         } else {
             binding.home.isClickable = false
             binding.shop.isClickable = false
             binding.highscore.isClickable = false
             binding.profile.isClickable = false
+            binding.logout.isClickable = false
         }
     }
 }
