@@ -25,7 +25,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginBottom="80dp">
 
 
         <LinearLayout
@@ -111,27 +112,29 @@
 
             </GridLayout>
 
-            <Button
-                android:id="@+id/create_quiz"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="35dp"
-                android:layout_marginBottom="30dp"
-                android:backgroundTint="@color/light_orange"
-                android:fontFamily="@font/source_sans_pro_bold"
-                android:paddingVertical="13dp"
-                android:text="@string/finalize" />
+
         </LinearLayout>
     </ScrollView>
+
+    <Button
+        android:id="@+id/create_quiz"
+        android:layout_width="271dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="bottom|start"
+        android:layout_marginBottom="10dp"
+        android:backgroundTint="@color/light_orange"
+        android:fontFamily="@font/source_sans_pro_bold"
+        android:paddingVertical="13dp"
+        android:text="@string/finalize" />
 
     <ImageView
         android:id="@+id/add_question"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_gravity="bottom|end"
-        android:layout_marginRight="15dp"
+        android:layout_marginRight="25dp"
         android:layout_marginBottom="15dp"
         android:background="@drawable/light_orange_circle"
         android:paddingHorizontal="15dp"

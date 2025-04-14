@@ -49,7 +49,7 @@
     <string name="x2_coin_title">x2 Coin Booster</string>
     <string name="x2_coin_desc">The x2 Coin Booster doubles the coins you earn, allowing you to accumulate wealth faster and unlock valuable items more quickly.</string>
     <string name="store">Store</string>
-    <string name="quiz_name">Quiz Name</string>
+    <string name="quiz_name">Input Quiz Name</string>
     <string name="create_quiz">Create Quiz</string>
     <string name="option_a">Option A</string>
     <string name="option_b">Option B</string>
