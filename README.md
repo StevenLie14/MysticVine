@@ -46,7 +46,3 @@ How to reconfigure or add Firebase services (via Android Studio)
 4. Follow the guided steps to enable services (Authentication, Realtime Database, Storage, etc.).
 5. When you connect an Android app in the Firebase console/Assistant, download the updated `google-services.json` and place it in the `app/` folder.
 6. Sync the project (Android Studio will prompt to add the required Gradle plugins and dependencies).
-
-![App screenshot](docs/images/screenshot.svg)
-
-
